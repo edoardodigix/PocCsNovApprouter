@@ -1,0 +1,74 @@
+_schema-version: "3.2"
+ID: poccsnovsrvcld
+version: 0.0.1
+modules:
+- name: poccsnovsrvcld-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: poccsnovsrvcld-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - poccsnovsrvcldfrontend.zip
+      name: poccsnovsrvcldfrontend
+      target-path: resources/
+- name: poccsnovsrvcldfrontend
+  type: html5
+  path: poccsnovsrvcld-frontend
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: poccsnovsrvcld-approuter
+  type: approuter.nodejs
+  path: poccsnovsrvcld-approuter
+  requires:
+  - name: poccsnovsrvcld_html_repo_runtime
+  - name: poccsnovsrvcld-destination-service
+    group: destinations
+    properties:
+      forwardAuthToken: false
+      name: ui5
+      url: https://ui5.sap.com
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+resources:
+- name: poccsnovsrvcld-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: poccsnovsrvcld-html5-srv
+    service-plan: app-host
+- name: poccsnovsrvcld-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: poccsnovsrvcld-destination-service
+    service-plan: lite
+- name: poccsnovsrvcld_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+parameters:
+  deploy_mode: html5-repo

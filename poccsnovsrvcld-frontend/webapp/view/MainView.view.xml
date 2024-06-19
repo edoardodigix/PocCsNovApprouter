@@ -1,0 +1,21 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="poccsnovsrvcldfrontend.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:t="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes">
+    <Page title="{i18n>title}" showHeader="false">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Label text="Tipologia riferimento" design="Bold" />
+                <Select forceSelection="false" class="sapUiSmallMarginBottom" change="onSelectChange">
+                    <items>
+                        <core:Item text="Documento di consegna" />
+                        <core:Item text="Documento spedizione lotto" />
+                        <core:Item text="Documento spedizione prodotto" />
+                        <core:Item text="Ordine di vendita" />
+                    </items>
+                </Select>
+                <mvc:XMLView id="odv-view" viewName="poccsnovsrvcldfrontend.view.OdvView" visible="false" />
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
