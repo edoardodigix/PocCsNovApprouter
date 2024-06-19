@@ -91,4 +91,51 @@
             </HBox>
         </VBox>
     </Panel>
+    <Panel id="riferimenti-panel" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
+        <t:Table id="riferimenti-table" rows="{/Riferimenti}" selectionMode="None">
+            <t:rowMode>
+                <rowmodes:Fixed />
+            </t:rowMode>
+            <t:columns>
+                <t:Column width="9rem">
+                    <Label text="N. OdV" />
+                    <t:template>
+                        <Text text="{NumeroOdv}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="9rem">
+                    <Label text="Data OdV" />
+                    <t:template>
+                        <Text text="{DataOdv}" />
+                    </t:template>
+                </t:Column>
+                <t:Column>
+                    <Label text="N. OdA Cliente" />
+                    <t:template>
+                        <Text text="{NumeroOdaCliente}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="9rem">
+                    <Label text="Valore" />
+                    <t:template>
+                        <Text text="{Valore}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="9rem">
+                    <Label text="Stato" />
+                    <t:template>
+                        <Text text="{Stato}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="6rem" hAlign="Center">
+                    <t:template>
+                        <HBox justifyContent="SpaceAround">
+                            <Button icon="sap-icon://delete" press="EliminaRiferimento"/>
+                            <Button icon="sap-icon://inspection" type="Default" press="ApriPdf" tooltip="Visualizza documento ODV_{NumeroOdv}.pdf"/>
+                        </HBox>
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+    </Panel>
 </mvc:View>

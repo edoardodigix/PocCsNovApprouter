@@ -114,6 +114,62 @@ function (Controller, JSONModel, Filter, FilterOperator,
             oSelectButton.setEnabled(false);
         },
 
+		onSeleziona: function() {
+			const aSelectedIndices = this.oFiltersTable.getSelectedIndices();
+			const aSelectedRows = this.oFiltersTable.getRows().filter(row => aSelectedIndices.includes(row.getIndex()));
+			aSelectedRows.forEach(row => {
+				// DEFINIAMO L'ARRAY CHE CONTERRA' I NUMEROODV DI TUTTI GLI ELEMENTI GIA' PRESENTI NEL MODELLO JSON DEI RIFERIMENTI
+				const currentRows = this._getArrayNumeriOdvRiferimenti();
+				// TIRIAMO FUORI IL NUMEROODV DELLA RIGA CHE STIAMO AGGIUNGENDO (QUELLA DEL FOREACH)
+				const rowNumeroOdv = this._getNumeroOdvFromRow(row);
+				if(!currentRows.includes(rowNumeroOdv)) {
+					this.getView().getModel().getData().Riferimenti.push(
+						{
+							// IL NOME DELLA PROPRIETA' VA CALCOLATO DINAMICAMENTE, NEL CASO IN CUI L'UTENTE ABBIA RIORDINATO LE COLONNE
+							[row.getCells()[0].getBindingInfo("text").parts[0].path]: row.getCells()[0].getText(),
+							[row.getCells()[1].getBindingInfo("text").parts[0].path]: row.getCells()[1].getText(),
+							[row.getCells()[2].getBindingInfo("text").parts[0].path]: row.getCells()[2].getText(),
+							[row.getCells()[3].getBindingInfo("text").parts[0].path]: row.getCells()[3].getText(),
+							[row.getCells()[4].getBindingInfo("text").parts[0].path]: row.getCells()[4].getText()
+						}
+					);
+				}
+			});
+			this.getView().getModel().refresh(true);
+			const oRiferimentiTable = this.getView().byId("riferimenti-table");
+			const oRiferimentiTableRows = oRiferimentiTable.getBinding("rows");
+			oRiferimentiTable.getRowMode().setRowCount(oRiferimentiTableRows.getCount());
+			this.getView().byId("riferimenti-panel").setVisible(true);
+		},
+
+		EliminaRiferimento: function (oEvent) {
+			const row = oEvent.getSource().getParent().getParent();
+			const numeroOdv = this._getNumeroOdvFromRow(row);
+			const indexToRemove = this._getArrayNumeriOdvRiferimenti().indexOf(numeroOdv);
+			this.getView().getModel().getData().Riferimenti.splice(indexToRemove, 1);
+			this.getView().getModel().refresh(true);
+			if (this.getView().getModel().getData().Riferimenti.length === 0)
+				this.getView().byId("riferimenti-panel").setVisible(false);
+		},
+
+		// UTILITY FUNTIONS PRIVATE
+
+		_getNumeroOdvFromRow: function (row) {
+			return row.getCells().reduce((finalValue, cell) => {
+				if (cell.getBindingPath("text") === 'NumeroOdv')
+					finalValue = cell.getText();
+				return finalValue;
+			}, "");
+		},
+
+		_getArrayNumeriOdvRiferimenti: function () {
+			return this.getView().getModel().getData().Riferimenti
+			.reduce((currentRows, row) => {
+				currentRows.push(row.NumeroOdv);
+				return currentRows;
+			}, []);
+		},
+
         // FUNZIONI PER RENDERE LA SAP UI TABLE IN UNA SMART TABLE (SELEZIONE COLONNE E SORTING ABILITATI)
 
         _registerForP13n: function () {
