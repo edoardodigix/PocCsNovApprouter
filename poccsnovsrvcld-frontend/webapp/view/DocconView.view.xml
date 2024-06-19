@@ -1,0 +1,243 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="poccsnovsrvcldfrontend.controller.DocconView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:t="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes">
+    <Panel id="panel-filtri" expandable="true" expanded="true" headerText="Seleziona documenti di riferimento" visible="true" class="sapUiSmallMarginBottom">
+        <content>
+            <HBox id="filtri-hbox-int" justifyContent="SpaceBetween" wrap="Wrap">
+                <VBox id="filtri-vbox-2" class="sapUiSmallMarginBottom">
+                    <Label id="filtri-label-n-del" text="N. Consegna" />
+                    <MultiComboBox
+                        id="filtri-input-n-del"
+
+
+                        fieldGroupIds="filtri-input"
+                        selectionFinish="onBoxFinish"
+                        selectionChange="onInputChange"
+                        width="11rem"
+                        items="{
+                            path: '/data'
+                        }"
+                        
+                        >
+                        <core:Item id="filtri-cbox-n-del-item1" text="{deliveryNumber}" />
+                    </MultiComboBox>
+                </VBox>
+                <VBox id="filtri-vbox-5" class="sapUiSmallMarginBottom">
+                    <Label id="filtri-label-data-um" text="Data UM" />
+                    <DateRangeSelection id="filtri-date-um" placeholder=" " displayFormat="dd/MM/yyyy" fieldGroupIds="filtri-input" change="onInputChange" width="13rem" />
+                </VBox>
+                <VBox id="filtri-vbox-1" class="sapUiSmallMarginBottom">
+                    <Label id="filtri-label-n-odv" text="N. OdV" />
+                    <MultiComboBox
+                        id="filtri-input-n-odv"
+                        fieldGroupIds="filtri-input"
+                        selectionFinish="onBoxFinish"
+                        selectionChange="onInputChange"
+                        width="11rem"
+                        items="{
+                            path: '/data'
+                        }"
+                        
+                        >
+                        <core:Item id="filtri-cbox-n-odv-item" text="{numberODV}" />
+                    </MultiComboBox>
+                </VBox>
+                <VBox id="filtri-vbox-3" class="sapUiSmallMarginBottom">
+                    <Label id="filtri-label-data" text="Data OdV" />
+                    <DateRangeSelection id="filtri-date" placeholder=" " displayFormat="dd/MM/yyyy" fieldGroupIds="filtri-input" change="onInputChange" width="13rem" />
+                </VBox>
+                <VBox id="filtri-vbox-6" class="sapUiSmallMarginBottom">
+                    <Label id="filtri-label-status" text="Stato UM" />
+                    <MultiComboBox
+                        id="filtri-input-status"
+                        fieldGroupIds="filtri-input"
+                        selectionFinish="onBoxFinish"
+                        selectionChange="onInputChange"
+                        width="11rem"
+                        items="{
+                            path: '/data'
+                        }"
+                        
+                        >
+                        <core:Item id="filtri-cbox-n-odv-status" text="{status}" />
+                    </MultiComboBox>
+                </VBox>
+                <VBox id="filtri-vbox-7" class="sapUiSmallMarginBottom">
+                    <Label id="filtri-label-luogo-sped" text="Luogo Sped." />
+                    <MultiComboBox
+                        id="filtri-input-luogo-sped"
+                        fieldGroupIds="filtri-input"
+                        selectionFinish="onBoxFinish"
+                        selectionChange="onInputChange"
+                        width="11rem"
+                        items="{
+                            path: '/data'
+                        }"
+                        >
+                        <core:Item id="filtri-cbox-luogo-sped-item" text="{luogoSped}" />
+                    </MultiComboBox>
+                </VBox>
+                <VBox id="filtri-vbox-4" justifyContent="End" class="sapUiMediumMarginBegin sapUiSmallMarginBottom">
+                    <Button id="filtri-btn" icon="sap-icon://search" text="Cerca" press="onCerca" enabled="false"/>
+                </VBox>
+            </HBox>
+            <VBox id="table-odv-vbox" visible="true" >
+                <t:Table id="table-odv" rows="{/data}" class="sapUiSmallMarginBottom" rowSelectionChange="onSelectRow">
+                    <t:rowMode>
+                        <rowmodes:Fixed id="table-odv-row-mode"></rowmodes:Fixed>
+                    </t:rowMode>
+                    <t:columns>
+                        <t:Column id="table-odv-number" width="9rem">
+                            <Label id="table-odv-number-label" text="N.OdV" />
+                            <t:template>
+                                <Text id="table-odv-number-text" text="{numberODV}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-del-number" width="9rem">
+                            <Label id="table-del-number-label" text="N. Consegna" />
+                            <t:template>
+                                <Text id="table-del-number-text" text="{deliveryNumber}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-odv-destinatario" width="9rem">
+                            <Label id="table-odv-destinatario-label" text="Destinatario Merci" />
+                            <t:template>
+                                <Text id="table-odv-destinatario-text" text="{destinatarioMerci}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-odv-indirizzoDest" width="9rem">
+                            <Label id="table-odv-indirizzoDest-label" text="Indirizzo Destinatario Merci" />
+                            <t:template>
+                                <Text id="table-odv-indirizzoDest-text" text="{indirizzoDest}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-date-odv" width="7rem">
+                            <Label id="table-date-odv-label" text="Data OdV" />
+                            <t:template>
+                                <Text id="table-date-odv-text" text="{dateODV}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-date-um" width="7rem">
+                            <Label id="table-date-um-label" text="Data UM" />
+                            <t:template>
+                                <Text id="table-date-um-text" text="{dateUM}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-odv-n-packages" width="3rem">
+                            <Label id="table-odv-n-packages-label" text="N. colli" />
+                            <t:template>
+                                <Text id="table-odv-n-packages-text" text="{no_packages}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-odv-trasportatore" width="9rem">
+                            <Label id="table-odv-trasportatore-label" text="Trasportatore" />
+                            <t:template>
+                                <Text id="table-odv-trasportatore-text" text="{trasportatore}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-odv-luogo-sped" width="9rem">
+                            <Label id="table-odv-luogo-sped-label" text="Luogo Sped." />
+                            <t:template>
+                                <Text id="table-odv-luogo-sped-text" text="{luogoSped}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="table-odv-status" width="9rem">
+                            <Label id="table-odv-status-label" text="Luogo Sped." />
+                            <t:template>
+                                <Text id="table-odv-status-text" text="{status}" />
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>
+                <HBox id="hbox-table-odv-btn" justifyContent="End">
+                    <Button id="table-odv-btn-reset" text="Reset" class="sapUiSmallMarginEnd" width="5rem" press="onReset" />
+                    <Button id="table-odv-btn-seleziona" text="Seleziona" width="5rem" type="Emphasized" enabled="false" press="onSelectButtonPress"/>
+                </HBox>
+            </VBox>
+        </content>
+    </Panel>
+    <Panel id="panel-riferimenti" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
+        <content>
+            <t:Table id="table-riferimenti" rows="{/selectedData}" selectionMode="None" class="sapUiMediumMarginBottom">
+                <t:rowMode>
+                    <rowmodes:Fixed id="table-riferimenti-row-mode"></rowmodes:Fixed>
+                </t:rowMode>
+                <t:columns>
+                    <t:Column id="table-riferimenti-number-odv" width="9rem">
+                        <Label id="table-riferimenti-number-odv-label" text="N. OdV" />
+                        <t:template>
+                            <Text id="table-riferimenti-number-odv-text" text="{numberODV}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-del-number" width="9rem">
+                        <Label id="table-riferimenti-del-number-label" text="N. Consegna" />
+                        <t:template>
+                            <Text id="table-riferimenti-del-number-text" text="{deliveryNumber}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-destinatario" width="9rem">
+                        <Label id="table-riferimenti-destinatario-label" text="Destinatario Merci" />
+                        <t:template>
+                            <Text id="table-riferimenti-destinatario-text" text="{destinatarioMerci}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-indirizzoDest" width="9rem">
+                        <Label id="table-riferimenti-indirizzoDest-label" text="Indirizzo Destinatario Merci" />
+                        <t:template>
+                            <Text id="table-riferimenti-indirizzoDest-text" text="{indirizzoDest}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-date-odv" width="7rem">
+                        <Label id="table-riferimenti-date-odv-label" text="Data OdV" />
+                        <t:template>
+                            <Text id="table-riferimenti-date-odv-text" text="{dateODV}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-date-um" width="7rem">
+                        <Label id="table-riferimenti-date-um-label" text="Data UM" />
+                        <t:template>
+                            <Text id="table-riferimenti-date-um-text" text="{dateUM}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-n-packages" width="3rem">
+                        <Label id="table-riferimenti-n-packages-label" text="N. colli" />
+                        <t:template>
+                            <Text id="table-riferimenti-n-packages-text" text="{no_packages}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-trasportatore" width="9rem">
+                        <Label id="table-riferimenti-trasportatore-label" text="Trasportatore" />
+                        <t:template>
+                            <Text id="table-riferimenti-trasportatore-text" text="{trasportatore}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-luogo-sped" width="9rem">
+                        <Label id="table-riferimenti-luogo-sped-label" text="Luogo Sped." />
+                        <t:template>
+                            <Text id="table-riferimenti-luogo-sped-text" text="{luogoSped}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-status" width="9rem">
+                        <Label id="table-riferimenti-status-label" text="Stato" />
+                        <t:template>
+                            <Text id="table-riferimenti-status-text" text="{status}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-btn-delete" width="6rem" hAlign="Center">
+                        <t:template>
+                            <HBox id="table-btns-column" justifyContent="SpaceAround">
+                                <Button id="table-riferimenti-delete-btn" icon="sap-icon://delete" press="onDeleteRiferimentiPress"/>
+                                <Button id="table-riferimenti-pdf-btn" icon="sap-icon://inspection" type="Default" press="onOpenPdf" tooltip="Visualizza documento ODV_{number}.pdf"/>
+                            </HBox>
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+            <VBox id="vbox-note">
+                <Label id="label-note" text="Note" design="Bold"/>
+                <TextArea id="text-area-note" ariaLabelledBy="label-note" width="100%" height="8rem" />
+            </VBox>
+        </content>
+    </Panel>
+</mvc:View>

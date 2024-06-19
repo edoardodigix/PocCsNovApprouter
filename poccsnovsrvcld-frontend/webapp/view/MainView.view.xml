@@ -8,13 +8,14 @@
                 <Label text="Tipologia riferimento" design="Bold" />
                 <Select forceSelection="false" class="sapUiSmallMarginBottom" change="onSelectChange">
                     <items>
+                        <core:Item text="Ordine di vendita"/>
                         <core:Item text="Documento di consegna" />
                         <core:Item text="Documento spedizione lotto" />
                         <core:Item text="Documento spedizione prodotto" />
-                        <core:Item text="Ordine di vendita" />
                     </items>
                 </Select>
-                <mvc:XMLView id="odv-view" viewName="poccsnovsrvcldfrontend.view.OdvView" visible="false" />
+                <mvc:XMLView id="odv-view" viewName="poccsnovsrvcldfrontend.view.OdvView" visible="false"/>
+                <mvc:XMLView id="doccon-view" viewName="poccsnovsrvcldfrontend.view.DocconView" visible="false"/>
             </VBox>
         </content>
     </Page>

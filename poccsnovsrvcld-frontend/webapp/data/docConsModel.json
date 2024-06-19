@@ -1,0 +1,54 @@
+{
+    "data":
+    [
+        {
+            "numberODV": "1030067869",
+            "deliveryNumber": "1500088405",
+            "destinatarioMerci": "CEPLAST S.P.A.",
+            "indirizzoDest": "STRADA DELLE CAMPORE 23/I/05100 TERNI",
+            "dateODV": "2024-01-08T00:00:00.000Z",
+            "dateUM": "2024-01-12T00:00:00.000Z", 
+            "trasportatore" : "GUIDO BERNARDINI SRL",
+            "luogoSped" : "SZ01 - GUIDO BERNARDINI SRL",
+            "no_packages" : "0",
+            "status": "Concluso"
+        },
+        {
+            "numberODV": "1030067875",
+            "deliveryNumber": "1500089304",
+            "destinatarioMerci": "CEPLAST S.P.A.",
+            "indirizzoDest": "STRADA DELLE CAMPORE 23/I/05100 TERNI",
+            "dateODV": "2024-08-01T00:00:00.000Z",
+            "dateUM": "2024-02-16T00:00:00.000Z",
+            "trasportatore" : "GUIDO BERNARDINI SRL",
+            "luogoSped" : "SP04 - PATRICA",
+            "no_packages" : "0",
+            "status": "Concluso"
+        },
+        {
+            "numberODV": "1030067906",
+            "deliveryNumber": "1500090029",
+            "destinatarioMerci": "CEPLAST S.P.A.",
+            "indirizzoDest": "STRADA DELLE CAMPORE 23/I/05100 TERNI",
+            "dateODV": "2024-08-01T00:00:00.000Z",
+            "dateUM": "2024-03-18T00:00:00.000Z",
+            "trasportatore" : "CIANFROCCA TRASPORTI",
+            "luogoSped" : "SZ15 - TECNOFER",
+            "no_packages" : "0",
+            "status": "Concluso"
+        },
+        {
+            "numberODV": "1030069545",
+            "deliveryNumber": "1500090528",
+            "destinatarioMerci": "CEPLAST S.P.A.",
+            "indirizzoDest": "STRADA DELLE CAMPORE 23/I/05100 TERNI",
+            "dateODV": "2024-03-21T00:00:00.000Z",
+            "dateUM": "2024-04-08T00:00:00.000Z",
+            "trasportatore" : "GUIDO BERNARDINI SRL",
+            "luogoSped" : "SP04 - PATRICA",
+            "no_packages" : "0",
+            "status": "Concluso"
+        }
+    ],
+    "selectedData" : []
+}
