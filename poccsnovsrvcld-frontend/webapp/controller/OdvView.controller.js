@@ -136,21 +136,32 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				}
 			});
 			this.getView().getModel().refresh(true);
-			const oRiferimentiTable = this.getView().byId("riferimenti-table");
-			const oRiferimentiTableRows = oRiferimentiTable.getBinding("rows");
-			oRiferimentiTable.getRowMode().setRowCount(oRiferimentiTableRows.getCount());
+			this._resetRiferimentiRowCount();
 			this.getView().byId("riferimenti-panel").setVisible(true);
 		},
 
-		EliminaRiferimento: function (oEvent) {
+		eliminaRiferimento: function (oEvent) {
 			const row = oEvent.getSource().getParent().getParent();
 			const numeroOdv = this._getNumeroOdvFromRow(row);
 			const indexToRemove = this._getArrayNumeriOdvRiferimenti().indexOf(numeroOdv);
 			this.getView().getModel().getData().Riferimenti.splice(indexToRemove, 1);
 			this.getView().getModel().refresh(true);
+			this._resetRiferimentiRowCount();
 			if (this.getView().getModel().getData().Riferimenti.length === 0)
 				this.getView().byId("riferimenti-panel").setVisible(false);
 		},
+
+		apriPdf: function (oEvent) {
+            const pdfViewer = new sap.m.PDFViewer();
+            this.getView().addDependent(pdfViewer);
+            const oRow = oEvent.getSource().getParent().getParent();
+			const numeoOdv = this._getNumeroOdvFromRow(oRow);
+
+            const sSource = `./res/ODV_${numeoOdv}.pdf`
+            pdfViewer.setSource(sSource);
+            pdfViewer.setTitle("My Custom Title");
+            pdfViewer.open();
+        },
 
 		// UTILITY FUNTIONS PRIVATE
 
@@ -168,6 +179,12 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				currentRows.push(row.NumeroOdv);
 				return currentRows;
 			}, []);
+		},
+
+		_resetRiferimentiRowCount: function () {
+			const oRiferimentiTable = this.getView().byId("riferimenti-table");
+			const oRiferimentiTableRows = oRiferimentiTable.getBinding("rows");
+			oRiferimentiTable.getRowMode().setRowCount(oRiferimentiTableRows.getCount());
 		},
 
         // FUNZIONI PER RENDERE LA SAP UI TABLE IN UNA SMART TABLE (SELEZIONE COLONNE E SORTING ABILITATI)

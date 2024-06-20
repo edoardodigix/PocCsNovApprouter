@@ -130,8 +130,8 @@
                 <t:Column width="6rem" hAlign="Center">
                     <t:template>
                         <HBox justifyContent="SpaceAround">
-                            <Button icon="sap-icon://delete" press="EliminaRiferimento"/>
-                            <Button icon="sap-icon://inspection" type="Default" press="ApriPdf" tooltip="Visualizza documento ODV_{NumeroOdv}.pdf"/>
+                            <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
+                            <Button icon="sap-icon://inspection" type="Default" press="apriPdf" tooltip="Visualizza documento ODV_{NumeroOdv}.pdf"/>
                         </HBox>
                     </t:template>
                 </t:Column>
