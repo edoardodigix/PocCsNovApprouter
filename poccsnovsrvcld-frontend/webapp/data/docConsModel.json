@@ -11,7 +11,7 @@
             "trasportatore" : "GUIDO BERNARDINI SRL",
             "luogoSped" : "SZ01 - GUIDO BERNARDINI SRL",
             "no_packages" : "0",
-            "status": "Concluso"
+            "status": "C - Completato"
         },
         {
             "numberODV": "1030067875",
@@ -23,7 +23,7 @@
             "trasportatore" : "GUIDO BERNARDINI SRL",
             "luogoSped" : "SP04 - PATRICA",
             "no_packages" : "0",
-            "status": "Concluso"
+            "status": "C - Completato"
         },
         {
             "numberODV": "1030067906",
@@ -35,7 +35,7 @@
             "trasportatore" : "CIANFROCCA TRASPORTI",
             "luogoSped" : "SZ15 - TECNOFER",
             "no_packages" : "0",
-            "status": "Concluso"
+            "status": "C - Completato"
         },
         {
             "numberODV": "1030069545",
@@ -47,8 +47,51 @@
             "trasportatore" : "GUIDO BERNARDINI SRL",
             "luogoSped" : "SP04 - PATRICA",
             "no_packages" : "0",
-            "status": "Concluso"
+            "status": "C - Completato"
         }
     ],
+    "numbersODV": [
+        {
+            "key": "1030067869",
+            "name": "1030067869"
+        },
+        {
+            "key": "1030067875",
+            "name": "1030067875"
+        },
+        {
+            "key": "1030067906",
+            "name": "1030067906"
+        },
+        {
+            "key": "1030069545",
+            "name": "1030069545"
+        }
+    ],
+    "deliveryNumbers": [
+        {
+            "key": "1500088405",
+            "name": "1500088405"
+        },
+        {
+            "key": "1500089304",
+            "name": "1500089304"
+        },
+        {
+            "key": "1500090029",
+            "name": "1500090029"
+        },
+        {
+            "key": "1500090528",
+            "name": "1500090528"
+        }
+    ],
+    "statuses": [
+        {
+            "key": "C - Completato",
+            "name": "C - Completato"
+        }
+    ],
+
     "selectedData" : []
 }

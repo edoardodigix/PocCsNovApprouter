@@ -1,20 +1,37 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/format/DateFormat"
+    'sap/ui/model/Filter',
+	'sap/ui/model/FilterOperator',
+    'sap/m/p13n/Engine',
+	'sap/m/p13n/MetadataHelper',
+	'sap/m/p13n/SelectionController',
+	'sap/m/p13n/SortController',
+	'sap/m/p13n/GroupController',
+	'sap/m/table/ColumnWidthController',
+	'sap/ui/core/library',
+	'sap/ui/model/Sorter',
 ],
-function (Controller, JSONModel, DateFormat) {
+function (Controller, JSONModel, Filter, FilterOperator,
+    Engine, MetadataHelper, SelectionController, SortController, GroupController, ColumnWidthController, CoreLibrary, Sorter) {
     "use strict";
 
-    const oDateFormat = DateFormat.getDateInstance({pattern: "dd/MM/yyyy", UTC: true}); 
+    
     return Controller.extend("poccsnovsrvcldfrontend.controller.DocconView", {
         
         onInit: function () {
-            const oJSONModel = new JSONModel();
-            oJSONModel.loadData(sap.ui.require.toUrl("poccsnovsrvcldfrontend/data/docConsModel.json"));
-  
-            // this.getView().byId("table-odv-row-mode").setRowCount(oJSONModel.getData().data.length);
-            this.getView().setModel(oJSONModel);
+            this.oJSONModel = new JSONModel();
+            this.oJSONModel.loadData(sap.ui.require.toUrl("poccsnovsrvcldfrontend/data/docConsModel.json"))
+            .then(() => {
+                this.getView().setModel(this.oJSONModel);
+                this.getView().getModel().getData().data
+                .forEach(row => {
+                    row.dateODV = new Date(row.dateODV);
+                    row.dateUM = new Date(row.dateUM);
+                });
+            });
+            // DEFINIZIONE DEI COMPONENTI CHE RICHIAMEREMO TANTE VOLTE NEL CODICE
+            this.oFiltersTable = this.getView().byId("filters-table");
         },
 
         onOpenPdf: function (oEvent) {
@@ -154,49 +171,55 @@ function (Controller, JSONModel, DateFormat) {
         },
 
         onCerca: function() {
-            const input1 = this.getView().byId("filtri-input-n-odv");
-            const input2 = this.getView().byId("filtri-input-n-del"); 
-            const inputData = this.getView().byId("filtri-date");
-            const aFilters = {
-                'number': input1.getSelectedItems().length > 0 ? (function () {const result = []; input1.getSelectedItems().forEach(input => result.push(input.getText())); return result;})() : ['1030067869', '1030067875', '1030067906', '1030069545'],
-                'customerNumber': input2.getSelectedItems().length > 0 ? (function () {const result = []; input2.getSelectedItems().forEach(input => result.push(input.getText())); return result;})() : ['230801 EF07D0 SFUSO 15/1', '230802 EF05B SFUSO 20/2 rev1 15/2', '230803 EF07D0 SFUSO 19/3', '240208 EF05B 11/4'],
-                'date1': inputData.getProperty("dateValue"),
-                'date2': inputData.getProperty("secondDateValue")
-            };
-            const initialData = sampleData.data;
-            const initialSelectedData = this.getView().getModel().getData().selectedData;
-            let myDate;
-            let newData = [];
-            let numberFilteredData, customerNumberFilteredData, dateFilteredData;
-            if (!aFilters.number == false)
-                numberFilteredData = initialData.filter((row) => aFilters.number.includes(row.number));
-            if (!aFilters.customerNumber == false)
-                customerNumberFilteredData = initialData.filter((row) => aFilters.customerNumber.includes(row.customerNumber));
-            if (!aFilters.date1 == false) {
-                dateFilteredData = initialData.filter((row) => {
-                    myDate = (new Date(row.date.split('/')[2]+'-'+row.date.split('/')[1]+'-'+row.date.split('/')[0])).getTime();
-                    return aFilters.date1.getTime() <= myDate && myDate <= aFilters.date2.getTime();
-                });
+            // DEFINIZIONE DEI COMPONENTI CHE RICHIAMEREMO NELLA FUNZIONE
+            const oFilterBar = this.getView().byId("filters-bar");
+            const oFilterErrorMsg = this.getView().byId("filter-error-msg");
+            const oFilterTableRows = this.oFiltersTable.getBinding("rows");
+            // FUNZIONE PER GESTIRE I FILTRI
+            const aTableFilters = oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+                console.log("STOP");
+                if (oFilterGroupItem.getControl().getBindingInfo("items") !== undefined) {
+				// GESTIONE DEI FILTRI MULTICOMBOBOX
+					const oControl = oFilterGroupItem.getControl(),
+						aSelectedKeys = oControl.getSelectedKeys(),
+						aFilters = aSelectedKeys.map(function (sSelectedKey) {
+							return new Filter({
+								path: oFilterGroupItem.getName(),
+								operator: FilterOperator.Contains,
+								value1: sSelectedKey
+							});
+						});
+					if (aSelectedKeys.length > 0) {
+						aResult.push(new Filter({
+							filters: aFilters,
+							and: false
+						}));
+					}
+				} else {
+				// GESTIONE DEI FILTRI DATERANGESELECTION
+					var oControl = oFilterGroupItem.getControl(),
+						aSelectedDates = [oControl.getDateValue(), oControl.getSecondDateValue()],
+						oFilter = new Filter({
+							path: oFilterGroupItem.getName(),
+							operator: FilterOperator.BT,
+							value1: aSelectedDates[0],
+							value2: aSelectedDates[1]
+						});
+					if (!aSelectedDates[0] == false) {
+						aResult.push(oFilter)
+					}
+				}
+				return aResult;
+			}, []);
+            if (aTableFilters.length === 0)
+                oFilterErrorMsg.setVisible(true);
+            else {
+                oFilterErrorMsg.setVisible(false);
+                oFilterTableRows.filter(aTableFilters);
+                // FACCIAMO OPERAZIONI DI LAYOUT SULLA TABELLA DOPO L'APPLICAZIONE DEI FILTRI
+                this.oFiltersTable.getParent().setVisible(true);
+                this.oFiltersTable.getRowMode().setRowCount(oFilterTableRows.getCount());
             }
-            if (!numberFilteredData == false && !customerNumberFilteredData == false && !dateFilteredData == false)
-                newData = numberFilteredData.filter((row) => customerNumberFilteredData.includes(row) && dateFilteredData.includes(row));
-            else if (!numberFilteredData == false && !customerNumberFilteredData == false)
-                newData = numberFilteredData.filter((row) => customerNumberFilteredData.includes(row));
-            else if (!numberFilteredData == false && !dateFilteredData == false)
-                newData = numberFilteredData.filter((row) => dateFilteredData.includes(row));
-            else if (!customerNumberFilteredData == false && !dateFilteredData == false)
-                newData = customerNumberFilteredData.filter((row) => dateFilteredData.includes(row));
-            else if (!numberFilteredData == false)
-                newData = numberFilteredData;
-            else if (!customerNumberFilteredData == false)
-                newData = customerNumberFilteredData;
-            else if (!dateFilteredData == false)
-                newData = dateFilteredData;
-            else
-                newData = sampleData.data;
-            this.getView().getModel().setData({'data': newData, 'selectedData': initialSelectedData});
-            this.getView().byId("table-odv-vbox").setVisible(true);
-            this.getView().byId("table-odv-row-mode").setRowCount(newData.length || 1);
         }
     });
 });
