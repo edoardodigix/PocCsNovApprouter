@@ -1,0 +1,223 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="poccsnovsrvcldfrontend.controller.DocconView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:t="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:f="sap.f"
+    xmlns:sap.ui.fl="sap.ui.fl">
+    <Panel id="panel-filtri" expandable="true" expanded="true" headerText="Seleziona documenti di riferimento" visible="true" class="sapUiSmallMarginBottom">
+        <content>
+            <!-- MESSAGGIO DI ERRORE SE NON SI POPOLA NEMMENO UN FILTRO -->
+            <MessageStrip id="filter-error-msg" text="Compilare almeno un filtro per avviare la ricerca"
+                type="Information" showIcon="true" visible="false">
+            </MessageStrip>
+            <fb:FilterBar  id= "filters-bar" useToolbar="false" search="onCerca">
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem name="deliveryNumber" label="N. Consegna" groupName="GroupFilter"
+                        visibleInFilterBar="true">
+                        <fb:control>
+                            <MultiComboBox name="deliveryNumber" items="{/data}" fieldGroupIds="filtri-input">
+                                <core:Item key="{deliveryNumber}" text="{deliveryNumber}" />
+                            </MultiComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem name="dateUM" label="Data UM" groupName="GroupFilter"
+                        visibleInFilterBar="true">
+                        <fb:control>
+                            <DateRangeSelection name="dateUM" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem name="numberODV" label="N. OdV" groupName="GroupFilter" visibleInFilterBar="true">
+                        <fb:control>
+                            <MultiComboBox name="numberODV" items="{/data}" fieldGroupIds="filtri-input">
+                                <core:Item key="{numberODV}" text="{numberODV}" />
+                            </MultiComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem name="dateODV" label="Data OdV" groupName="GroupFilter"
+                        visibleInFilterBar="true">
+                        <fb:control>
+                            <DateRangeSelection name="dateODV" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem name="status" label="Stato UM" groupName="GroupFilter" visibleInFilterBar="true">
+                        <fb:control>
+                            <MultiComboBox name="statuses" items="{/statuses}" fieldGroupIds="filtri-input">
+                                <core:Item key="{key}" text="{name}" />
+                            </MultiComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem name="luogoSped" label="Luogo Sped" groupName="GroupFilter" visibleInFilterBar="true">
+                        <fb:control>
+                            <MultiComboBox name="luogoSped" items="{/data}" fieldGroupIds="filtri-input">
+                                <core:Item key="{luogoSped}" text="{luogoSped}" />
+                            </MultiComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+
+            <!-- TABELLA DEI DOCUMENTI CORRISPONDENTI AI FILTRI -->
+            <VBox visible="false">
+                <t:Table id="filters-table" rows="{/data}" class="sapUiSmallMarginBottom"
+                    rowSelectionChange="rowSelectionChange" sort="onSort" columnResize="onColumnResize"
+                    columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
+                    <t:rowMode>
+                        <rowmodes:Fixed id="test" />
+                    </t:rowMode>
+                    <t:extension>
+                        <OverflowToolbar>
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://action-settings" press="openColumnSelection"/>
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column id="delivery-number-col" width="9rem" sortProperty="deliveryNumber">
+                            <Label text="N. Consegna" />
+                            <t:template>
+                                <Text text="{deliveryNumber}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="destinatario-col" sortProperty="destinatarioMerci">
+                            <Label text="Destinatario Merci" />
+                            <t:template>
+                                <Text text="{destinatarioMerci}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="indirizzoDest-col" width="9rem" sortProperty="indirizzoDest">
+                            <Label text="Indirizzo Destinatario Merci" />
+                            <t:template>
+                                <Text text="{indirizzoDest}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="dataodv-col" width="9rem" sortProperty="dateODV">
+                            <Label text="Data ODV" />
+                            <t:template>
+                                <Text text="{path: 'dateODV', type: 'sap.ui.model.type.Date', 
+                                    formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="dataum-col" width="9rem" sortProperty="dateUM">
+                            <Label text="Data UM" />
+                            <t:template>
+                                <Text text="{path: 'dateUM', type: 'sap.ui.model.type.Date', 
+                                    formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="n-packages-col" width="9rem" sortProperty="no_packages">
+                            <Label text="N. colli" />
+                            <t:template>
+                                <Text text="{no_packages}"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="trasportatore-col" width="9rem" sortProperty="trasportatore">
+                            <Label text="Trasportatore" />
+                            <t:template>
+                                <Text text="{trasportatore}"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="luogo-sped-col" width="9rem" sortProperty="luogoSped">
+                            <Label text="Luogo Sped." />
+                            <t:template>
+                                <Text text="{luogoSped}"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="status-col" width="9rem" sortProperty="status">
+                            <Label text="Stato UM" />
+                            <t:template>
+                                <Text text="{status}"/>
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>
+                <HBox justifyContent="End">
+                    <Button text="Reset" class="sapUiSmallMarginEnd" width="5rem" press="onReset" />
+                    <Button id="seleziona-btn" text="Seleziona" width="5rem" type="Emphasized" enabled="false" press="onSeleziona"/>
+                </HBox>
+            </VBox>
+        </content>
+    </Panel>
+    <Panel id="panel-riferimenti" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
+        <content>
+            <t:Table id="table-riferimenti" rows="{/selectedData}" selectionMode="None" class="sapUiMediumMarginBottom">
+                <t:rowMode>
+                    <rowmodes:Fixed id="table-riferimenti-row-mode"></rowmodes:Fixed>
+                </t:rowMode>
+                <t:columns>
+                    <t:Column id="table-riferimenti-number-odv" width="9rem">
+                        <Label id="table-riferimenti-number-odv-label" text="N. OdV" />
+                        <t:template>
+                            <Text id="table-riferimenti-number-odv-text" text="{numberODV}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-del-number" width="9rem">
+                        <Label id="table-riferimenti-del-number-label" text="N. Consegna" />
+                        <t:template>
+                            <Text id="table-riferimenti-del-number-text" text="{deliveryNumber}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-destinatario" width="9rem">
+                        <Label id="table-riferimenti-destinatario-label" text="Destinatario Merci" />
+                        <t:template>
+                            <Text id="table-riferimenti-destinatario-text" text="{destinatarioMerci}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-indirizzoDest" width="9rem">
+                        <Label id="table-riferimenti-indirizzoDest-label" text="Indirizzo Destinatario Merci" />
+                        <t:template>
+                            <Text id="table-riferimenti-indirizzoDest-text" text="{indirizzoDest}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-date-odv" width="7rem">
+                        <Label id="table-riferimenti-date-odv-label" text="Data OdV" />
+                        <t:template>
+                            <Text id="table-riferimenti-date-odv-text" text="{dateODV}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-date-um" width="7rem">
+                        <Label id="table-riferimenti-date-um-label" text="Data UM" />
+                        <t:template>
+                            <Text id="table-riferimenti-date-um-text" text="{dateUM}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-n-packages" width="3rem">
+                        <Label id="table-riferimenti-n-packages-label" text="N. colli" />
+                        <t:template>
+                            <Text id="table-riferimenti-n-packages-text" text="{no_packages}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-trasportatore" width="9rem">
+                        <Label id="table-riferimenti-trasportatore-label" text="Trasportatore" />
+                        <t:template>
+                            <Text id="table-riferimenti-trasportatore-text" text="{trasportatore}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-luogo-sped" width="9rem">
+                        <Label id="table-riferimenti-luogo-sped-label" text="Luogo Sped." />
+                        <t:template>
+                            <Text id="table-riferimenti-luogo-sped-text" text="{luogoSped}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-status" width="9rem">
+                        <Label id="table-riferimenti-status-label" text="Stato" />
+                        <t:template>
+                            <Text id="table-riferimenti-status-text" text="{status}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="table-riferimenti-btn-delete" width="6rem" hAlign="Center">
+                        <t:template>
+                            <HBox id="table-btns-column" justifyContent="SpaceAround">
+                                <Button id="table-riferimenti-delete-btn" icon="sap-icon://delete" press="onDeleteRiferimentiPress"/>
+                                <Button id="table-riferimenti-pdf-btn" icon="sap-icon://inspection" type="Default" press="onOpenPdf" tooltip="Visualizza documento ODV_{number}.pdf"/>
+                            </HBox>
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+            <VBox id="vbox-note">
+                <Label id="label-note" text="Note" design="Bold"/>
+                <TextArea id="text-area-note" ariaLabelledBy="label-note" width="100%" height="8rem" />
+            </VBox>
+        </content>
+    </Panel>
+</mvc:View>
