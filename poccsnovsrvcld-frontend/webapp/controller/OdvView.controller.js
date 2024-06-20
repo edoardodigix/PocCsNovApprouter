@@ -138,6 +138,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			this.getView().getModel().refresh(true);
 			this._resetRiferimentiRowCount();
 			this.getView().byId("riferimenti-panel").setVisible(true);
+			this._setSelectTipologiaTo(false);
 		},
 
 		eliminaRiferimento: function (oEvent) {
@@ -147,8 +148,10 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			this.getView().getModel().getData().Riferimenti.splice(indexToRemove, 1);
 			this.getView().getModel().refresh(true);
 			this._resetRiferimentiRowCount();
-			if (this.getView().getModel().getData().Riferimenti.length === 0)
+			if (this.getView().getModel().getData().Riferimenti.length === 0) {
 				this.getView().byId("riferimenti-panel").setVisible(false);
+				this._setSelectTipologiaTo(true);
+			}
 		},
 
 		apriPdf: function (oEvent) {
@@ -185,6 +188,14 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			const oRiferimentiTable = this.getView().byId("riferimenti-table");
 			const oRiferimentiTableRows = oRiferimentiTable.getBinding("rows");
 			oRiferimentiTable.getRowMode().setRowCount(oRiferimentiTableRows.getCount());
+		},
+
+		_setSelectTipologiaTo: function (enabled) {
+			// RECUPERIAMO L'ELEMENTO SELECT DA UN'ALTRA VIEW
+			const ownerId = this.getView()._sOwnerId;
+			const viewName = "MainView";
+			const elementId = "select-tipologia";
+			sap.ui.getCore().byId(`${ownerId}---${viewName}--${elementId}`).setEnabled(enabled);
 		},
 
         // FUNZIONI PER RENDERE LA SAP UI TABLE IN UNA SMART TABLE (SELEZIONE COLONNE E SORTING ABILITATI)
