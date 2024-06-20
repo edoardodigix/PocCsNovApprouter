@@ -43,7 +43,7 @@
                 rowSelectionChange="rowSelectionChange" sort="onSort" columnResize="onColumnResize"
                 columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
                 <t:rowMode>
-                    <rowmodes:Fixed id="test" />
+                    <rowmodes:Fixed />
                 </t:rowMode>
                 <t:extension>
 					<OverflowToolbar>
@@ -92,42 +92,49 @@
         </VBox>
     </Panel>
     <Panel id="riferimenti-panel" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
-        <t:Table id="riferimenti-table" rows="{/Riferimenti}" selectionMode="None">
+        <t:Table id="riferimenti-table" rows="{/Riferimenti}" selectionMode="None" sort="onSort_rif" columnResize="onColumnResize_rif"
+                columnMove="onColumnMove_rif" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
             <t:rowMode>
                 <rowmodes:Fixed />
             </t:rowMode>
+            <t:extension>
+                <OverflowToolbar>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://action-settings" press="openColumnSelection_rif"/>
+                </OverflowToolbar>
+            </t:extension>
             <t:columns>
-                <t:Column width="9rem">
+                <t:Column id="numeroodv-col-rif" width="9rem" sortProperty="NumeroOdv">
                     <Label text="N. OdV" />
                     <t:template>
                         <Text text="{NumeroOdv}" />
                     </t:template>
                 </t:Column>
-                <t:Column width="9rem">
+                <t:Column id="dataodv-col-rif" width="9rem" sortProperty="DataOdv">
                     <Label text="Data OdV" />
                     <t:template>
                         <Text text="{DataOdv}" />
                     </t:template>
                 </t:Column>
-                <t:Column>
+                <t:Column id="numeroodacliente-col-rif" sortProperty="NumeroOdaCliente">
                     <Label text="N. OdA Cliente" />
                     <t:template>
                         <Text text="{NumeroOdaCliente}" />
                     </t:template>
                 </t:Column>
-                <t:Column width="9rem">
+                <t:Column id="valore-col-rif" width="9rem" sortProperty="Valore">
                     <Label text="Valore" />
                     <t:template>
                         <Text text="{Valore}" />
                     </t:template>
                 </t:Column>
-                <t:Column width="9rem">
+                <t:Column id="stato-col-rif" width="9rem" sortProperty="Stato">
                     <Label text="Stato" />
                     <t:template>
                         <Text text="{Stato}" />
                     </t:template>
                 </t:Column>
-                <t:Column width="6rem" hAlign="Center">
+                <t:Column id="azioni-rif" width="6rem" hAlign="Center">
                     <t:template>
                         <HBox justifyContent="SpaceAround">
                             <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
