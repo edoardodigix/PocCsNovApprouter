@@ -15,6 +15,7 @@
                     </items>
                 </Select>
                 <mvc:XMLView id="odv-view" viewName="poccsnovsrvcldfrontend.view.OdvView" visible="false" />
+                <mvc:XMLView id="docconsprod-view" viewName="poccsnovsrvcldfrontend.view.DocconsprodView" visible="false" />
             </VBox>
         </content>
     </Page>

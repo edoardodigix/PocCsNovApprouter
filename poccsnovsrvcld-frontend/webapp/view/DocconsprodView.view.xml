@@ -1,0 +1,149 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="poccsnovsrvcldfrontend.controller.DocconsprodView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:t="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:f="sap.f"
+    xmlns:sap.ui.fl="sap.ui.fl">
+    <Panel expandable="true" expanded="true" headerText="Seleziona documenti di riferimento" 
+           visible="true" class="sapUiSmallMarginBottom">
+           <!-- MESSAGGIO DI ERRORE SE NON SI POPOLA NEMMENO UN FILTRO -->
+        <MessageStrip id="filter-error-msg" text="Compilare almeno un filtro per avviare la ricerca"
+            type="Information" showIcon="true" visible="false">
+        </MessageStrip>
+        <!-- BARRA DEI FILTRI -->
+        <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca">
+            <fb:filterGroupItems>
+                <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="MultiComboBox" visibleInFilterBar="true">
+                    <fb:control>
+                        <MultiComboBox name="NumeroOdv" items="{/NumeriOdv}" fieldGroupIds="filtri-input">
+                            <core:Item key="{key}" text="{name}" />
+                        </MultiComboBox>
+                    </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem name="NumeroOdaCliente" label="N. OdA Cliente" groupName="MultiComboBox"
+                    visibleInFilterBar="true">
+                    <fb:control>
+                        <MultiComboBox name="NumeroOdaCliente" items="{/NumeriOdaCliente}" fieldGroupIds="filtri-input">
+                            <core:Item key="{key}" text="{name}" />
+                        </MultiComboBox>
+                    </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem name="DataOdv" label="Data OdV" groupName="DateRangeSelection"
+                    visibleInFilterBar="true">
+                    <fb:control>
+                        <DateRangeSelection name="DataOdv" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
+                    </fb:control>
+                </fb:FilterGroupItem>
+            </fb:filterGroupItems>
+        </fb:FilterBar>
+        <!-- TABELLA DEI DOCUMENTI CORRISPONDENTI AI FILTRI -->
+        <VBox visible="false">
+            <t:Table id="filters-table" rows="{/MockData}" class="sapUiSmallMarginBottom"
+                rowSelectionChange="rowSelectionChange" sort="onSort" columnResize="onColumnResize"
+                columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
+                <t:rowMode>
+                    <rowmodes:Fixed />
+                </t:rowMode>
+                <t:extension>
+					<OverflowToolbar>
+						<ToolbarSpacer />
+						<Button icon="sap-icon://action-settings" press="openColumnSelection"/>
+					</OverflowToolbar>
+				</t:extension>
+                <t:columns>
+                    <t:Column id="numeroodv-col" width="9rem" sortProperty="NumeroOdv">
+                        <Label text="N. OdV" />
+                        <t:template>
+                            <Text text="{NumeroOdv}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="dataodv-col" width="9rem" sortProperty="DataOdv">
+                        <Label text="Data OdV" />
+                        <t:template>
+                            <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
+                                formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="numeroodacliente-col" sortProperty="NumeroOdaCliente">
+                        <Label text="N. OdA Cliente" />
+                        <t:template>
+                            <Text text="{NumeroOdaCliente}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="valore-col" width="9rem" sortProperty="Valore">
+                        <Label text="Valore" />
+                        <t:template>
+                            <Text text="{Valore}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="stato-col" width="9rem" sortProperty="Stato">
+                        <Label text="Stato" />
+                        <t:template>
+                            <Text text="{Stato}" />
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+            <HBox justifyContent="End">
+                <Button text="Reset" class="sapUiSmallMarginEnd" width="5rem" press="onReset" />
+                <Button id="seleziona-btn" text="Seleziona" width="5rem" type="Emphasized" enabled="false" press="onSeleziona"/>
+            </HBox>
+        </VBox>
+    </Panel>
+    <Panel id="riferimenti-panel" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
+        <t:Table id="riferimenti-table" rows="{/Riferimenti}" selectionMode="None" sort="onSort" columnResize="onColumnResize"
+                columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
+            <t:rowMode>
+                <rowmodes:Fixed />
+            </t:rowMode>
+            <t:extension>
+                <OverflowToolbar>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://action-settings" press="openColumnSelection"/>
+                </OverflowToolbar>
+            </t:extension>
+            <t:columns>
+                <t:Column id="numeroodv-col-rif" width="9rem" sortProperty="NumeroOdv">
+                    <Label text="N. OdV" />
+                    <t:template>
+                        <Text text="{NumeroOdv}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="dataodv-col-rif" width="9rem" sortProperty="DataOdv">
+                    <Label text="Data OdV" />
+                    <t:template>
+                        <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
+                                formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="numeroodacliente-col-rif" sortProperty="NumeroOdaCliente">
+                    <Label text="N. OdA Cliente" />
+                    <t:template>
+                        <Text text="{NumeroOdaCliente}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="valore-col-rif" width="9rem" sortProperty="Valore">
+                    <Label text="Valore" />
+                    <t:template>
+                        <Text text="{Valore}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="stato-col-rif" width="9rem" sortProperty="Stato">
+                    <Label text="Stato" />
+                    <t:template>
+                        <Text text="{Stato}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="azioni-rif" width="6rem" hAlign="Center">
+                    <t:template>
+                        <HBox justifyContent="SpaceAround">
+                            <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
+                            <Button icon="sap-icon://inspection" type="Default" press="apriPdf" tooltip="Visualizza documento ODV_{NumeroOdv}.pdf"/>
+                        </HBox>
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+    </Panel>
+</mvc:View>

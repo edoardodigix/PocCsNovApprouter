@@ -1,0 +1,69 @@
+{
+    "Riferimenti": [],
+    "MockData": [
+        {
+            "NumeroOdv": "1030067869",
+            "DataOdv": "2024-01-08",
+            "NumeroOdaCliente": "230801 EF07D0 SFUSO 15/1",
+            "Valore": "47.952",
+            "Stato": "Concluso"
+        }, 
+        {
+            "NumeroOdv": "1030067875",
+            "DataOdv": "2024-01-08",
+            "NumeroOdaCliente": "230802 EF05B SFUSO 20/2 rev1 15/2",
+            "Valore": "50.505",
+            "Stato": "Concluso"
+        },
+        {
+            "NumeroOdv": "1030067906",
+            "DataOdv": "2024-01-08",
+            "NumeroOdaCliente": "230803 EF07D0 SFUSO 19/3",
+            "Valore": "49.176",
+            "Stato": "Concluso"
+        },
+        {
+            "NumeroOdv": "1030069545",
+            "DataOdv": "2024-03-21",
+            "NumeroOdaCliente": "240208 EF05B 11/4",
+            "Valore": "49.920",
+            "Stato": "Concluso"
+        }
+    ],
+    "NumeriOdv": [
+        {
+            "key": "1030067869",
+            "name": "1030067869"
+        },
+        {
+            "key": "1030067875",
+            "name": "1030067875"
+        },
+        {
+            "key": "1030067906",
+            "name": "1030067906"
+        },
+        {
+            "key": "1030069545",
+            "name": "1030069545"
+        }
+    ],
+    "NumeriOdaCliente": [
+        {
+            "key": "230801 EF07D0 SFUSO 15/1",
+            "name": "230801 EF07D0 SFUSO 15/1"
+        },
+        {
+            "key": "230802 EF05B SFUSO 20/2 rev1 15/2",
+            "name": "230802 EF05B SFUSO 20/2 rev1 15/2"
+        },
+        {
+            "key": "230803 EF07D0 SFUSO 19/3",
+            "name": "230803 EF07D0 SFUSO 19/3"
+        },
+        {
+            "key": "240208 EF05B 11/4",
+            "name": "240208 EF05B 11/4"
+        }
+    ]
+}
