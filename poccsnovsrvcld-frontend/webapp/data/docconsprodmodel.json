@@ -2,32 +2,82 @@
     "Riferimenti": [],
     "MockData": [
         {
+            "NumeroConsegna": "1500088405",
             "NumeroOdv": "1030067869",
             "DataOdv": "2024-01-08",
-            "NumeroOdaCliente": "230801 EF07D0 SFUSO 15/1",
-            "Valore": "47.952",
-            "Stato": "Concluso"
+            "DestinatarioMerci": "CEPLAST S.P.A.",
+            "IndirizzoDestinatarioMerci": "STRADA DELLE CAMPORE 23 / I-05100 TERNI",
+            "DataUM": "2024-01-12",
+            "NumeroColli": "0",
+            "Trasportatore": "GUIDO BERNARDINI SRL",
+            "LuogoSpedizione": "SZ01 - GUIDO BERNARDINI SRL",
+            "Materiale": "SFLLEF07D0 - EF07D0",
+            "Quantità": "26,640",
+            "UM": "KG",
+            "MaterialeCliente": ""
         }, 
         {
+            "NumeroConsegna": "1500089304",
             "NumeroOdv": "1030067875",
             "DataOdv": "2024-01-08",
-            "NumeroOdaCliente": "230802 EF05B SFUSO 20/2 rev1 15/2",
-            "Valore": "50.505",
-            "Stato": "Concluso"
+            "DestinatarioMerci": "CEPLAST S.P.A.",
+            "IndirizzoDestinatarioMerci": "STRADA DELLE CAMPORE 23 / I-05100 TERNI",
+            "DataUM": "2024-02-16",
+            "NumeroColli": "0",
+            "Trasportatore": "GUIDO BERNARDINI SRL",
+            "LuogoSpedizione": "SP04 - PATRICA",
+            "Materiale": "SFLL26F112 - MATER-BI EF05B",
+            "Quantità": "25,900",
+            "UM": "KG",
+            "MaterialeCliente": ""
         },
         {
+            "NumeroConsegna": "1500090029",
             "NumeroOdv": "1030067906",
             "DataOdv": "2024-01-08",
-            "NumeroOdaCliente": "230803 EF07D0 SFUSO 19/3",
-            "Valore": "49.176",
-            "Stato": "Concluso"
+            "DestinatarioMerci": "CEPLAST S.P.A.",
+            "IndirizzoDestinatarioMerci": "STRADA DELLE CAMPORE 23 / I-05100 TERNI",
+            "DataUM": "2024-03-18",
+            "NumeroColli": "0",
+            "Trasportatore": "CIANFROCCA TRASPORTI",
+            "LuogoSpedizione": "SZ15 - TECNOFER",
+            "Materiale": "SFLLEF07D0 - EF07D0",
+            "Quantità": "27,320",
+            "UM": "KG",
+            "MaterialeCliente": ""
         },
         {
+            "NumeroConsegna": "1500090528",
             "NumeroOdv": "1030069545",
             "DataOdv": "2024-03-21",
-            "NumeroOdaCliente": "240208 EF05B 11/4",
-            "Valore": "49.920",
-            "Stato": "Concluso"
+            "DestinatarioMerci": "CEPLAST S.P.A.",
+            "IndirizzoDestinatarioMerci": "STRADA DELLE CAMPORE 23 / I-05100 TERNI",
+            "DataUM": "2024-04-08",
+            "NumeroColli": "0",
+            "Trasportatore": "GUIDO BERNARDINI SRL",
+            "LuogoSpedizione": "SP04 - PATRICA",
+            "Materiale": "SFLL26F112 - MATER-BI EF05B",
+            "Quantità": "25,600",
+            "UM": "KG",
+            "MaterialeCliente": ""
+        }
+    ],
+    "NumeriConsegna": [
+        {
+            "key": "1500088405",
+            "name": "1500088405"
+        },
+        {
+            "key": "1500089304",
+            "name": "1500089304"
+        },
+        {
+            "key": "1500090029",
+            "name": "1500090029"
+        },
+        {
+            "key": "1500090528",
+            "name": "1500090528"
         }
     ],
     "NumeriOdv": [
@@ -48,22 +98,34 @@
             "name": "1030069545"
         }
     ],
-    "NumeriOdaCliente": [
+    "StatiUM": [
         {
-            "key": "230801 EF07D0 SFUSO 15/1",
-            "name": "230801 EF07D0 SFUSO 15/1"
+            "key": "C - Elaborato completamente",
+            "name": "C - Elaborato completamente"
+        }
+    ],
+    "LuoghiSpedizione": [
+        {
+            "key": "SZ01 - GUIDO BERNARDINI SRL",
+            "name": "SZ01 - GUIDO BERNARDINI SRL"
         },
         {
-            "key": "230802 EF05B SFUSO 20/2 rev1 15/2",
-            "name": "230802 EF05B SFUSO 20/2 rev1 15/2"
+            "key": "SP04 - PATRICA",
+            "name": "SP04 - PATRICA"
         },
         {
-            "key": "230803 EF07D0 SFUSO 19/3",
-            "name": "230803 EF07D0 SFUSO 19/3"
+            "key": "SZ15 - TECNOFER",
+            "name": "SZ15 - TECNOFER"
+        }
+    ],
+    "Materiali": [
+        {
+            "key": "SFLLEF07D0 - EF07D0",
+            "name": "SFLLEF07D0 - EF07D0"
         },
         {
-            "key": "240208 EF05B 11/4",
-            "name": "240208 EF05B 11/4"
+            "key": "SFLL26F112 - MATER-BI EF05B",
+            "name": "SFLL26F112 - MATER-BI EF05B"
         }
     ]
 }

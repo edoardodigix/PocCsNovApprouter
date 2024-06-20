@@ -14,17 +14,23 @@
         <!-- BARRA DEI FILTRI -->
         <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca">
             <fb:filterGroupItems>
-                <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="MultiComboBox" visibleInFilterBar="true">
+                <fb:FilterGroupItem name="NumeroConsegna" label="N. Consegna" groupName="MultiComboBox" visibleInFilterBar="true">
                     <fb:control>
-                        <MultiComboBox name="NumeroOdv" items="{/NumeriOdv}" fieldGroupIds="filtri-input">
+                        <MultiComboBox name="NumeroConsegna" items="{/NumeriConsegna}" fieldGroupIds="filtri-input">
                             <core:Item key="{key}" text="{name}" />
                         </MultiComboBox>
                     </fb:control>
                 </fb:FilterGroupItem>
-                <fb:FilterGroupItem name="NumeroOdaCliente" label="N. OdA Cliente" groupName="MultiComboBox"
+                <fb:FilterGroupItem name="DataUM" label="Data UM" groupName="DateRangeSelection"
                     visibleInFilterBar="true">
                     <fb:control>
-                        <MultiComboBox name="NumeroOdaCliente" items="{/NumeriOdaCliente}" fieldGroupIds="filtri-input">
+                        <DateRangeSelection name="DataUM" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
+                    </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="MultiComboBox"
+                    visibleInFilterBar="true">
+                    <fb:control>
+                        <MultiComboBox name="NumeroOdv" items="{/NumeriOdv}" fieldGroupIds="filtri-input">
                             <core:Item key="{key}" text="{name}" />
                         </MultiComboBox>
                     </fb:control>
@@ -33,6 +39,30 @@
                     visibleInFilterBar="true">
                     <fb:control>
                         <DateRangeSelection name="DataOdv" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
+                    </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem name="StatoUM" label="Stato UM" groupName="MultiComboBox"
+                    visibleInFilterBar="true">
+                    <fb:control>
+                        <MultiComboBox name="StatoUM" items="{/StatiUM}" value="C - Elaborato completamente" enabled="false" fieldGroupIds="filtri-input">
+                            <core:Item key="{key}" text="{name}" />
+                        </MultiComboBox>
+                    </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem name="LuogoSpedizione" label="Luogo Sped." groupName="MultiComboBox"
+                    visibleInFilterBar="true">
+                    <fb:control>
+                        <MultiComboBox name="LuogoSpedizione" items="{/LuoghiSpedizione}" fieldGroupIds="filtri-input">
+                            <core:Item key="{key}" text="{name}" />
+                        </MultiComboBox>
+                    </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem name="Materiale" label="Materiale" groupName="MultiComboBox"
+                    visibleInFilterBar="true">
+                    <fb:control>
+                        <MultiComboBox name="Materiale" items="{/Materiali}" fieldGroupIds="filtri-input">
+                            <core:Item key="{key}" text="{name}" />
+                        </MultiComboBox>
                     </fb:control>
                 </fb:FilterGroupItem>
             </fb:filterGroupItems>
@@ -52,35 +82,84 @@
 					</OverflowToolbar>
 				</t:extension>
                 <t:columns>
-                    <t:Column id="numeroodv-col" width="9rem" sortProperty="NumeroOdv">
+                    <t:Column id="numeroconsegna-col" sortProperty="NumeroConsegna">
+                        <Label text="N. Consegna" />
+                        <t:template>
+                            <Text text="{NumeroConsegna}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="numeroodv-col" sortProperty="NumeroOdv">
                         <Label text="N. OdV" />
                         <t:template>
                             <Text text="{NumeroOdv}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="dataodv-col" width="9rem" sortProperty="DataOdv">
+                    <t:Column id="dataodv-col" sortProperty="DataOdv">
                         <Label text="Data OdV" />
                         <t:template>
                             <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="numeroodacliente-col" sortProperty="NumeroOdaCliente">
-                        <Label text="N. OdA Cliente" />
+                    <t:Column id="destinatariomerci-col" sortProperty="DestinatarioMerci">
+                        <Label text="Destinatario Merci" />
                         <t:template>
-                            <Text text="{NumeroOdaCliente}" />
+                            <Text text="{DestinatarioMerci}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="valore-col" width="9rem" sortProperty="Valore">
-                        <Label text="Valore" />
+                    <t:Column id="indirizzodestinatariomerci-col" sortProperty="IndirizzoDestinatarioMerci">
+                        <Label text="Indirizzo Destinatario Merci" />
                         <t:template>
-                            <Text text="{Valore}" />
+                            <Text text="{IndirizzoDestinatarioMerci}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="stato-col" width="9rem" sortProperty="Stato">
-                        <Label text="Stato" />
+                     <t:Column id="dataum-col" sortProperty="DataUM">
+                        <Label text="Data UM" />
                         <t:template>
-                            <Text text="{Stato}" />
+                            <Text text="{path: 'DataUM', type: 'sap.ui.model.type.Date', 
+                                formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="numerocolli-col" sortProperty="NumeroColli">
+                        <Label text="N. Colli" />
+                        <t:template>
+                            <Text text="{NumeroColli}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="trasportatore-col" sortProperty="Trasportatore">
+                        <Label text="Trasportatore" />
+                        <t:template>
+                            <Text text="{Trasportatore}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="luogospedizione-col" sortProperty="LuogoSpedizione">
+                        <Label text="Luogo Sped." />
+                        <t:template>
+                            <Text text="{LuogoSpedizione}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="materiale-col" sortProperty="Materiale">
+                        <Label text="Materiale" />
+                        <t:template>
+                            <Text text="{Materiale}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="quantita-col" sortProperty="Quantità">
+                        <Label text="Quantità" />
+                        <t:template>
+                            <Text text="{Quantità}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="um-col" sortProperty="UM">
+                        <Label text="UM" />
+                        <t:template>
+                            <Text text="{UM}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="materialecliente-col" sortProperty="MaterialeCliente">
+                        <Label text="Materiale Cliente" />
+                        <t:template>
+                            <Text text="{MaterialeCliente}" />
                         </t:template>
                     </t:Column>
                 </t:columns>
@@ -104,35 +183,84 @@
                 </OverflowToolbar>
             </t:extension>
             <t:columns>
-                <t:Column id="numeroodv-col-rif" width="9rem" sortProperty="NumeroOdv">
+                <t:Column id="numeroconsegna-col-rif" sortProperty="NumeroConsegna">
+                    <Label text="N. Consegna" />
+                    <t:template>
+                        <Text text="{NumeroConsegna}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="numeroodv-col-rif" sortProperty="NumeroOdv">
                     <Label text="N. OdV" />
                     <t:template>
                         <Text text="{NumeroOdv}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="dataodv-col-rif" width="9rem" sortProperty="DataOdv">
+                <t:Column id="dataodv-col-rif" sortProperty="DataOdv">
                     <Label text="Data OdV" />
                     <t:template>
                         <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
-                                formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                            formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="numeroodacliente-col-rif" sortProperty="NumeroOdaCliente">
-                    <Label text="N. OdA Cliente" />
+                <t:Column id="destinatariomerci-col-rif" sortProperty="DestinatarioMerci">
+                    <Label text="Destinatario Merci" />
                     <t:template>
-                        <Text text="{NumeroOdaCliente}" />
+                        <Text text="{DestinatarioMerci}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="valore-col-rif" width="9rem" sortProperty="Valore">
-                    <Label text="Valore" />
+                <t:Column id="indirizzodestinatariomerci-col-rif" sortProperty="IndirizzoDestinatarioMerci">
+                    <Label text="Indirizzo Destinatario Merci" />
                     <t:template>
-                        <Text text="{Valore}" />
+                        <Text text="{IndirizzoDestinatarioMerci}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="stato-col-rif" width="9rem" sortProperty="Stato">
-                    <Label text="Stato" />
+                    <t:Column id="dataum-col-rif" sortProperty="DataUM">
+                    <Label text="Data UM" />
                     <t:template>
-                        <Text text="{Stato}" />
+                        <Text text="{path: 'DataUM', type: 'sap.ui.model.type.Date', 
+                            formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="numerocolli-col-rif" sortProperty="NumeroColli">
+                    <Label text="N. Colli" />
+                    <t:template>
+                        <Text text="{NumeroColli}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="trasportatore-col-rif" sortProperty="Trasportatore">
+                    <Label text="Trasportatore" />
+                    <t:template>
+                        <Text text="{Trasportatore}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="luogospedizione-col-rif" sortProperty="LuogoSpedizione">
+                    <Label text="Luogo Sped." />
+                    <t:template>
+                        <Text text="{LuogoSpedizione}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="materiale-col-rif" sortProperty="Materiale">
+                    <Label text="Materiale" />
+                    <t:template>
+                        <Text text="{Materiale}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="quantita-col-rif" sortProperty="Quantità">
+                    <Label text="Quantità" />
+                    <t:template>
+                        <Text text="{Quantità}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="um-col-rif" sortProperty="UM">
+                    <Label text="UM" />
+                    <t:template>
+                        <Text text="{UM}" />
+                    </t:template>
+                </t:Column>
+                <t:Column id="materialecliente-col-rif" sortProperty="MaterialeCliente">
+                    <Label text="Materiale Cliente" />
+                    <t:template>
+                        <Text text="{MaterialeCliente}" />
                     </t:template>
                 </t:Column>
                 <t:Column id="azioni-rif" width="6rem" hAlign="Center">

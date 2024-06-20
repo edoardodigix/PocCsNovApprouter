@@ -153,9 +153,9 @@ function (Controller, JSONModel, Filter, FilterOperator,
             const pdfViewer = new sap.m.PDFViewer();
             this.getView().addDependent(pdfViewer);
             const oRow = oEvent.getSource().getParent().getParent();
-			const numeoOdv = this._getNumeroOdvFromRow(oRow);
+			const numeroOdv = this._getNumeroOdvFromRow(oRow);
 
-            const sSource = `./res/ODV_${numeoOdv}.pdf`
+            const sSource = `./res/ODV_${numeroOdv}.pdf`
             pdfViewer.setSource(sSource);
             pdfViewer.setTitle("My Custom Title");
             pdfViewer.open();
@@ -269,8 +269,11 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				// const sColumnWidth = oState.ColumnWidth[sKey];
 				// oColumn.setWidth(sColumnWidth);
 
-				oColumn.setVisible(false);
-				oColumn.setSortOrder(CoreLibrary.SortOrder.None);
+				// EVITIAMO DI TOGLIERE LA COLONNA DELLE AZIONI
+				if (!oColumn.getSortProperty() == false) {
+					oColumn.setVisible(false);
+					oColumn.setSortOrder(CoreLibrary.SortOrder.None);
+				}
 
 			}.bind(this));
 
