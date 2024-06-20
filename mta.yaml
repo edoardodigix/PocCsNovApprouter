@@ -40,6 +40,9 @@ modules:
   parameters:
     disk-quota: 256M
     memory: 256M
+  properties:
+    SEND_XFRAMEOPTIONS: false
+    COOKIES: "{\"SameSite\":\"None\"}"
 resources:
 - name: poccsnovsrvcld-repo-host
   type: org.cloudfoundry.managed-service

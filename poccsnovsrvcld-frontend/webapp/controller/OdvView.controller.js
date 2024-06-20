@@ -243,23 +243,26 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				}
 			});
 			Engine.getInstance().stateHandlerRegistry.mEventRegistry = {}
-			Engine.getInstance().attachStateChange(this.handleStateChange.bind(this));
+			Engine.getInstance().attachStateChange(this.handleStateChange.bind(this, this.oFiltersTable));
 		},
 
         _getKey: function(oControl) {
 			return this.getView().getLocalId(oControl.getId());
 		},
 
-        handleStateChange: function(oEvent) {
+        handleStateChange: function(oTable, oEvent) {
 			const oState = oEvent.getParameter("state");
 			if (!oState) {
 				return;
 			}
 
 			// AGGIUNGIAMO SEMPRE LA COLONNA DEL NUMEROODV ALL'INIZIO, COSI' DA AVERLA SEMPRE PER PRIMA NELLA TABELLA
-			oState.Columns.unshift({'key': 'numeroodv-col'});
+			if (/Riferimenti/.test(oTable.getBindingPath("rows")))
+				oState.Columns.unshift({'key': 'numeroodv-col-rif'});
+			else
+				oState.Columns.unshift({'key': 'numeroodv-col'});
 
-			this.oFiltersTable.getColumns().forEach(function(oColumn) {
+			oTable.getColumns().forEach(function(oColumn) {
 
 				// CODICE PER CAMBIARE LA LARGHEZZA DELLE COLONNE
 				// const sKey = this._getKey(oColumn);
@@ -275,8 +278,8 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				const oCol = this.byId(oProp.key);
 				oCol.setVisible(true);
 
-				this.oFiltersTable.removeColumn(oCol);
-				this.oFiltersTable.insertColumn(oCol, iIndex);
+				oTable.removeColumn(oCol);
+				oTable.insertColumn(oCol, iIndex);
 			}.bind(this));
 
 			const aSorter = [];
@@ -286,16 +289,19 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				oColumn.setSortOrder(oSorter.descending ? CoreLibrary.SortOrder.Descending : CoreLibrary.SortOrder.Ascending);
 				aSorter.push(new Sorter(this.oMetadataHelper.getProperty(oSorter.key).path, oSorter.descending));
 			}.bind(this));
-			this.oFiltersTable.getBinding("rows").sort(aSorter);
+			oTable.getBinding("rows").sort(aSorter);
 		},
 
         openColumnSelection: function (oEvent) {
 
-			this._registerForP13n();
+            const table = oEvent.getSource().getParent().getParent();
 
-            const that = this;
+			if (/Riferimenti/.test(oEvent.getSource().getParent().getParent().getBindingPath("rows")))
+				this._registerForP13n_rif();
+			else
+				this._registerForP13n();
             
-			Engine.getInstance().show(that.oFiltersTable, ["Columns", "Sorter"], {
+			Engine.getInstance().show(table, ["Columns", "Sorter"], {
 				contentHeight: "35rem",
 				contentWidth: "32rem",
 				source: oEvent.getSource()
@@ -305,11 +311,11 @@ function (Controller, JSONModel, Filter, FilterOperator,
         onSort: function(oEvent) {
 			const sAffectedProperty = this._getKey(oEvent.getParameter("column"));
 			const sSortOrder = oEvent.getParameter("sortOrder");
-            const that = this;
+            const table = oEvent.getSource();
 
 			//Apply the state programatically on sorting through the column menu
 			//1) Retrieve the current personalization state
-			Engine.getInstance().retrieveState(that.oFiltersTable).then(function(oState) {
+			Engine.getInstance().retrieveState(table).then(function(oState) {
 
 				//2) Modify the existing personalization state --> clear all sorters before
 				oState.Sorter.forEach(function(oSorter) {
@@ -321,7 +327,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				});
 
 				//3) Apply the modified personalization state to persist it in the VariantManagement
-				Engine.getInstance().applyState(that.oFiltersTable, oState);
+				Engine.getInstance().applyState(table, oState);
 			});
 		},
 
@@ -329,11 +335,11 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			const oAffectedColumn = oEvent.getParameter("column");
 			const iNewPos = oEvent.getParameter("newPos");
 			const sKey = this._getKey(oAffectedColumn);
-            const that = this;
+            const table = oEvent.getSource();
 
 			oEvent.preventDefault();
 
-			Engine.getInstance().retrieveState(that.oFiltersTable).then(function(oState) {
+			Engine.getInstance().retrieveState(table).then(function(oState) {
 
 				const oCol = oState.Columns.find(function(oColumn) {
 					return oColumn.key === sKey;
@@ -342,7 +348,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				};
 				oCol.position = iNewPos;
 
-				Engine.getInstance().applyState(that.oFiltersTable, {
+				Engine.getInstance().applyState(table, {
 					Columns: [oCol]
 				});
 			});
@@ -351,12 +357,12 @@ function (Controller, JSONModel, Filter, FilterOperator,
 		onColumnResize: function(oEvent) {
 			const oColumn = oEvent.getParameter("column");
 			const sWidth = oEvent.getParameter("width");
-            const that = this;
+            const table = oEvent.getSource();
 
 			const oColumnState = {};
 			oColumnState[this._getKey(oColumn)] = sWidth;
 
-			Engine.getInstance().applyState(that.oFiltersTable, {
+			Engine.getInstance().applyState(table, {
 				ColumnWidth: oColumnState
 			});
 		},
@@ -416,119 +422,8 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				}
 			});
 			Engine.getInstance().stateHandlerRegistry.mEventRegistry = {}
-			Engine.getInstance().attachStateChange(this.handleStateChange_rif.bind(this));
+			Engine.getInstance().attachStateChange(this.handleStateChange.bind(this, this.oRiferimentiTable));
 		},
 
-        handleStateChange_rif: function(oEvent) {
-			const oState = oEvent.getParameter("state");
-			if (!oState) {
-				return;
-			}
-
-			// AGGIUNGIAMO SEMPRE LA COLONNA DEL NUMEROODV ALL'INIZIO, COSI' DA AVERLA SEMPRE PER PRIMA NELLA TABELLA
-			oState.Columns.unshift({'key': 'numeroodv-col-rif'});
-
-			this.oRiferimentiTable.getColumns().forEach(function(oColumn) {
-				const sKey = this._getKey(oColumn);
-				if (sKey != "azioni-rif") {
-
-					// CODICE PER CAMBIARE LA LARGHEZZA DELLE COLONNE
-					// const sColumnWidth = oState.ColumnWidth[sKey];
-					// oColumn.setWidth(sColumnWidth);
-
-					oColumn.setVisible(false);
-					oColumn.setSortOrder(CoreLibrary.SortOrder.None);
-				}
-			}.bind(this));
-
-			oState.Columns.forEach(function(oProp, iIndex) {
-				const oCol = this.byId(oProp.key);
-				oCol.setVisible(true);
-
-				this.oRiferimentiTable.removeColumn(oCol);
-				this.oRiferimentiTable.insertColumn(oCol, iIndex);
-			}.bind(this));
-
-			const aSorter = [];
-			oState.Sorter.forEach(function(oSorter) {
-				const oColumn = this.byId(oSorter.key);
-				oColumn.setSorted(true);
-				oColumn.setSortOrder(oSorter.descending ? CoreLibrary.SortOrder.Descending : CoreLibrary.SortOrder.Ascending);
-				aSorter.push(new Sorter(this.oMetadataHelper_rif.getProperty(oSorter.key).path, oSorter.descending));
-			}.bind(this));
-			this.oRiferimentiTable.getBinding("rows").sort(aSorter);
-		},
-
-        openColumnSelection_rif: function (oEvent) {
-
-			this._registerForP13n_rif();
-
-            const that = this;
-            
-			Engine.getInstance().show(that.oRiferimentiTable, ["Columns", "Sorter"], {
-				contentHeight: "35rem",
-				contentWidth: "32rem",
-				source: oEvent.getSource()
-			});
-		},
-
-        onSort_rif: function(oEvent) {
-			const sAffectedProperty = this._getKey(oEvent.getParameter("column"));
-			const sSortOrder = oEvent.getParameter("sortOrder");
-            const that = this;
-
-			//Apply the state programatically on sorting through the column menu
-			//1) Retrieve the current personalization state
-			Engine.getInstance().retrieveState(that.oRiferimentiTable).then(function(oState) {
-
-				//2) Modify the existing personalization state --> clear all sorters before
-				oState.Sorter.forEach(function(oSorter) {
-					oSorter.sorted = false;
-				});
-				oState.Sorter.push({
-					key: sAffectedProperty,
-					descending: sSortOrder === CoreLibrary.SortOrder.Descending
-				});
-
-				//3) Apply the modified personalization state to persist it in the VariantManagement
-				Engine.getInstance().applyState(that.oRiferimentiTable, oState);
-			});
-		},
-
-		onColumnMove_rif: function(oEvent) {
-			const oAffectedColumn = oEvent.getParameter("column");
-			const iNewPos = oEvent.getParameter("newPos");
-			const sKey = this._getKey(oAffectedColumn);
-            const that = this;
-
-			oEvent.preventDefault();
-
-			Engine.getInstance().retrieveState(that.oRiferimentiTable).then(function(oState) {
-
-				const oCol = oState.Columns.find(function(oColumn) {
-					return oColumn.key === sKey;
-				}) || {
-					key: sKey
-				};
-				oCol.position = iNewPos;
-
-				Engine.getInstance().applyState(that.oRiferimentiTable, {
-					Columns: [oCol]
-				});
-			});
-		},
-
-		onColumnResize_rif: function(oEvent) {
-			const oColumn = oEvent.getParameter("column");
-			const sWidth = oEvent.getParameter("width");
-            const that = this;
-
-			const oColumnState = {};
-			oColumnState[this._getKey(oColumn)] = sWidth;
-
-			Engine.getInstance().applyState(that.oRiferimentiTable, {
-				ColumnWidth: oColumnState
-			});
-		},
     });
 });

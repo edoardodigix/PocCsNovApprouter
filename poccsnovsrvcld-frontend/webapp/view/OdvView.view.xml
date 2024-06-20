@@ -92,15 +92,15 @@
         </VBox>
     </Panel>
     <Panel id="riferimenti-panel" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
-        <t:Table id="riferimenti-table" rows="{/Riferimenti}" selectionMode="None" sort="onSort_rif" columnResize="onColumnResize_rif"
-                columnMove="onColumnMove_rif" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
+        <t:Table id="riferimenti-table" rows="{/Riferimenti}" selectionMode="None" sort="onSort" columnResize="onColumnResize"
+                columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
             <t:rowMode>
                 <rowmodes:Fixed />
             </t:rowMode>
             <t:extension>
                 <OverflowToolbar>
                     <ToolbarSpacer />
-                    <Button icon="sap-icon://action-settings" press="openColumnSelection_rif"/>
+                    <Button icon="sap-icon://action-settings" press="openColumnSelection"/>
                 </OverflowToolbar>
             </t:extension>
             <t:columns>
