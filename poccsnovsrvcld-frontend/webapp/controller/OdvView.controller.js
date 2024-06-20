@@ -124,17 +124,10 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				const currentRows = this._getArrayNumeriOdvRiferimenti();
 				// TIRIAMO FUORI IL NUMEROODV DELLA RIGA CHE STIAMO AGGIUNGENDO (QUELLA DEL FOREACH)
 				const rowNumeroOdv = this._getNumeroOdvFromRow(row);
+				const aMockData = this.getView().getModel().getData().MockData;
+				const elementToAdd = aMockData.filter(row => row.NumeroOdv === rowNumeroOdv)[0];
 				if(!currentRows.includes(rowNumeroOdv)) {
-					this.getView().getModel().getData().Riferimenti.push(
-						{
-							// IL NOME DELLA PROPRIETA' VA CALCOLATO DINAMICAMENTE, NEL CASO IN CUI L'UTENTE ABBIA RIORDINATO LE COLONNE
-							[row.getCells()[0].getBindingInfo("text").parts[0].path]: row.getCells()[0].getText(),
-							[row.getCells()[1].getBindingInfo("text").parts[0].path]: row.getCells()[1].getText(),
-							[row.getCells()[2].getBindingInfo("text").parts[0].path]: row.getCells()[2].getText(),
-							[row.getCells()[3].getBindingInfo("text").parts[0].path]: row.getCells()[3].getText(),
-							[row.getCells()[4].getBindingInfo("text").parts[0].path]: row.getCells()[4].getText()
-						}
-					);
+					this.getView().getModel().getData().Riferimenti.push(elementToAdd);
 				}
 			});
 			this.getView().getModel().refresh(true);
@@ -206,7 +199,8 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			this.oMetadataHelper = new MetadataHelper([{
 					key: "numeroodv-col",
 					label: "N. OdV",
-					path: "NumeroOdv"
+					path: "NumeroOdv",
+					visible: false
 				},
 				{
 					key: "dataodv-col",
@@ -262,15 +256,19 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				return;
 			}
 
+			// AGGIUNGIAMO SEMPRE LA COLONNA DEL NUMEROODV ALL'INIZIO, COSI' DA AVERLA SEMPRE PER PRIMA NELLA TABELLA
+			oState.Columns.unshift({'key': 'numeroodv-col'});
+
 			this.oFiltersTable.getColumns().forEach(function(oColumn) {
 
-				const sKey = this._getKey(oColumn);
-				const sColumnWidth = oState.ColumnWidth[sKey];
-
-				oColumn.setWidth(sColumnWidth);
+				// CODICE PER CAMBIARE LA LARGHEZZA DELLE COLONNE
+				// const sKey = this._getKey(oColumn);
+				// const sColumnWidth = oState.ColumnWidth[sKey];
+				// oColumn.setWidth(sColumnWidth);
 
 				oColumn.setVisible(false);
 				oColumn.setSortOrder(CoreLibrary.SortOrder.None);
+
 			}.bind(this));
 
 			oState.Columns.forEach(function(oProp, iIndex) {
@@ -369,7 +367,8 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			this.oMetadataHelper_rif = new MetadataHelper([{
 					key: "numeroodv-col-rif",
 					label: "N. OdV",
-					path: "NumeroOdv"
+					path: "NumeroOdv",
+					visible: false
 				},
 				{
 					key: "dataodv-col-rif",
@@ -420,22 +419,22 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			Engine.getInstance().attachStateChange(this.handleStateChange_rif.bind(this));
 		},
 
-        _getKey_rif: function(oControl) {
-			return this.getView().getLocalId(oControl.getId());
-		},
-
         handleStateChange_rif: function(oEvent) {
 			const oState = oEvent.getParameter("state");
 			if (!oState) {
 				return;
 			}
 
-			this.oRiferimentiTable.getColumns().forEach(function(oColumn) {
-				const sKey = this._getKey_rif(oColumn);
-				if (sKey != "azioni-rif") {
-					const sColumnWidth = oState.ColumnWidth[sKey];
+			// AGGIUNGIAMO SEMPRE LA COLONNA DEL NUMEROODV ALL'INIZIO, COSI' DA AVERLA SEMPRE PER PRIMA NELLA TABELLA
+			oState.Columns.unshift({'key': 'numeroodv-col-rif'});
 
-					oColumn.setWidth(sColumnWidth);
+			this.oRiferimentiTable.getColumns().forEach(function(oColumn) {
+				const sKey = this._getKey(oColumn);
+				if (sKey != "azioni-rif") {
+
+					// CODICE PER CAMBIARE LA LARGHEZZA DELLE COLONNE
+					// const sColumnWidth = oState.ColumnWidth[sKey];
+					// oColumn.setWidth(sColumnWidth);
 
 					oColumn.setVisible(false);
 					oColumn.setSortOrder(CoreLibrary.SortOrder.None);

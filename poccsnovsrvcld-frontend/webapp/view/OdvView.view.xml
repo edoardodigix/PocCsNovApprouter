@@ -113,7 +113,8 @@
                 <t:Column id="dataodv-col-rif" width="9rem" sortProperty="DataOdv">
                     <Label text="Data OdV" />
                     <t:template>
-                        <Text text="{DataOdv}" />
+                        <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
+                                formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                     </t:template>
                 </t:Column>
                 <t:Column id="numeroodacliente-col-rif" sortProperty="NumeroOdaCliente">
