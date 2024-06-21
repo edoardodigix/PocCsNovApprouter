@@ -132,6 +132,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 		onSeleziona: function() {
 			const aSelectedIndices = this.oFiltersTable.getSelectedIndices();
 			const aSelectedRows = this.oFiltersTable.getRows().filter(row => aSelectedIndices.includes(row.getIndex()));
+			console.log("STOP");
 			aSelectedRows.forEach(row => {
 				// DEFINIAMO L'ARRAY CHE CONTERRA' I NUMEROODV DI TUTTI GLI ELEMENTI GIA' PRESENTI NEL MODELLO JSON DEI RIFERIMENTI
 				const currentRows = this._getArrayNumeriOdvRiferimenti();
