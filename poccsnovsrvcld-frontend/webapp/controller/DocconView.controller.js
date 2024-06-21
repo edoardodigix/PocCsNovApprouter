@@ -26,7 +26,6 @@ function (Controller, JSONModel, Filter, FilterOperator,
                 this.getView().setModel(this.oJSONModel);
                 this.getView().getModel().getData().data
                 .forEach(row => {
-                    row.dateODV = new Date(row.dateODV);
                     row.dateUM = new Date(row.dateUM);
                 });
             });
@@ -92,7 +91,6 @@ function (Controller, JSONModel, Filter, FilterOperator,
                 newData.deliveryNumber = newRowCells[1].getProperty("text");
                 newData.destinatarioMerci = newRowCells[2].getProperty("text");
                 newData.indirizzoDest = newRowCells[3].getProperty("text");
-                newData.dateODV = newRowCells[4].getProperty("text");
                 newData.dateUM = newRowCells[5].getProperty("text");
                 newData.no_packages = newRowCells[6].getProperty("text");
                 newData.trasportatore = newRowCells[7].getProperty("text"); 

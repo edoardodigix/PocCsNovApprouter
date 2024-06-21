@@ -34,12 +34,6 @@
                             </MultiComboBox>
                         </fb:control>
                     </fb:FilterGroupItem>
-                    <fb:FilterGroupItem name="dateODV" label="Data OdV" groupName="GroupFilter"
-                        visibleInFilterBar="true">
-                        <fb:control>
-                            <DateRangeSelection name="dateODV" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
-                        </fb:control>
-                    </fb:FilterGroupItem>
                     <fb:FilterGroupItem name="status" label="Stato UM" groupName="GroupFilter" visibleInFilterBar="true">
                         <fb:control>
                             <MultiComboBox name="statuses" items="{/statuses}" fieldGroupIds="filtri-input">
@@ -90,13 +84,6 @@
                                 <Text text="{indirizzoDest}" />
                             </t:template>
                         </t:Column>
-                        <t:Column id="dataodv-col" width="9rem" sortProperty="dateODV">
-                            <Label text="Data ODV" />
-                            <t:template>
-                                <Text text="{path: 'dateODV', type: 'sap.ui.model.type.Date', 
-                                    formatOptions: {pattern: 'dd/MM/yyyy'}}" />
-                            </t:template>
-                        </t:Column>
                         <t:Column id="dataum-col" width="9rem" sortProperty="dateUM">
                             <Label text="Data UM" />
                             <t:template>
@@ -137,78 +124,49 @@
             </VBox>
         </content>
     </Panel>
-    <Panel id="panel-riferimenti" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
+    <Panel id="panel-riferimenti" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="true">
         <content>
-            <t:Table id="table-riferimenti" rows="{/selectedData}" selectionMode="None" class="sapUiMediumMarginBottom">
+            <t:Table id="riferimenti-table" rows="{/selectedData}" selectionMode="None" sort="onSort" columnResize="onColumnResize"
+                    columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
                 <t:rowMode>
-                    <rowmodes:Fixed id="table-riferimenti-row-mode"></rowmodes:Fixed>
+                    <rowmodes:Fixed />
                 </t:rowMode>
+                <t:extension>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button icon="sap-icon://action-settings" press="openColumnSelection"/>
+                    </OverflowToolbar>
+                </t:extension>
                 <t:columns>
-                    <t:Column id="table-riferimenti-number-odv" width="9rem">
-                        <Label id="table-riferimenti-number-odv-label" text="N. OdV" />
+                    <t:Column id="numeroodv-col-rif" width="9rem" sortProperty="numberODV">
+                        <Label text="N. OdV" />
                         <t:template>
-                            <Text id="table-riferimenti-number-odv-text" text="{numberODV}" />
+                            <Text text="{numberODV}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="table-riferimenti-del-number" width="9rem">
-                        <Label id="table-riferimenti-del-number-label" text="N. Consegna" />
+                    <t:Column id="del-number-col-rif" sortProperty="deliveryNumber">
+                        <Label text="N. Consegna" />
                         <t:template>
-                            <Text id="table-riferimenti-del-number-text" text="{deliveryNumber}" />
+                            <Text text="{deliveryNumber}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="table-riferimenti-destinatario" width="9rem">
-                        <Label id="table-riferimenti-destinatario-label" text="Destinatario Merci" />
+                    <t:Column id="destinatario-col-rif" width="9rem" sortProperty="destinatarioMerci">
+                        <Label text="Destinatario Merci" />
                         <t:template>
-                            <Text id="table-riferimenti-destinatario-text" text="{destinatarioMerci}" />
+                            <Text text="{destinatarioMerci}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="table-riferimenti-indirizzoDest" width="9rem">
-                        <Label id="table-riferimenti-indirizzoDest-label" text="Indirizzo Destinatario Merci" />
+                    <t:Column id="indirizzoDest-col-rif" width="9rem" sortProperty="indirizzoDest">
+                        <Label text="Indirizzo Destinatario Merci" />
                         <t:template>
-                            <Text id="table-riferimenti-indirizzoDest-text" text="{indirizzoDest}" />
+                            <Text text="{indirizzoDest}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="table-riferimenti-date-odv" width="7rem">
-                        <Label id="table-riferimenti-date-odv-label" text="Data OdV" />
+                    <t:Column id="azioni-rif" width="6rem" hAlign="Center">
                         <t:template>
-                            <Text id="table-riferimenti-date-odv-text" text="{dateODV}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="table-riferimenti-date-um" width="7rem">
-                        <Label id="table-riferimenti-date-um-label" text="Data UM" />
-                        <t:template>
-                            <Text id="table-riferimenti-date-um-text" text="{dateUM}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="table-riferimenti-n-packages" width="3rem">
-                        <Label id="table-riferimenti-n-packages-label" text="N. colli" />
-                        <t:template>
-                            <Text id="table-riferimenti-n-packages-text" text="{no_packages}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="table-riferimenti-trasportatore" width="9rem">
-                        <Label id="table-riferimenti-trasportatore-label" text="Trasportatore" />
-                        <t:template>
-                            <Text id="table-riferimenti-trasportatore-text" text="{trasportatore}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="table-riferimenti-luogo-sped" width="9rem">
-                        <Label id="table-riferimenti-luogo-sped-label" text="Luogo Sped." />
-                        <t:template>
-                            <Text id="table-riferimenti-luogo-sped-text" text="{luogoSped}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="table-riferimenti-status" width="9rem">
-                        <Label id="table-riferimenti-status-label" text="Stato" />
-                        <t:template>
-                            <Text id="table-riferimenti-status-text" text="{status}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="table-riferimenti-btn-delete" width="6rem" hAlign="Center">
-                        <t:template>
-                            <HBox id="table-btns-column" justifyContent="SpaceAround">
-                                <Button id="table-riferimenti-delete-btn" icon="sap-icon://delete" press="onDeleteRiferimentiPress"/>
-                                <Button id="table-riferimenti-pdf-btn" icon="sap-icon://inspection" type="Default" press="onOpenPdf" tooltip="Visualizza documento ODV_{number}.pdf"/>
+                            <HBox justifyContent="SpaceAround">
+                                <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
+                                <Button icon="sap-icon://inspection" type="Default" press="apriPdf" tooltip="Visualizza documento ODV_{NumeroOdv}.pdf"/>
                             </HBox>
                         </t:template>
                     </t:Column>
