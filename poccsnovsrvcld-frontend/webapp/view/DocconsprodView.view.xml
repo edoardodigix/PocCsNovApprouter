@@ -35,12 +35,6 @@
                         </MultiComboBox>
                     </fb:control>
                 </fb:FilterGroupItem>
-                <fb:FilterGroupItem name="DataOdv" label="Data OdV" groupName="DateRangeSelection"
-                    visibleInFilterBar="true">
-                    <fb:control>
-                        <DateRangeSelection name="DataOdv" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
-                    </fb:control>
-                </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="StatoUM" label="Stato UM" groupName="Disabled"
                     visibleInFilterBar="true">
                     <fb:control>
@@ -72,7 +66,7 @@
         <VBox visible="false">
             <t:Table id="filters-table" rows="{/MockData}" class="sapUiSmallMarginBottom"
                 rowSelectionChange="rowSelectionChange" sort="onSort" columnResize="onColumnResize"
-                columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
+                columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex" fixedColumnCount="1">
                 <t:rowMode>
                     <rowmodes:Fixed />
                 </t:rowMode>
@@ -83,81 +77,68 @@
 					</OverflowToolbar>
 				</t:extension>
                 <t:columns>
-                    <t:Column id="numeroconsegna-col" sortProperty="NumeroConsegna">
+                    <t:Column id="numeroconsegna-col" width="7rem" sortProperty="NumeroConsegna">
                         <Label text="N. Consegna" />
                         <t:template>
                             <Text text="{NumeroConsegna}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="numeroodv-col" sortProperty="NumeroOdv">
-                        <Label text="N. OdV" />
-                        <t:template>
-                            <Text text="{NumeroOdv}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="dataodv-col" sortProperty="DataOdv">
-                        <Label text="Data OdV" />
-                        <t:template>
-                            <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
-                                formatOptions: {pattern: 'dd/MM/yyyy'}}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="destinatariomerci-col" sortProperty="DestinatarioMerci">
+                    <t:Column id="destinatariomerci-col" width="9rem" sortProperty="DestinatarioMerci">
                         <Label text="Destinatario Merci" />
                         <t:template>
                             <Text text="{DestinatarioMerci}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="indirizzodestinatariomerci-col" sortProperty="IndirizzoDestinatarioMerci">
+                    <t:Column id="indirizzodestinatariomerci-col" width="12rem" sortProperty="IndirizzoDestinatarioMerci">
                         <Label text="Indirizzo Destinatario Merci" />
                         <t:template>
                             <Text text="{IndirizzoDestinatarioMerci}" />
                         </t:template>
                     </t:Column>
-                     <t:Column id="dataum-col" sortProperty="DataUM">
+                     <t:Column id="dataum-col" width="7rem" sortProperty="DataUM">
                         <Label text="Data UM" />
                         <t:template>
                             <Text text="{path: 'DataUM', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="numerocolli-col" sortProperty="NumeroColli">
-                        <Label text="N. Colli" />
-                        <t:template>
-                            <Text text="{NumeroColli}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="trasportatore-col" sortProperty="Trasportatore">
-                        <Label text="Trasportatore" />
-                        <t:template>
-                            <Text text="{Trasportatore}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="luogospedizione-col" sortProperty="LuogoSpedizione">
+                    <t:Column id="luogospedizione-col" width="7rem" sortProperty="LuogoSpedizione">
                         <Label text="Luogo Sped." />
                         <t:template>
                             <Text text="{LuogoSpedizione}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="materiale-col" sortProperty="Materiale">
+                    <t:Column id="numerocolli-col" width="5rem" sortProperty="NumeroColli">
+                        <Label text="N. Colli" />
+                        <t:template>
+                            <Text text="{NumeroColli}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="trasportatore-col" width="7rem" sortProperty="Trasportatore">
+                        <Label text="Trasportatore" />
+                        <t:template>
+                            <Text text="{Trasportatore}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="materiale-col" width="7rem" sortProperty="Materiale">
                         <Label text="Materiale" />
                         <t:template>
                             <Text text="{Materiale}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="quantita-col" sortProperty="Quantità">
+                    <t:Column id="quantita-col" width="7rem" sortProperty="Quantità">
                         <Label text="Quantità" />
                         <t:template>
                             <Text text="{Quantità}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="um-col" sortProperty="UM">
+                    <t:Column id="um-col" width="3rem" sortProperty="UM">
                         <Label text="UM" />
                         <t:template>
                             <Text text="{UM}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="materialecliente-col" sortProperty="MaterialeCliente">
+                    <t:Column id="materialecliente-col" width="8rem" sortProperty="MaterialeCliente">
                         <Label text="Materiale Cliente" />
                         <t:template>
                             <Text text="{MaterialeCliente}" />
