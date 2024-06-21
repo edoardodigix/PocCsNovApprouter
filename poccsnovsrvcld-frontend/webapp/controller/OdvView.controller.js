@@ -25,6 +25,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
                 this.getView().getModel().getData().MockData
                 .forEach(row => {
                     row.DataOdv = new Date(row.DataOdv);
+					row.DataPrevistaConsegna = new Date(row.DataPrevistaConsegna);
                 });
             });
             // DEFINIZIONE DEI COMPONENTI CHE RICHIAMEREMO TANTE VOLTE NEL CODICE
@@ -60,7 +61,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 							and: false
 						}));
 					}
-				} else {
+				} else if (oFilterGroupItem.getGroupName() === 'DateRangeSelection') {
 				// GESTIONE DEI FILTRI DATERANGESELECTION
 					var oControl = oFilterGroupItem.getControl(),
 						aSelectedDates = [oControl.getDateValue(), oControl.getSecondDateValue()],
@@ -71,7 +72,19 @@ function (Controller, JSONModel, Filter, FilterOperator,
 							value2: aSelectedDates[1]
 						});
 					if (!aSelectedDates[0] == false) {
-						aResult.push(oFilter)
+						aResult.push(oFilter);
+					}
+				} else {
+					// GESTIONE DEI FILTRI INPUT
+					const oControl = oFilterGroupItem.getControl(),
+						aSelectedKeys = oControl.getValue(),
+						oFilter = new Filter({
+							path: oFilterGroupItem.getName(),
+							operator: FilterOperator.EQ,
+							value1: aSelectedKeys,
+						});
+					if (aSelectedKeys) {
+						aResult.push(oFilter);
 					}
 				}
 				return aResult;
@@ -83,7 +96,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
                 oFilterTableRows.filter(aTableFilters);
                 // FACCIAMO OPERAZIONI DI LAYOUT SULLA TABELLA DOPO L'APPLICAZIONE DEI FILTRI
                 this.oFiltersTable.getParent().setVisible(true);
-                this.oFiltersTable.getRowMode().setRowCount(oFilterTableRows.getCount());
+                this.oFiltersTable.getRowMode().setRowCount(oFilterTableRows.getCount() || 1);
             }
         },
 
@@ -217,10 +230,15 @@ function (Controller, JSONModel, Filter, FilterOperator,
 					label: "Valore",
 					path: "Valore"
 				},
+				{
+					key: "dataprevistaconsegna-col",
+					label: "Data prevista consegna",
+					path: "DataPrevistaConsegna"
+				},
                 {
-					key: "stato-col",
-					label: "Stato",
-					path: "Stato"
+					key: "statofatturazione-col",
+					label: "Stato fatturazione",
+					path: "StatoFatturazione"
 				}
 			]);
 			try {Engine.getInstance().deregister(this.oRiferimentiTable)} catch (error) {/* Non ci interessa gestire l'errore */};
@@ -395,9 +413,14 @@ function (Controller, JSONModel, Filter, FilterOperator,
 					path: "Valore"
 				},
                 {
-					key: "stato-col-rif",
-					label: "Stato",
-					path: "Stato"
+					key: "dataprevistaconsegna-col-rif",
+					label: "Data prevista consegna",
+					path: "DataPrevistaConsegna"
+				},
+                {
+					key: "statofatturazione-col-rif",
+					label: "Stato fatturazione",
+					path: "StatoFatturazione"
 				},
 				{
 					key: "azioni-rif",

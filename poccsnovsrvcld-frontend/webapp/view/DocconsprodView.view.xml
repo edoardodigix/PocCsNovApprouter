@@ -41,12 +41,13 @@
                         <DateRangeSelection name="DataOdv" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
                     </fb:control>
                 </fb:FilterGroupItem>
-                <fb:FilterGroupItem name="StatoUM" label="Stato UM" groupName="MultiComboBox"
+                <fb:FilterGroupItem name="StatoUM" label="Stato UM" groupName="Disabled"
                     visibleInFilterBar="true">
                     <fb:control>
-                        <MultiComboBox name="StatoUM" items="{/StatiUM}" value="C - Elaborato completamente" enabled="false" fieldGroupIds="filtri-input">
-                            <core:Item key="{key}" text="{name}" />
-                        </MultiComboBox>
+                        <!-- <MultiComboBox name="StatoUM" items="{/StatiUM}" value="C - Elaborato completamente" enabled="false" fieldGroupIds="filtri-input">
+                            <core:Item key="C - Elaborato completamente" text="C - Elaborato completamente" />
+                        </MultiComboBox> -->
+                        <Input value="C - Elaborato completamente" enabled="false"></Input>
                     </fb:control>
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="LuogoSpedizione" label="Luogo Sped." groupName="MultiComboBox"

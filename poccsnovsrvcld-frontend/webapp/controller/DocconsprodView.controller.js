@@ -61,7 +61,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 							and: false
 						}));
 					}
-				} else {
+				} else if (oFilterGroupItem.getGroupName() === 'DateRangeSelection') {
 				// GESTIONE DEI FILTRI DATERANGESELECTION
 					var oControl = oFilterGroupItem.getControl(),
 						aSelectedDates = [oControl.getDateValue(), oControl.getSecondDateValue()],
@@ -84,7 +84,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
                 oFilterTableRows.filter(aTableFilters);
                 // FACCIAMO OPERAZIONI DI LAYOUT SULLA TABELLA DOPO L'APPLICAZIONE DEI FILTRI
                 this.oFiltersTable.getParent().setVisible(true);
-                this.oFiltersTable.getRowMode().setRowCount(oFilterTableRows.getCount());
+                this.oFiltersTable.getRowMode().setRowCount(oFilterTableRows.getCount() || 1);
             }
         },
 
