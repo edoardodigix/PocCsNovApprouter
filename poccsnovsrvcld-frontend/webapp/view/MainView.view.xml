@@ -10,8 +10,8 @@
                     <items>
                         <core:Item text="Ordine di vendita" />
                         <core:Item text="Documento di consegna" />
-                        <core:Item text="Documento spedizione lotto" />
-                        <core:Item text="Documento spedizione prodotto" />
+                        <core:Item text="Documento consegna prodotto" />
+                        <core:Item text="Documento consegna prodotto lotto" />
                     </items>
                 </Select>
                 <mvc:XMLView id="odv-view" viewName="poccsnovsrvcldfrontend.view.OdvView" visible="false" />

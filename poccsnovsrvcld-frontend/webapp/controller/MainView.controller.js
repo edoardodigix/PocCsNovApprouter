@@ -22,12 +22,12 @@ function (Controller, JSONModel) {
                 this.getView().byId("doccon-view").setVisible(true);
                 this.getView().byId("docconsprod-view").setVisible(false);
                 this.getView().byId("docConLot-view").setVisible(false);
-            } else if (requestedView === 'Documento spedizione prodotto') {
+            } else if (requestedView === 'Documento consegna prodotto') {
                 this.getView().byId("odv-view").setVisible(false);
                 this.getView().byId("doccon-view").setVisible(false);
                 this.getView().byId("docconsprod-view").setVisible(true);
                 this.getView().byId("docConLot-view").setVisible(false);
-            }else if (requestedView === 'Documento spedizione lotto') {
+            }else if (requestedView === 'Documento consegna prodotto lotto') {
                 this.getView().byId("odv-view").setVisible(false);
                 this.getView().byId("doccon-view").setVisible(false);
                 this.getView().byId("docconsprod-view").setVisible(false);
