@@ -17,6 +17,7 @@
                 <mvc:XMLView id="odv-view" viewName="poccsnovsrvcldfrontend.view.OdvView" visible="false" />
                 <mvc:XMLView id="doccon-view" viewName="poccsnovsrvcldfrontend.view.DocconView" visible="false"/>
                 <mvc:XMLView id="docconsprod-view" viewName="poccsnovsrvcldfrontend.view.DocconsprodView" visible="false" />
+                <mvc:XMLView id="docConLot-view" viewName="poccsnovsrvcldfrontend.view.DocConLotView" visible="false" />
             </VBox>
         </content>
     </Page>
