@@ -61,7 +61,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 								and: false
 							}));
 						}
-					} else if (oFilterGroupItem.getControl().getName() === "dateUM") {
+					} else if (oFilterGroupItem.getControl().getName() === "DataUM") {
 						// GESTIONE DEI FILTRI DATERANGESELECTION
 						var oControl = oFilterGroupItem.getControl(),
 							aSelectedDates = [oControl.getDateValue(), oControl.getSecondDateValue()],

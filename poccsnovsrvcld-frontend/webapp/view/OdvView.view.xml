@@ -63,13 +63,13 @@
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="numeroodacliente-col" minWidth="150px">
+                    <t:Column id="numeroodacliente-col" width="16rem">
                         <Label text="N. OdA Cliente" />
                         <t:template>
                             <Text text="{NumeroOdaCliente}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="valore-col" width="9rem">
+                    <t:Column id="valore-col" width="6rem">
                         <Label text="Valore" />
                         <t:template>
                             <Text text="{Valore}" />
@@ -103,39 +103,39 @@
                 <rowmodes:Fixed />
             </t:rowMode>
             <t:columns>
-                <t:Column id="numeroodv-col-rif" width="9rem" sortProperty="NumeroOdv">
+                <t:Column id="numeroodv-col-rif" width="7rem">
                     <Label text="N. OdV" />
                     <t:template>
                         <Text text="{NumeroOdv}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="dataodv-col-rif" width="9rem" sortProperty="DataOdv">
+                <t:Column id="dataodv-col-rif" width="7rem">
                     <Label text="Data OdV" />
                     <t:template>
                         <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="numeroodacliente-col-rif" minWidth="9rem" sortProperty="NumeroOdaCliente">
+                <t:Column id="numeroodacliente-col-rif" width="16rem">
                     <Label text="N. OdA Cliente" />
                     <t:template>
                         <Text text="{NumeroOdaCliente}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="valore-col-rif" width="9rem" sortProperty="Valore">
+                <t:Column id="valore-col-rif" width="6rem">
                     <Label text="Valore" />
                     <t:template>
                         <Text text="{Valore}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="dataprevistaconsegna-col-rif" width="11rem" sortProperty="DataPrevistaConsegna">
+                <t:Column id="dataprevistaconsegna-col-rif" width="11rem">
                         <Label text="Data prevista consegna" />
                         <t:template>
                             <Text text="{path: 'DataPrevistaConsegna', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="statofatturazione-col-rif" width="9rem" sortProperty="StatoFatturazione">
+                    <t:Column id="statofatturazione-col-rif" width="9rem">
                         <Label text="Stato fatturazione" />
                         <t:template>
                             <Text text="{StatoFatturazione}" />
