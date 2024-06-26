@@ -101,14 +101,17 @@ function (Controller, JSONModel, Filter, FilterOperator,
         },
 
         onReset: function () {
-            const filterInputs = this.getView().getControlsByFieldGroupId("filtri-input").filter(c => c.isA("sap.m.MultiComboBox") || c.isA ("sap.m.DateRangeSelection"));
+            const filterInputs = this.getView().getControlsByFieldGroupId("filtri-input").filter(c => c.isA("sap.m.MultiComboBox") || c.isA ("sap.m.DateRangeSelection") ||c.isA ("sap.m.Input"));
             const mulComInputs = [] ;
             const dateInputs = [];
+			const normalInputs = [];
             filterInputs.forEach((input)=> {
                 if (input.isA("sap.m.MultiComboBox"))
                     mulComInputs.push(input);
                 else if (input.isA("sap.m.DateRangeSelection"))
                     dateInputs.push(input);
+				else
+					normalInputs.push(input);
             });
             mulComInputs.forEach(multiComboBox => {
                 multiComboBox.removeAllSelectedItems();
@@ -117,6 +120,9 @@ function (Controller, JSONModel, Filter, FilterOperator,
                 dateRange.setDateValue(null);
                 dateRange.setSecondDateValue(null);
             });
+			normalInputs.forEach((input) => {
+				input.setValue("")
+			});
             this.oFiltersTable.getParent().setVisible(false);
         },
 
