@@ -14,7 +14,8 @@
             "Materiale": "SFLLEF07D0 - EF07D0",
             "Quantità": "26,640",
             "UM": "KG",
-            "MaterialeCliente": ""
+            "MaterialeCliente": "",
+            "peso-totale" : ""
         }, 
         {
             "NumeroConsegna": "1500089304",
@@ -29,7 +30,8 @@
             "Materiale": "SFLL26F112 - MATER-BI EF05B",
             "Quantità": "25,900",
             "UM": "KG",
-            "MaterialeCliente": ""
+            "MaterialeCliente": "",
+            "peso-totale" : ""
         },
         {
             "NumeroConsegna": "1500090029",
@@ -44,7 +46,8 @@
             "Materiale": "SFLLEF07D0 - EF07D0",
             "Quantità": "27,320",
             "UM": "KG",
-            "MaterialeCliente": ""
+            "MaterialeCliente": "",
+            "peso-totale" : ""
         },
         {
             "NumeroConsegna": "1500090528",
@@ -59,7 +62,8 @@
             "Materiale": "SFLL26F112 - MATER-BI EF05B",
             "Quantità": "25,600",
             "UM": "KG",
-            "MaterialeCliente": ""
+            "MaterialeCliente": "",
+            "peso-totale" : ""
         }
     ],
     "NumeriConsegna": [
