@@ -15,7 +15,8 @@
             "Quantità": "26,640",
             "UM": "KG",
             "MaterialeCliente": "",
-            "peso-totale" : ""
+            "peso-totale" : "",
+            "lotto": ""
         }, 
         {
             "NumeroConsegna": "1500089304",
@@ -31,7 +32,8 @@
             "Quantità": "25,900",
             "UM": "KG",
             "MaterialeCliente": "",
-            "peso-totale" : ""
+            "peso-totale" : "",
+            "lotto": "24B01252E1"
         },
         {
             "NumeroConsegna": "1500090029",
@@ -47,7 +49,8 @@
             "Quantità": "27,320",
             "UM": "KG",
             "MaterialeCliente": "",
-            "peso-totale" : ""
+            "peso-totale" : "",
+            "lotto": "24C02254E1"
         },
         {
             "NumeroConsegna": "1500090528",
@@ -63,7 +66,8 @@
             "Quantità": "25,600",
             "UM": "KG",
             "MaterialeCliente": "",
-            "peso-totale" : ""
+            "peso-totale" : "",
+            "lotto": "24C12254E1"
         }
     ],
     "NumeriConsegna": [

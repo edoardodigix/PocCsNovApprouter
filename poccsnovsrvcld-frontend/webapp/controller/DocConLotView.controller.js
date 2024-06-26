@@ -16,16 +16,16 @@ function (Controller, JSONModel, Filter, FilterOperator,
     Engine, MetadataHelper, SelectionController, SortController, GroupController, ColumnWidthController, CoreLibrary, Sorter) {
     "use strict";
 
-    return Controller.extend("poccsnovsrvcldfrontend.controller.OdvView", {
+    return Controller.extend("poccsnovsrvcldfrontend.controller.DocConLotView", {
         onInit: function () {
             this.oModel = new JSONModel();
-            this.oModel.loadData(sap.ui.require.toUrl("poccsnovsrvcldfrontend/data/odvmodel.json"))
+            this.oModel.loadData(sap.ui.require.toUrl("poccsnovsrvcldfrontend/data/docConLotModel.json"))
             .then(() => {
                 this.getView().setModel(this.oModel);
                 this.getView().getModel().getData().MockData
                 .forEach(row => {
                     row.DataOdv = new Date(row.DataOdv);
-					row.DataPrevistaConsegna = new Date(row.DataPrevistaConsegna);
+					row.DataUM = new Date(row.DataUM);
                 });
             });
             // DEFINIZIONE DEI COMPONENTI CHE RICHIAMEREMO TANTE VOLTE NEL CODICE
@@ -44,49 +44,49 @@ function (Controller, JSONModel, Filter, FilterOperator,
             const oFilterTableRows = this.oFiltersTable.getBinding("rows");
             // FUNZIONE PER GESTIRE I FILTRI
             const aTableFilters = oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
-				if (oFilterGroupItem.getGroupName() === 'MultiComboBox') {
-				// GESTIONE DEI FILTRI MULTICOMBOBOX
-					const oControl = oFilterGroupItem.getControl(),
-						aSelectedKeys = oControl.getSelectedKeys(),
-						aFilters = aSelectedKeys.map(function (sSelectedKey) {
-							return new Filter({
-								path: oFilterGroupItem.getName(),
-								operator: FilterOperator.Contains,
-								value1: sSelectedKey
+				if (oFilterGroupItem.getControl().getBindingInfo("items") !== undefined) {
+					// GESTIONE DEI FILTRI MULTICOMBOBOX
+						const oControl = oFilterGroupItem.getControl(),
+							aSelectedKeys = oControl.getSelectedKeys(),
+							aFilters = aSelectedKeys.map(function (sSelectedKey) {
+								return new Filter({
+									path: oFilterGroupItem.getName(),
+									operator: FilterOperator.Contains,
+									value1: sSelectedKey
+								});
 							});
-						});
-					if (aSelectedKeys.length > 0) {
-						aResult.push(new Filter({
-							filters: aFilters,
-							and: false
-						}));
-					}
-				} else if (oFilterGroupItem.getGroupName() === 'DateRangeSelection') {
-				// GESTIONE DEI FILTRI DATERANGESELECTION
-					var oControl = oFilterGroupItem.getControl(),
-						aSelectedDates = [oControl.getDateValue(), oControl.getSecondDateValue()],
-						oFilter = new Filter({
-							path: oFilterGroupItem.getName(),
-							operator: FilterOperator.BT,
-							value1: aSelectedDates[0],
-							value2: aSelectedDates[1]
-						});
-					if (!aSelectedDates[0] == false) {
-						aResult.push(oFilter);
-					}
-				} else {
-					// GESTIONE DEI FILTRI INPUT
-					const oControl = oFilterGroupItem.getControl(),
+						if (aSelectedKeys.length > 0) {
+							aResult.push(new Filter({
+								filters: aFilters,
+								and: false
+							}));
+						}
+					} else if (oFilterGroupItem.getControl().getName() === "dateUM") {
+						// GESTIONE DEI FILTRI DATERANGESELECTION
+						var oControl = oFilterGroupItem.getControl(),
+							aSelectedDates = [oControl.getDateValue(), oControl.getSecondDateValue()],
+							oFilter = new Filter({
+								path: oFilterGroupItem.getName(),
+								operator: FilterOperator.BT,
+								value1: aSelectedDates[0],
+								value2: aSelectedDates[1]
+							});
+						if (!aSelectedDates[0] == false) {
+							aResult.push(oFilter)
+						}
+					} else {
+						// GESTIONE DEI FILTRI INPUT
+						const oControl = oFilterGroupItem.getControl(),
 						aSelectedKeys = oControl.getValue(),
 						oFilter = new Filter({
 							path: oFilterGroupItem.getName(),
 							operator: FilterOperator.EQ,
 							value1: aSelectedKeys,
 						});
-					if (aSelectedKeys) {
-						aResult.push(oFilter);
+						if (aSelectedKeys) {
+							aResult.push(oFilter);
+						}
 					}
-				}
 				return aResult;
 			}, []);
             if (aTableFilters.length === 0)
@@ -100,19 +100,33 @@ function (Controller, JSONModel, Filter, FilterOperator,
             }
         },
 
+		myFormatter: function (sName) {
+			var string = "";
+			if(sName!=="" && sName!==undefined && sName!==null){
+				//string = sName.slice(sName.indexOf('-') + 2,100); 
+				if(sName.search("-")!==-1){
+					string = sName.split("- ")[1];
+				}
+			}
+			return string;
+		},
+
         onReset: function () {
-            const filterInputs = this.getView().getControlsByFieldGroupId("filtri-input").filter(c => c.isA("sap.m.MultiComboBox") || c.isA ("sap.m.DateRangeSelection") ||c.isA ("sap.m.Input"));
+            const filterInputs = this.getView().getControlsByFieldGroupId("filtri-input").filter(c => c.isA("sap.m.MultiComboBox") || c.isA ("sap.m.DateRangeSelection") || c.isA ("sap.m.Input"));
             const mulComInputs = [] ;
             const dateInputs = [];
 			const normalInputs = [];
             filterInputs.forEach((input)=> {
-                if (input.isA("sap.m.MultiComboBox"))
+                if (input.isA("sap.m.MultiComboBox")){
                     mulComInputs.push(input);
-                else if (input.isA("sap.m.DateRangeSelection"))
-                    dateInputs.push(input);
-				else
+				}
+				else if (input.isA("sap.m.DateRangeSelection") == true) {
+					dateInputs.push(input);
+				} else {
 					normalInputs.push(input);
+				}
             });
+			console.log("STOP");
             mulComInputs.forEach(multiComboBox => {
                 multiComboBox.removeAllSelectedItems();
             });
@@ -122,7 +136,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
             });
 			normalInputs.forEach((input) => {
 				input.setValue("")
-			});
+			})
             this.oFiltersTable.getParent().setVisible(false);
         },
 
@@ -138,15 +152,14 @@ function (Controller, JSONModel, Filter, FilterOperator,
 		onSeleziona: function() {
 			const aSelectedIndices = this.oFiltersTable.getSelectedIndices();
 			const aSelectedRows = this.oFiltersTable.getRows().filter(row => aSelectedIndices.includes(row.getIndex()));
-			console.log("STOP");
 			aSelectedRows.forEach(row => {
-				// DEFINIAMO L'ARRAY CHE CONTERRA' I NUMEROODV DI TUTTI GLI ELEMENTI GIA' PRESENTI NEL MODELLO JSON DEI RIFERIMENTI
-				const currentRows = this._getArrayNumeriOdvRiferimenti();
-				// TIRIAMO FUORI IL NUMEROODV DELLA RIGA CHE STIAMO AGGIUNGENDO (QUELLA DEL FOREACH)
-				const rowNumeroOdv = this._getNumeroOdvFromRow(row);
+				// DEFINIAMO L'ARRAY CHE CONTERRA' I NUMEROCONSEGNA DI TUTTI GLI ELEMENTI GIA' PRESENTI NEL MODELLO JSON DEI RIFERIMENTI
+				const currentRows = this._getArrayNumeriConsegnaRiferimenti();
+				// TIRIAMO FUORI IL NUMEROCONSEGNA DELLA RIGA CHE STIAMO AGGIUNGENDO (QUELLA DEL FOREACH)
+				const rowNumeroConsegna = this._getNumeroConsegnaFromRow(row);
 				const aMockData = this.getView().getModel().getData().MockData;
-				const elementToAdd = aMockData.filter(row => row.NumeroOdv === rowNumeroOdv)[0];
-				if(!currentRows.includes(rowNumeroOdv)) {
+				const elementToAdd = aMockData.filter(row => row.NumeroConsegna === rowNumeroConsegna)[0];
+				if(!currentRows.includes(rowNumeroConsegna)) {
 					this.getView().getModel().getData().Riferimenti.push(elementToAdd);
 				}
 			});
@@ -158,8 +171,8 @@ function (Controller, JSONModel, Filter, FilterOperator,
 
 		eliminaRiferimento: function (oEvent) {
 			const row = oEvent.getSource().getParent().getParent();
-			const numeroOdv = this._getNumeroOdvFromRow(row);
-			const indexToRemove = this._getArrayNumeriOdvRiferimenti().indexOf(numeroOdv);
+			const numeroConsegna = this._getNumeroConsegnaFromRow(row);
+			const indexToRemove = this._getArrayNumeriConsegnaRiferimenti().indexOf(numeroConsegna);
 			this.getView().getModel().getData().Riferimenti.splice(indexToRemove, 1);
 			this.getView().getModel().refresh(true);
 			this._resetRiferimentiRowCount();
@@ -169,6 +182,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			}
 		},
 
+		// NON AVENDO ANCORA A DISPOSIZIONE I DOCUMENTI DI CONSEGNA, QUESTA FUNZIONE PER ORA APRE ANCORA GLI ODV
 		apriPdf: function (oEvent) {
             const pdfViewer = new sap.m.PDFViewer();
             this.getView().addDependent(pdfViewer);
@@ -191,10 +205,18 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			}, "");
 		},
 
-		_getArrayNumeriOdvRiferimenti: function () {
+		_getNumeroConsegnaFromRow: function (row) {
+			return row.getCells().reduce((finalValue, cell) => {
+				if (cell.getBindingPath("text") === 'NumeroConsegna')
+					finalValue = cell.getText();
+				return finalValue;
+			}, "");
+		},
+
+		_getArrayNumeriConsegnaRiferimenti: function () {
 			return this.getView().getModel().getData().Riferimenti
 			.reduce((currentRows, row) => {
-				currentRows.push(row.NumeroOdv);
+				currentRows.push(row.NumeroConsegna);
 				return currentRows;
 			}, []);
 		},
@@ -217,10 +239,15 @@ function (Controller, JSONModel, Filter, FilterOperator,
 
         _registerForP13n: function () {
 			this.oMetadataHelper = new MetadataHelper([{
+					key: "numeroconsegna-col",
+					label: "N. Consegna",
+					path: "NumeroConsegna",
+					visible: false
+				},
+				{
 					key: "numeroodv-col",
 					label: "N. OdV",
-					path: "NumeroOdv",
-					visible: false
+					path: "NumeroOdv"
 				},
 				{
 					key: "dataodv-col",
@@ -228,24 +255,49 @@ function (Controller, JSONModel, Filter, FilterOperator,
 					path: "DataOdv"
 				},
 				{
-					key: "numeroodacliente-col",
-					label: "N. OdA Cliente",
-					path: "NumeroOdaCliente"
-				},
-				{
-					key: "valore-col",
-					label: "Valore",
-					path: "Valore"
-				},
-				{
-					key: "dataprevistaconsegna-col",
-					label: "Data prevista consegna",
-					path: "DataPrevistaConsegna"
+					key: "destinatariomerci-col",
+					label: "Destinatario Merci",
+					path: "DestinatarioMerci"
 				},
                 {
-					key: "statofatturazione-col",
-					label: "Stato fatturazione",
-					path: "StatoFatturazione"
+					key: "indirizzodestinatariomerci-col",
+					label: "Indirizzo Destinatario Merci",
+					path: "IndirizzoDestinatarioMerci"
+				},
+				{
+					key: "dataum-col",
+					label: "Data UM",
+					path: "DataUM"
+				},
+				{
+					key: "numerocolli-col",
+					label: "N. Colli",
+					path: "NumeroColli"
+				},
+				{
+					key: "trasportatore-col",
+					label: "Trasportatore",
+					path: "Trasportatore"
+				},
+				{
+					key: "luogospedizione-col",
+					label: "Luogo Sped.",
+					path: "LuogoSpedizione"
+				},
+				{
+					key: "quantita-col",
+					label: "Quantità",
+					path: "Quantità"
+				},
+				{
+					key: "um-col",
+					label: "UM",
+					path: "UM"
+				},
+				{
+					key: "materialecliente-col",
+					label: "Materiale Cliente",
+					path: "MaterialeCliente"
 				}
 			]);
 			try {Engine.getInstance().deregister(this.oRiferimentiTable)} catch (error) {/* Non ci interessa gestire l'errore */};
@@ -281,11 +333,11 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				return;
 			}
 
-			// AGGIUNGIAMO SEMPRE LA COLONNA DEL NUMEROODV ALL'INIZIO, COSI' DA AVERLA SEMPRE PER PRIMA NELLA TABELLA
+			// AGGIUNGIAMO SEMPRE LA COLONNA DEL NUMEROCONSEGNA ALL'INIZIO, COSI' DA AVERLA SEMPRE PER PRIMA NELLA TABELLA
 			if (/Riferimenti/.test(oTable.getBindingPath("rows")))
-				oState.Columns.unshift({'key': 'numeroodv-col-rif'});
+				oState.Columns.unshift({'key': 'numeroconsegna-col-rif'});
 			else
-				oState.Columns.unshift({'key': 'numeroodv-col'});
+				oState.Columns.unshift({'key': 'numeroconsegna-col'});
 
 			oTable.getColumns().forEach(function(oColumn) {
 
@@ -293,7 +345,6 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				// const sKey = this._getKey(oColumn);
 				// const sColumnWidth = oState.ColumnWidth[sKey];
 				// oColumn.setWidth(sColumnWidth);
-
 				// EVITIAMO DI TOGLIERE LA COLONNA DELLE AZIONI
 				if (!oColumn.getSortProperty() == false) {
 					oColumn.setVisible(false);
@@ -399,10 +450,15 @@ function (Controller, JSONModel, Filter, FilterOperator,
 
 		_registerForP13n_rif: function () {
 			this.oMetadataHelper_rif = new MetadataHelper([{
+					key: "numeroconsegna-col-rif",
+					label: "N. Consegna",
+					path: "NumeroConsegna",
+					visible: false
+				},
+				{
 					key: "numeroodv-col-rif",
 					label: "N. OdV",
-					path: "NumeroOdv",
-					visible: false
+					path: "NumeroOdv"
 				},
 				{
 					key: "dataodv-col-rif",
@@ -410,24 +466,49 @@ function (Controller, JSONModel, Filter, FilterOperator,
 					path: "DataOdv"
 				},
 				{
-					key: "numeroodacliente-col-rif",
-					label: "N. OdA Cliente",
-					path: "NumeroOdaCliente"
+					key: "destinatariomerci-col-rif",
+					label: "Destinatario Merci",
+					path: "DestinatarioMerci"
 				},
 				{
-					key: "valore-col-rif",
-					label: "Valore",
-					path: "Valore"
+					key: "indirizzodestinatariomerci-col-rif",
+					label: "Indirizzo Destinatario Merci",
+					path: "IndirizzoDestinatarioMerci"
 				},
-                {
-					key: "dataprevistaconsegna-col-rif",
-					label: "Data prevista consegna",
-					path: "DataPrevistaConsegna"
+				{
+					key: "dataum-col-rif",
+					label: "Data UM",
+					path: "DataUM"
 				},
-                {
-					key: "statofatturazione-col-rif",
-					label: "Stato fatturazione",
-					path: "StatoFatturazione"
+				{
+					key: "numerocolli-col-rif",
+					label: "N. Colli",
+					path: "NumeroColli"
+				},
+				{
+					key: "trasportatore-col-rif",
+					label: "Trasportatore",
+					path: "Trasportatore"
+				},
+				{
+					key: "luogospedizione-col-rif",
+					label: "Luogo Sped.",
+					path: "LuogoSpedizione"
+				},
+				{
+					key: "quantita-col-rif",
+					label: "Quantità",
+					path: "Quantità"
+				},
+				{
+					key: "um-col-rif",
+					label: "UM",
+					path: "UM"
+				},
+				{
+					key: "materialecliente-col-rif",
+					label: "Materiale Cliente",
+					path: "MaterialeCliente"
 				},
 				{
 					key: "azioni-rif",

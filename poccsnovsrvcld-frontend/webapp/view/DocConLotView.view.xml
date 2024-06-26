@@ -1,4 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" controllerName="poccsnovsrvcldfrontend.controller.DocconsprodView"
+<mvc:View xmlns:core="sap.ui.core" controllerName="poccsnovsrvcldfrontend.controller.DocConLotView"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m" xmlns:t="sap.ui.table"
     xmlns:rowmodes="sap.ui.table.rowmodes"
@@ -54,6 +54,11 @@
                                 <core:Item text="{name}" key="{key}"/>
                             </suggestionItems>
                         </Input>
+                    </fb:control>
+                </fb:FilterGroupItem>
+                <fb:FilterGroupItem name="lotto" label="Lotto" groupName="GroupFilter" visibleInFilterBar="true">
+                    <fb:control>
+                        <Input name="lotto" fieldGroupIds="filtri-input"/>
                     </fb:control>
                 </fb:FilterGroupItem>
             </fb:filterGroupItems>
@@ -115,6 +120,12 @@
                             <Text text="{Materiale}" />
                         </t:template>
                     </t:Column>
+                    <t:Column id="lotto-col" width="7rem">
+                        <Label text="Lotto" />
+                        <t:template>
+                            <Text text="{lotto}" />
+                        </t:template>
+                    </t:Column>
                     <t:Column id="quantita-col" width="7rem">
                         <Label text="Quantità" />
                         <t:template>
@@ -131,6 +142,12 @@
                         <Label text="Materiale Cliente" />
                         <t:template>
                             <Text text="{MaterialeCliente}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="peso-totale-col" width="6rem">
+                        <Label text="Peso Totale" />
+                        <t:template>
+                            <Text text="{peso-totale}" />
                         </t:template>
                     </t:Column>
                 </t:columns>
@@ -197,10 +214,16 @@
                         <Text text="{Materiale}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="quantita-col-rif" width="4rem">
+                <t:Column id="lotto-col-rif" width="7rem">
+                        <Label text="Lotto" />
+                        <t:template>
+                            <Text text="{lotto}" />
+                        </t:template>
+                    </t:Column>
+                <t:Column id="quantita-col-rif" width="7rem">
                     <Label text="Quantità" />
                     <t:template>
-                        <Text text="{Quantità}" />
+                        <Text text="{Quantità}"/>
                     </t:template>
                 </t:Column>
                 <t:Column id="um-col-rif" width="3rem">

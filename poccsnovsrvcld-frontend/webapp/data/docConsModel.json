@@ -6,48 +6,48 @@
             "deliveryNumber": "1500088405",
             "destinatarioMerci": "CEPLAST S.P.A.",
             "indirizzoDest": "STRADA DELLE CAMPORE 23/I/05100 TERNI",
-            "dateODV": "2024-01-08T00:00:00.000Z",
             "dateUM": "2024-01-12T00:00:00.000Z", 
             "trasportatore" : "GUIDO BERNARDINI SRL",
             "luogoSped" : "SZ01 - GUIDO BERNARDINI SRL",
             "no_packages" : "0",
-            "status": "C - Completato"
+            "status": "C - Elaborato completamente",
+            "peso-totale" : ""
         },
         {
             "numberODV": "1030067875",
             "deliveryNumber": "1500089304",
             "destinatarioMerci": "CEPLAST S.P.A.",
             "indirizzoDest": "STRADA DELLE CAMPORE 23/I/05100 TERNI",
-            "dateODV": "2024-08-01T00:00:00.000Z",
             "dateUM": "2024-02-16T00:00:00.000Z",
             "trasportatore" : "GUIDO BERNARDINI SRL",
             "luogoSped" : "SP04 - PATRICA",
             "no_packages" : "0",
-            "status": "C - Completato"
+            "status": "C - Elaborato completamente",
+            "peso-totale" : ""
         },
         {
             "numberODV": "1030067906",
             "deliveryNumber": "1500090029",
             "destinatarioMerci": "CEPLAST S.P.A.",
             "indirizzoDest": "STRADA DELLE CAMPORE 23/I/05100 TERNI",
-            "dateODV": "2024-08-01T00:00:00.000Z",
             "dateUM": "2024-03-18T00:00:00.000Z",
             "trasportatore" : "CIANFROCCA TRASPORTI",
             "luogoSped" : "SZ15 - TECNOFER",
             "no_packages" : "0",
-            "status": "C - Completato"
+            "status": "C - Elaborato completamente",
+            "peso-totale" : ""
         },
         {
             "numberODV": "1030069545",
             "deliveryNumber": "1500090528",
             "destinatarioMerci": "CEPLAST S.P.A.",
             "indirizzoDest": "STRADA DELLE CAMPORE 23/I/05100 TERNI",
-            "dateODV": "2024-03-21T00:00:00.000Z",
             "dateUM": "2024-04-08T00:00:00.000Z",
             "trasportatore" : "GUIDO BERNARDINI SRL",
             "luogoSped" : "SP04 - PATRICA",
             "no_packages" : "0",
-            "status": "C - Completato"
+            "status": "C - Elaborato completamente",
+            "peso-totale" : ""
         }
     ],
     "numbersODV": [
@@ -88,10 +88,23 @@
     ],
     "statuses": [
         {
-            "key": "C - Completato",
-            "name": "C - Completato"
+            "key": "C - Elaborato completamente",
+            "name": "C - Elaborato completamente"
         }
     ],
-
+    "luoghiSped": [
+        {
+            "key": "SZ01 - GUIDO BERNARDINI SRL",
+            "name": "SZ01 - GUIDO BERNARDINI SRL"
+        },
+        {
+            "key": "SP04 - PATRICA",
+            "name": "SP04 - PATRICA"
+        },
+        {
+            "key": "SZ15 - TECNOFER",
+            "name": "SZ15 - TECNOFER"
+        }
+    ],
     "selectedData" : []
 }

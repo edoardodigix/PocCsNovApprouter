@@ -44,37 +44,49 @@ function (Controller, JSONModel, Filter, FilterOperator,
             const oFilterTableRows = this.oFiltersTable.getBinding("rows");
             // FUNZIONE PER GESTIRE I FILTRI
             const aTableFilters = oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
-				if (oFilterGroupItem.getGroupName() === 'MultiComboBox') {
-				// GESTIONE DEI FILTRI MULTICOMBOBOX
-					const oControl = oFilterGroupItem.getControl(),
-						aSelectedKeys = oControl.getSelectedKeys(),
-						aFilters = aSelectedKeys.map(function (sSelectedKey) {
-							return new Filter({
-								path: oFilterGroupItem.getName(),
-								operator: FilterOperator.Contains,
-								value1: sSelectedKey
+				if (oFilterGroupItem.getControl().getBindingInfo("items") !== undefined) {
+					// GESTIONE DEI FILTRI MULTICOMBOBOX
+						const oControl = oFilterGroupItem.getControl(),
+							aSelectedKeys = oControl.getSelectedKeys(),
+							aFilters = aSelectedKeys.map(function (sSelectedKey) {
+								return new Filter({
+									path: oFilterGroupItem.getName(),
+									operator: FilterOperator.Contains,
+									value1: sSelectedKey
+								});
 							});
-						});
-					if (aSelectedKeys.length > 0) {
-						aResult.push(new Filter({
-							filters: aFilters,
-							and: false
-						}));
-					}
-				} else if (oFilterGroupItem.getGroupName() === 'DateRangeSelection') {
-				// GESTIONE DEI FILTRI DATERANGESELECTION
-					var oControl = oFilterGroupItem.getControl(),
-						aSelectedDates = [oControl.getDateValue(), oControl.getSecondDateValue()],
+						if (aSelectedKeys.length > 0) {
+							aResult.push(new Filter({
+								filters: aFilters,
+								and: false
+							}));
+						}
+					} else if (oFilterGroupItem.getControl().getName() === "dateUM") {
+						// GESTIONE DEI FILTRI DATERANGESELECTION
+						var oControl = oFilterGroupItem.getControl(),
+							aSelectedDates = [oControl.getDateValue(), oControl.getSecondDateValue()],
+							oFilter = new Filter({
+								path: oFilterGroupItem.getName(),
+								operator: FilterOperator.BT,
+								value1: aSelectedDates[0],
+								value2: aSelectedDates[1]
+							});
+						if (!aSelectedDates[0] == false) {
+							aResult.push(oFilter)
+						}
+					} else {
+						// GESTIONE DEI FILTRI INPUT
+						const oControl = oFilterGroupItem.getControl(),
+						aSelectedKeys = oControl.getValue(),
 						oFilter = new Filter({
 							path: oFilterGroupItem.getName(),
-							operator: FilterOperator.BT,
-							value1: aSelectedDates[0],
-							value2: aSelectedDates[1]
+							operator: FilterOperator.EQ,
+							value1: aSelectedKeys,
 						});
-					if (!aSelectedDates[0] == false) {
-						aResult.push(oFilter)
+						if (aSelectedKeys) {
+							aResult.push(oFilter);
+						}
 					}
-				}
 				return aResult;
 			}, []);
             if (aTableFilters.length === 0)
@@ -88,16 +100,33 @@ function (Controller, JSONModel, Filter, FilterOperator,
             }
         },
 
+		myFormatter: function (sName) {
+			var string = "";
+			if(sName!=="" && sName!==undefined && sName!==null){
+				//string = sName.slice(sName.indexOf('-') + 2,100); 
+				if(sName.search("-")!==-1){
+					string = sName.split("- ")[1];
+				}
+			}
+			return string;
+		},
+
         onReset: function () {
-            const filterInputs = this.getView().getControlsByFieldGroupId("filtri-input").filter(c => c.isA("sap.m.MultiComboBox") || c.isA ("sap.m.DateRangeSelection"));
+            const filterInputs = this.getView().getControlsByFieldGroupId("filtri-input").filter(c => c.isA("sap.m.MultiComboBox") || c.isA ("sap.m.DateRangeSelection") || c.isA ("sap.m.Input"));
             const mulComInputs = [] ;
             const dateInputs = [];
+			const normalInputs = [];
             filterInputs.forEach((input)=> {
-                if (input.isA("sap.m.MultiComboBox"))
+                if (input.isA("sap.m.MultiComboBox")){
                     mulComInputs.push(input);
-                else if (input.isA("sap.m.DateRangeSelection"))
-                    dateInputs.push(input);
+				}
+				else if (input.isA("sap.m.DateRangeSelection") == true) {
+					dateInputs.push(input);
+				} else {
+					normalInputs.push(input);
+				}
             });
+			console.log("STOP");
             mulComInputs.forEach(multiComboBox => {
                 multiComboBox.removeAllSelectedItems();
             });
@@ -105,6 +134,9 @@ function (Controller, JSONModel, Filter, FilterOperator,
                 dateRange.setDateValue(null);
                 dateRange.setSecondDateValue(null);
             });
+			normalInputs.forEach((input) => {
+				input.setValue("")
+			})
             this.oFiltersTable.getParent().setVisible(false);
         },
 

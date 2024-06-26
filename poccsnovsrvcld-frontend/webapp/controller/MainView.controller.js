@@ -16,18 +16,27 @@ function (Controller, JSONModel) {
                 this.getView().byId("odv-view").setVisible(true);
                 this.getView().byId("doccon-view").setVisible(false);
                 this.getView().byId("docconsprod-view").setVisible(false);
+                this.getView().byId("docConLot-view").setVisible(false);
             } else if (requestedView === 'Documento di consegna') {
                 this.getView().byId("odv-view").setVisible(false);
                 this.getView().byId("doccon-view").setVisible(true);
                 this.getView().byId("docconsprod-view").setVisible(false);
+                this.getView().byId("docConLot-view").setVisible(false);
             } else if (requestedView === 'Documento spedizione prodotto') {
                 this.getView().byId("odv-view").setVisible(false);
                 this.getView().byId("doccon-view").setVisible(false);
                 this.getView().byId("docconsprod-view").setVisible(true);
-            } else {
+                this.getView().byId("docConLot-view").setVisible(false);
+            }else if (requestedView === 'Documento spedizione lotto') {
                 this.getView().byId("odv-view").setVisible(false);
                 this.getView().byId("doccon-view").setVisible(false);
                 this.getView().byId("docconsprod-view").setVisible(false);
+                this.getView().byId("docConLot-view").setVisible(true);
+            }else {
+                this.getView().byId("odv-view").setVisible(false);
+                this.getView().byId("doccon-view").setVisible(false);
+                this.getView().byId("docconsprod-view").setVisible(false);
+                this.getView().byId("docConLot-view").setVisible(false);
             }
 
         },

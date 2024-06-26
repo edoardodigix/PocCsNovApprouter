@@ -16,22 +16,16 @@
             <fb:filterGroupItems>
                 <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="Input" visibleInFilterBar="true">
                     <fb:control>
-                        <Input name="NumeroOdv" showSuggestion="true" suggestionItems="{/MockData}" fieldGroupIds="filtri-input">
-                            <suggestionItems>
-                                <core:Item text="{NumeroOdv}" />
-                            </suggestionItems>
-                        </Input>
-                        <!-- <MultiComboBox name="NumeroOdv" items="{/NumeriOdv}" fieldGroupIds="filtri-input">
-                            <core:Item key="{key}" text="{name}" />
-                        </MultiComboBox> -->
+                        <Input name="NumeroOdv" fieldGroupIds="filtri-input"/>
                     </fb:control>
                 </fb:FilterGroupItem>
-                <fb:FilterGroupItem name="NumeroOdaCliente" label="N. OdA Cliente" groupName="MultiComboBox"
-                    visibleInFilterBar="true">
+                <fb:FilterGroupItem name="NumeroOdaCliente" label="N. OdA Cliente" groupName="Input" visibleInFilterBar="true">
                     <fb:control>
-                        <MultiComboBox name="NumeroOdaCliente" items="{/NumeriOdaCliente}" fieldGroupIds="filtri-input">
-                            <core:Item key="{key}" text="{name}" />
-                        </MultiComboBox>
+                        <Input name="NumeroOdaCliente" showSuggestion="true" suggestionItems="{/NumeriOdaCliente}" fieldGroupIds="filtri-input">
+                            <suggestionItems>
+                                <core:Item text="{name}" key="{key}" />
+                            </suggestionItems>
+                        </Input>
                     </fb:control>
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="DataOdv" label="Data OdV" groupName="DateRangeSelection"
@@ -51,51 +45,44 @@
         <!-- TABELLA DEI DOCUMENTI CORRISPONDENTI AI FILTRI -->
         <VBox visible="false">
             <t:Table id="filters-table" rows="{/MockData}" class="sapUiSmallMarginBottom"
-                rowSelectionChange="rowSelectionChange" sort="onSort" columnResize="onColumnResize"
-                columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
+                rowSelectionChange="rowSelectionChange" columnResize="onColumnResize" fixedColumnCount="1">
                 <t:rowMode>
                     <rowmodes:Fixed />
                 </t:rowMode>
-                <t:extension>
-					<OverflowToolbar>
-						<ToolbarSpacer />
-						<Button icon="sap-icon://action-settings" press="openColumnSelection"/>
-					</OverflowToolbar>
-				</t:extension>
                 <t:columns>
-                    <t:Column id="numeroodv-col" width="9rem" sortProperty="NumeroOdv">
+                    <t:Column id="numeroodv-col" width="9rem">
                         <Label text="N. OdV" />
                         <t:template>
                             <Text text="{NumeroOdv}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="dataodv-col" width="9rem" sortProperty="DataOdv">
+                    <t:Column id="dataodv-col" width="9rem">
                         <Label text="Data OdV" />
                         <t:template>
                             <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="numeroodacliente-col" minWidth="150px" sortProperty="NumeroOdaCliente">
+                    <t:Column id="numeroodacliente-col" minWidth="150px">
                         <Label text="N. OdA Cliente" />
                         <t:template>
                             <Text text="{NumeroOdaCliente}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="valore-col" width="9rem" sortProperty="Valore">
+                    <t:Column id="valore-col" width="9rem">
                         <Label text="Valore" />
                         <t:template>
                             <Text text="{Valore}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="dataprevistaconsegna-col" width="11rem" sortProperty="DataPrevistaConsegna">
+                    <t:Column id="dataprevistaconsegna-col" width="11rem">
                         <Label text="Data prevista consegna" />
                         <t:template>
                             <Text text="{path: 'DataPrevistaConsegna', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="statofatturazione-col" width="9rem" sortProperty="StatoFatturazione">
+                    <t:Column id="statofatturazione-col" width="9rem">
                         <Label text="Stato fatturazione" />
                         <t:template>
                             <Text text="{StatoFatturazione}" />
@@ -110,17 +97,11 @@
         </VBox>
     </Panel>
     <Panel id="riferimenti-panel" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
-        <t:Table id="riferimenti-table" rows="{/Riferimenti}" selectionMode="None" sort="onSort" columnResize="onColumnResize"
-                columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex" class="sapUiMediumMarginBottom">
+        <t:Table id="riferimenti-table" rows="{/Riferimenti}" selectionMode="None" columnResize="onColumnResize"
+                class="sapUiMediumMarginBottom" fixedColumnCount="1">
             <t:rowMode>
                 <rowmodes:Fixed />
             </t:rowMode>
-            <t:extension>
-                <OverflowToolbar>
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://action-settings" press="openColumnSelection"/>
-                </OverflowToolbar>
-            </t:extension>
             <t:columns>
                 <t:Column id="numeroodv-col-rif" width="9rem" sortProperty="NumeroOdv">
                     <Label text="N. OdV" />

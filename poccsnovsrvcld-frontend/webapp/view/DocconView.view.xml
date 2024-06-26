@@ -11,17 +11,27 @@
             <MessageStrip id="filter-error-msg" text="Compilare almeno un filtro per avviare la ricerca"
                 type="Information" showIcon="true" visible="false">
             </MessageStrip>
-            <fb:FilterBar  id= "filters-bar" useToolbar="false" search="onCerca">
+            <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca">
                 <fb:filterGroupItems>
-                    <fb:FilterGroupItem name="deliveryNumber" label="N. Consegna" groupName="GroupFilter"
-                        visibleInFilterBar="true">
+                    <fb:FilterGroupItem name="luogoSped" label="Luogo Spedizione" groupName="GroupFilter" visibleInFilterBar="true">
                         <fb:control>
-                            <MultiComboBox name="deliveryNumber" items="{/data}" fieldGroupIds="filtri-input">
-                                <core:Item key="{deliveryNumber}" text="{deliveryNumber}" />
-                            </MultiComboBox>
+                            <Input
+                                name="luogoSped"
+                                showSuggestion="true"
+                                suggestionItems="{/luoghiSped}"
+                                fieldGroupIds="filtri-input">
+                                <suggestionItems>
+                                    <core:Item text="{name}" key="{key}"/>
+                                </suggestionItems>
+                            </Input>
                         </fb:control>
                     </fb:FilterGroupItem>
-                    <fb:FilterGroupItem name="dateUM" label="Data UM" groupName="GroupFilter"
+                    <fb:FilterGroupItem name="deliveryNumber" label="N. Consegna" groupName="GroupFilter" visibleInFilterBar="true">
+                        <fb:control>
+                            <Input name="deliveryNumber" fieldGroupIds="filtri-input"/>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem groupTitle="DateRangeSelection" name="dateUM" label="Data UM" groupName="GroupFilter"
                         visibleInFilterBar="true">
                         <fb:control>
                             <DateRangeSelection name="dateUM" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
@@ -29,23 +39,7 @@
                     </fb:FilterGroupItem>
                     <fb:FilterGroupItem name="numberODV" label="N. OdV" groupName="GroupFilter" visibleInFilterBar="true">
                         <fb:control>
-                            <MultiComboBox name="numberODV" items="{/data}" fieldGroupIds="filtri-input">
-                                <core:Item key="{numberODV}" text="{numberODV}" />
-                            </MultiComboBox>
-                        </fb:control>
-                    </fb:FilterGroupItem>
-                    <fb:FilterGroupItem name="status" label="Stato UM" groupName="GroupFilter" visibleInFilterBar="true">
-                        <fb:control>
-                            <MultiComboBox name="statuses" items="{/statuses}" fieldGroupIds="filtri-input">
-                                <core:Item key="{key}" text="{name}" />
-                            </MultiComboBox>
-                        </fb:control>
-                    </fb:FilterGroupItem>
-                    <fb:FilterGroupItem name="luogoSped" label="Luogo Sped" groupName="GroupFilter" visibleInFilterBar="true">
-                        <fb:control>
-                            <MultiComboBox name="luogoSped" items="{/data}" fieldGroupIds="filtri-input">
-                                <core:Item key="{luogoSped}" text="{luogoSped}" />
-                            </MultiComboBox>
+                            <Input name="numberODV" fieldGroupIds="filtri-input"/>
                         </fb:control>
                     </fb:FilterGroupItem>
                 </fb:filterGroupItems>
@@ -54,65 +48,58 @@
             <!-- TABELLA DEI DOCUMENTI CORRISPONDENTI AI FILTRI -->
             <VBox visible="false">
                 <t:Table id="filters-table" rows="{/data}" class="sapUiSmallMarginBottom"
-                    rowSelectionChange="rowSelectionChange" sort="onSort" columnResize="onColumnResize"
-                    columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
+                    rowSelectionChange="rowSelectionChange" columnResize="onColumnResize" fixedColumnCount="1">
                     <t:rowMode>
                         <rowmodes:Fixed id="test" />
                     </t:rowMode>
-                    <t:extension>
-                        <OverflowToolbar>
-                            <ToolbarSpacer />
-                            <Button icon="sap-icon://action-settings" press="openColumnSelection"/>
-                        </OverflowToolbar>
-                    </t:extension>
                     <t:columns>
-                        <t:Column id="delivery-number-col" width="9rem" sortProperty="deliveryNumber">
+                        <t:Column id="delivery-number-col">
                             <Label text="N. Consegna" />
                             <t:template>
                                 <Text text="{deliveryNumber}" />
                             </t:template>
                         </t:Column>
-                        <t:Column id="destinatario-col" sortProperty="destinatarioMerci">
+                        <t:Column id="destinatario-col" width="10rem">
                             <Label text="Destinatario Merci" />
                             <t:template>
                                 <Text text="{destinatarioMerci}" />
                             </t:template>
                         </t:Column>
-                        <t:Column id="indirizzoDest-col" width="9rem" sortProperty="indirizzoDest">
+                        <t:Column id="indirizzoDest-col" width="12rem">
                             <Label text="Indirizzo Destinatario Merci" />
                             <t:template>
                                 <Text text="{indirizzoDest}" />
                             </t:template>
                         </t:Column>
-                        <t:Column id="dataum-col" width="9rem" sortProperty="dateUM">
+                        <t:Column id="dateum-col">
                             <Label text="Data UM" />
                             <t:template>
                                 <Text text="{path: 'dateUM', type: 'sap.ui.model.type.Date', 
                                     formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                             </t:template>
                         </t:Column>
-                        <t:Column id="n-packages-col" width="9rem" sortProperty="no_packages">
+                        <t:Column id="luogo-sped-col" >
+                            <Label text="Luogo Spedizione" />
+                            <t:template>
+                                <Text text="{path: 'luogoSped', formatter: '.myFormatter'}" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="n-packages-col" width="4rem">
                             <Label text="N. colli" />
                             <t:template>
                                 <Text text="{no_packages}"/>
                             </t:template>
                         </t:Column>
-                        <t:Column id="trasportatore-col" width="9rem" sortProperty="trasportatore">
+                        <t:Column id="trasportatore-col" >
                             <Label text="Trasportatore" />
                             <t:template>
                                 <Text text="{trasportatore}"/>
                             </t:template>
                         </t:Column>
-                        <t:Column id="luogo-sped-col" width="9rem" sortProperty="luogoSped">
-                            <Label text="Luogo Sped." />
+                        <t:Column id="peso-totale-col" width="6rem">
+                            <Label text="Peso Totale"/>
                             <t:template>
-                                <Text text="{luogoSped}"/>
-                            </t:template>
-                        </t:Column>
-                        <t:Column id="status-col" width="9rem" sortProperty="status">
-                            <Label text="Stato UM" />
-                            <t:template>
-                                <Text text="{status}"/>
+                                <Text text="{peso-totale}"/>
                             </t:template>
                         </t:Column>
                     </t:columns>
@@ -124,56 +111,76 @@
             </VBox>
         </content>
     </Panel>
-    <Panel id="panel-riferimenti" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="true">
+    <Panel id="panel-riferimenti" expandable="true" expanded="true" headerText="Documenti di riferimento" visible="false">
         <content>
-            <t:Table id="riferimenti-table" rows="{/selectedData}" selectionMode="None" sort="onSort" columnResize="onColumnResize"
-                    columnMove="onColumnMove" sap.ui.fl:flexibility="sap/m/flexibility/EngineFlex">
+            <t:Table id="riferimenti-table" rows="{/selectedData}" selectionMode="None" columnResize="onColumnResize" class="sapUiMediumMarginBottom"
+                    fixedColumnCount="1" >
                 <t:rowMode>
                     <rowmodes:Fixed />
                 </t:rowMode>
-                <t:extension>
-                    <OverflowToolbar>
-                        <ToolbarSpacer />
-                        <Button icon="sap-icon://action-settings" press="openColumnSelection"/>
-                    </OverflowToolbar>
-                </t:extension>
                 <t:columns>
-                    <t:Column id="numeroodv-col-rif" width="9rem" sortProperty="numberODV">
-                        <Label text="N. OdV" />
-                        <t:template>
-                            <Text text="{numberODV}" />
-                        </t:template>
-                    </t:Column>
-                    <t:Column id="del-number-col-rif" sortProperty="deliveryNumber">
+                    <t:Column id="del-number-col-rif">
                         <Label text="N. Consegna" />
                         <t:template>
                             <Text text="{deliveryNumber}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="destinatario-col-rif" width="9rem" sortProperty="destinatarioMerci">
+                    <t:Column id="destinatario-col-rif" width="10rem">
                         <Label text="Destinatario Merci" />
                         <t:template>
                             <Text text="{destinatarioMerci}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="indirizzoDest-col-rif" width="9rem" sortProperty="indirizzoDest">
+                    <t:Column id="indirizzoDest-col-rif" width="12rem">
                         <Label text="Indirizzo Destinatario Merci" />
                         <t:template>
                             <Text text="{indirizzoDest}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="azioni-rif" width="6rem" hAlign="Center">
+                    <t:Column id="dateum-col-rif" width="8rem">
+                        <Label text="Data UM" />
                         <t:template>
-                            <HBox justifyContent="SpaceAround">
+                            <Text text="{path: 'dateUM', type: 'sap.ui.model.type.Date', 
+                                formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="luogoSped-col-rif" width="8rem">
+                        <Label text="Luogo Spedizione"/>
+                        <t:template>
+                            <Text text="{path: 'luogoSped', formatter: '.myFormatter'}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="n-packages-col-rif" width="4rem">
+                        <Label text="N. Colli" />
+                        <t:template>
+                            <Text text="{no_packages}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="trasportatore-col-rif" width="8rem">
+                        <Label text="Trasportatore" />
+                        <t:template>
+                            <Text text="{trasportatore}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="peso-totale-col-rif" width="6rem">
+                        <Label text="Peso Totale" />
+                        <t:template>
+                            <Text text="{peso-totale}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="azioni-rif" width="10rem" hAlign="Center">
+                        <t:template>
+                            <HBox justifyContent="SpaceBetween">
                                 <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
-                                <Button icon="sap-icon://inspection" type="Default" press="apriPdf" tooltip="Visualizza documento ODV_{NumeroOdv}.pdf"/>
+                                <Button text="DDT" type="Default"/>
+                                <Button text="CMR" type="Default"/>
                             </HBox>
                         </t:template>
                     </t:Column>
                 </t:columns>
             </t:Table>
             <VBox id="vbox-note">
-                <Label id="label-note" text="Note" design="Bold"/>
+                <Label id="label-note" text="Note di dettaglio su Consegna" design="Bold"/>
                 <TextArea id="text-area-note" ariaLabelledBy="label-note" width="100%" height="8rem" />
             </VBox>
         </content>
