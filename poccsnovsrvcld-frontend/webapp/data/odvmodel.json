@@ -7,7 +7,7 @@
             "NumeroOdaCliente": "230801 EF07D0 SFUSO 15/1",
             "Valore": "47.952",
             "DataPrevistaConsegna": "",
-            "StatoFatturazione": ""
+            "StatoFatturazione": "Concluso"
         }, 
         {
             "NumeroOdv": "1030067875",
@@ -15,7 +15,7 @@
             "NumeroOdaCliente": "230802 EF05B SFUSO 20/2 rev1 15/2",
             "Valore": "50.505",
             "DataPrevistaConsegna": "",
-            "StatoFatturazione": ""
+            "StatoFatturazione": "Concluso"
         },
         {
             "NumeroOdv": "1030067906",
@@ -23,7 +23,7 @@
             "NumeroOdaCliente": "230803 EF07D0 SFUSO 19/3",
             "Valore": "49.176",
             "DataPrevistaConsegna": "",
-            "StatoFatturazione": ""
+            "StatoFatturazione": "Concluso"
         },
         {
             "NumeroOdv": "1030069545",
@@ -31,7 +31,7 @@
             "NumeroOdaCliente": "240208 EF05B 11/4",
             "Valore": "49.920",
             "DataPrevistaConsegna": "",
-            "StatoFatturazione": ""
+            "StatoFatturazione": "Concluso"
         }
     ],
     "NumeriOdv": [
