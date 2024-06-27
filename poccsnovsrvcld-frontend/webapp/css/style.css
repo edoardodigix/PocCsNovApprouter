@@ -1,1 +1,8 @@
 /* Enter your custom styles here */
+.customClass > div > div:last-child > button:first-child > span > span > bdi {
+    display: none;
+}
+
+.customClass > div > div:last-child > button:first-child > span > span::after {
+    content: 'Ricerca';
+}
