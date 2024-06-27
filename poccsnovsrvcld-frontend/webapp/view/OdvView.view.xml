@@ -37,7 +37,7 @@
                 <fb:FilterGroupItem name="DataPrevistaConsegna" label="Data prevista consegna" groupName="DateRangeSelection"
                     visibleInFilterBar="true">
                     <fb:control>
-                        <DateRangeSelection name="DataOdv" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
+                        <DateRangeSelection name="DataPrevistaConsegna" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
                     </fb:control>
                 </fb:FilterGroupItem>
             </fb:filterGroupItems>
