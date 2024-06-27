@@ -12,19 +12,19 @@
             type="Information" showIcon="true" visible="false">
         </MessageStrip>
         <!-- BARRA DEI FILTRI -->
-        <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca">
+        <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca" class="customClass" showFilterConfiguration="false">
             <fb:filterGroupItems>
                 <fb:FilterGroupItem name="LuogoSpedizione" label="Luogo Spedizione" groupName="GroupFilter" visibleInFilterBar="true">
                     <fb:control>
-                        <Input
+                        <ComboBox
+                            fieldGroupIds="filtri-input"
                             name="LuogoSpedizione"
-                            showSuggestion="true"
-                            suggestionItems="{/LuoghiSpedizione}"
-                            fieldGroupIds="filtri-input">
-                            <suggestionItems>
-                                <core:Item text="{name}" key="{key}"/>
-                            </suggestionItems>
-                        </Input>
+                            items="{
+                                path: '/LuoghiSpedizione',
+                                sorter: { path: 'text' }
+                            }">
+                            <core:Item key="{key}" text="{name}" />
+                        </ComboBox>
                     </fb:control>
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="NumeroConsegna" label="N. Consegna" groupName="GroupFilter" visibleInFilterBar="true">
@@ -38,7 +38,7 @@
                         <DateRangeSelection name="DataUM" displayFormat="dd/MM/yyyy" placeholder=" " fieldGroupIds="filtri-input" />
                     </fb:control>
                 </fb:FilterGroupItem>
-                <fb:FilterGroupItem name="NumeroOdv" label="N. Odv" groupName="GroupFilter" visibleInFilterBar="true">
+                <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="GroupFilter" visibleInFilterBar="true">
                     <fb:control>
                         <Input name="NumeroOdv" fieldGroupIds="filtri-input"/>
                     </fb:control>
@@ -221,12 +221,13 @@
                         <Text text="{peso-totale}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="azioni-rif" width="10rem" hAlign="Center">
+                <t:Column id="azioni-rif" width="12rem" hAlign="Center">
                     <t:template>
                         <HBox justifyContent="SpaceBetween">
                             <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
-                            <Button text="DDT" type="Default"/>
+                            <Button text="DDT" type="Default" press="apriPdf" tooltip="Visualizza documento DDT_{NumeroConsegna}.pdf"/>
                             <Button text="CMR" type="Default"/>
+                            <Button text="PKL" type="Default"/>
                         </HBox>
                     </t:template>
                 </t:Column>

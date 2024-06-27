@@ -39,7 +39,8 @@ function (Controller, JSONModel, Filter, FilterOperator,
             const oFilterTableRows = this.oFiltersTable.getBinding("rows");
             // FUNZIONE PER GESTIRE I FILTRI
             const aTableFilters = oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
-                if (oFilterGroupItem.getControl().getBindingInfo("items") !== undefined) {
+				console.log("STOP");
+                /* if (oFilterGroupItem.getControl().getBindingInfo("items") !== undefined) {
 				// GESTIONE DEI FILTRI MULTICOMBOBOX
 					const oControl = oFilterGroupItem.getControl(),
 						aSelectedKeys = oControl.getSelectedKeys(),
@@ -56,7 +57,8 @@ function (Controller, JSONModel, Filter, FilterOperator,
 							and: false
 						}));
 					}
-				} else if (oFilterGroupItem.getControl().getName() === "numberODV" || oFilterGroupItem.getControl().getName() === "luogoSped" || oFilterGroupItem.getControl().getName() === "deliveryNumber") {
+				} else  */
+				if (oFilterGroupItem.getControl().getName() === "numberODV" || oFilterGroupItem.getControl().getName() === "luogoSped" || oFilterGroupItem.getControl().getName() === "deliveryNumber") {
                     // GESTIONE DEI FILTRI INPUT
 					const oControl = oFilterGroupItem.getControl(),
                     aSelectedKeys = oControl.getValue(),
@@ -272,23 +274,22 @@ function (Controller, JSONModel, Filter, FilterOperator,
 		},
 
         onReset: function () {
-            const filterInputs = this.getView().getControlsByFieldGroupId("filtri-input").filter(c => c.isA("sap.m.MultiComboBox") || c.isA ("sap.m.DateRangeSelection") ||c.isA ("sap.m.Input"));
-            const mulComInputs = [] ;
+            const filterInputs = this.getView().getControlsByFieldGroupId("filtri-input").filter(c => c.isA("sap.m.ComboBox") || c.isA ("sap.m.DateRangeSelection") ||c.isA ("sap.m.Input"));
             const dateInputs = [];
 			const normalInputs = [];
             filterInputs.forEach((input)=> {
-                if (input.isA("sap.m.MultiComboBox") == true){
+                /* if (input.isA("sap.m.MultiComboBox") == true){
                     mulComInputs.push(input);
-                } else if (input.isA("sap.m.DateRangeSelection") == true) {
+                } else  */if (input.isA("sap.m.DateRangeSelection") == true) {
                     dateInputs.push(input);
                 } else {
 					normalInputs.push(input);
 				}
             });
 			console.log("STOP")
-            mulComInputs.forEach((input)=> {
+            /* mulComInputs.forEach((input)=> {
                 input.removeAllSelectedItems();
-            });
+            }); */
 
             dateInputs.forEach((dateRange) => {
                 dateRange.setDateValue(null);
@@ -322,8 +323,8 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			const aCurrentRows = JSON.parse(JSON.stringify(this.getView().getModel().getProperty("/selectedData")));
 			const aSelectedOrder = aCurrentRows.filter(row => row.deliveryNumber === rowDelNumb);
 			console.log("STOP");
-			const numberODV = aSelectedOrder[0].numberODV;
-            const sSource = `./res/ODV_${numberODV}.pdf`
+			const deliveryNumber = aSelectedOrder[0].deliveryNumber;
+            const sSource = `./res/DDT_${deliveryNumber}.pdf`
             pdfViewer.setSource(sSource);
             pdfViewer.setTitle("My Custom Title");
             pdfViewer.open();

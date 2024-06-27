@@ -11,19 +11,19 @@
             <MessageStrip id="filter-error-msg" text="Compilare almeno un filtro per avviare la ricerca"
                 type="Information" showIcon="true" visible="false">
             </MessageStrip>
-            <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca">
+            <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca" class="customClass" showFilterConfiguration="false">
                 <fb:filterGroupItems>
                     <fb:FilterGroupItem name="luogoSped" label="Luogo Spedizione" groupName="GroupFilter" visibleInFilterBar="true">
                         <fb:control>
-                            <Input
+                            <ComboBox
+                                fieldGroupIds="filtri-input"
                                 name="luogoSped"
-                                showSuggestion="true"
-                                suggestionItems="{/luoghiSped}"
-                                fieldGroupIds="filtri-input">
-                                <suggestionItems>
-                                    <core:Item text="{name}" key="{key}"/>
-                                </suggestionItems>
-                            </Input>
+                                items="{
+                                    path: '/luoghiSped',
+                                    sorter: { path: 'text' }
+                                }">
+                                <core:Item key="{key}" text="{name}" />
+                            </ComboBox>
                         </fb:control>
                     </fb:FilterGroupItem>
                     <fb:FilterGroupItem name="deliveryNumber" label="N. Consegna" groupName="GroupFilter" visibleInFilterBar="true">
@@ -168,12 +168,13 @@
                             <Text text="{peso-totale}"/>
                         </t:template>
                     </t:Column>
-                    <t:Column id="azioni-rif" width="10rem" hAlign="Center">
+                    <t:Column id="azioni-rif" width="12rem" hAlign="Center">
                         <t:template>
                             <HBox justifyContent="SpaceBetween">
                                 <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
-                                <Button text="DDT" type="Default"/>
+                                <Button text="DDT" type="Default" press="apriPdf" tooltip="Visualizza documento DDT_{deliveryNumber}.pdf"/>
                                 <Button text="CMR" type="Default"/>
+                                <Button text="PKL" type="Default"/>
                             </HBox>
                         </t:template>
                     </t:Column>

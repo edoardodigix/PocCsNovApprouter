@@ -12,7 +12,7 @@
             type="Information" showIcon="true" visible="false">
         </MessageStrip>
         <!-- BARRA DEI FILTRI -->
-        <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca">
+        <fb:FilterBar id= "filters-bar" useToolbar="false" search="onCerca" class="customClass" showFilterConfiguration="false">
             <fb:filterGroupItems>
                 <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="Input" visibleInFilterBar="true">
                     <fb:control>
