@@ -106,7 +106,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			if(sName!=="" && sName!==undefined && sName!==null){
 				//string = sName.slice(sName.indexOf('-') + 2,100); 
 				if(sName.search("-")!==-1){
-					string = sName.split("- ")[1];
+					string = sName.split("- ")[0];
 				}
 			}
 			return string;
