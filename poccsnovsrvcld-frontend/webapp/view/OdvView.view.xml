@@ -16,7 +16,7 @@
             <fb:filterGroupItems>
                 <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="Input" visibleInFilterBar="true">
                     <fb:control>
-                        <Input name="NumeroOdv" fieldGroupIds="filtri-input"/>
+                        <Input name="NumeroOdv" fieldGroupIds="filtri-input" maxLength="10"/>
                     </fb:control>
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="NumeroOdaCliente" label="N. OdA Cliente" groupName="Input" visibleInFilterBar="true">
@@ -50,39 +50,39 @@
                     <rowmodes:Fixed />
                 </t:rowMode>
                 <t:columns>
-                    <t:Column id="numeroodv-col" width="9rem">
+                    <t:Column id="numeroodv-col">
                         <Label text="N. OdV" />
                         <t:template>
                             <Text text="{NumeroOdv}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="dataodv-col" width="9rem">
+                    <t:Column id="dataodv-col">
                         <Label text="Data OdV" />
                         <t:template>
                             <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="numeroodacliente-col" width="16rem">
+                    <t:Column id="numeroodacliente-col">
                         <Label text="N. OdA Cliente" />
                         <t:template>
                             <Text text="{NumeroOdaCliente}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="valore-col" width="6rem">
+                    <t:Column id="valore-col">
                         <Label text="Valore" />
                         <t:template>
                             <Text text="{Valore}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="dataprevistaconsegna-col" width="11rem">
+                    <t:Column id="dataprevistaconsegna-col">
                         <Label text="Data prevista consegna" />
                         <t:template>
                             <Text text="{path: 'DataPrevistaConsegna', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="statofatturazione-col" width="9rem">
+                    <t:Column id="statofatturazione-col">
                         <Label text="Stato fatturazione" />
                         <t:template>
                             <Text text="{StatoFatturazione}" />
@@ -103,49 +103,49 @@
                 <rowmodes:Fixed />
             </t:rowMode>
             <t:columns>
-                <t:Column id="numeroodv-col-rif" width="7rem">
+                <t:Column id="numeroodv-col-rif">
                     <Label text="N. OdV" />
                     <t:template>
                         <Text text="{NumeroOdv}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="dataodv-col-rif" width="7rem">
+                <t:Column id="dataodv-col-rif">
                     <Label text="Data OdV" />
                     <t:template>
                         <Text text="{path: 'DataOdv', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="numeroodacliente-col-rif" width="16rem">
+                <t:Column id="numeroodacliente-col-rif">
                     <Label text="N. OdA Cliente" />
                     <t:template>
                         <Text text="{NumeroOdaCliente}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="valore-col-rif" width="6rem">
+                <t:Column id="valore-col-rif">
                     <Label text="Valore" />
                     <t:template>
                         <Text text="{Valore}" />
                     </t:template>
                 </t:Column>
-                <t:Column id="dataprevistaconsegna-col-rif" width="11rem">
+                <t:Column id="dataprevistaconsegna-col-rif">
                         <Label text="Data prevista consegna" />
                         <t:template>
                             <Text text="{path: 'DataPrevistaConsegna', type: 'sap.ui.model.type.Date', 
                                 formatOptions: {pattern: 'dd/MM/yyyy'}}" />
                         </t:template>
                     </t:Column>
-                    <t:Column id="statofatturazione-col-rif" width="9rem">
+                    <t:Column id="statofatturazione-col-rif">
                         <Label text="Stato fatturazione" />
                         <t:template>
                             <Text text="{StatoFatturazione}" />
                         </t:template>
                     </t:Column>
-                <t:Column id="azioni-rif" width="7rem" hAlign="Center">
+                <t:Column id="azioni-rif" hAlign="Center">
                     <t:template>
-                        <HBox justifyContent="SpaceAround">
+                        <HBox justifyContent="SpaceBetween">
+                            <Button text="ODV" type="Default" press="apriPdf" tooltip="Visualizza documento ODV_{NumeroOdv}.pdf" class="sapUiSmallMarginEnd"/>
                             <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
-                            <Button text="ODV" type="Default" press="apriPdf" tooltip="Visualizza documento ODV_{NumeroOdv}.pdf"/>
                         </HBox>
                     </t:template>
                 </t:Column>

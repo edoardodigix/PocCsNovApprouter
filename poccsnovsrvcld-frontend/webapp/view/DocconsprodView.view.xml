@@ -29,7 +29,7 @@
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="NumeroConsegna" label="N. Consegna" groupName="GroupFilter" visibleInFilterBar="true">
                     <fb:control>
-                        <Input name="NumeroConsegna" fieldGroupIds="filtri-input"/>
+                        <Input name="NumeroConsegna" fieldGroupIds="filtri-input" maxLength="10"/>
                     </fb:control>
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="DataUM" label="Data UM" groupName="GroupFilter"
@@ -40,7 +40,7 @@
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="GroupFilter" visibleInFilterBar="true">
                     <fb:control>
-                        <Input name="NumeroOdv" fieldGroupIds="filtri-input"/>
+                        <Input name="NumeroOdv" fieldGroupIds="filtri-input" maxLength="10"/>
                     </fb:control>
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="Materiale" label="Materiale" groupName="GroupFilter" visibleInFilterBar="true">
@@ -131,6 +131,12 @@
                         <Label text="Materiale Cliente" />
                         <t:template>
                             <Text text="{MaterialeCliente}" />
+                        </t:template>
+                    </t:Column>
+                    <t:Column id="peso-totale-col" width="6rem">
+                        <Label text="Peso Totale" />
+                        <t:template>
+                            <Text text="{peso-totale}" />
                         </t:template>
                     </t:Column>
                 </t:columns>
@@ -224,10 +230,10 @@
                 <t:Column id="azioni-rif" width="12rem" hAlign="Center">
                     <t:template>
                         <HBox justifyContent="SpaceBetween">
-                            <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
                             <Button text="DDT" type="Default" press="apriPdf" tooltip="Visualizza documento DDT_{NumeroConsegna}.pdf"/>
                             <Button text="CMR" type="Default"/>
                             <Button text="PKL" type="Default"/>
+                            <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
                         </HBox>
                     </t:template>
                 </t:Column>

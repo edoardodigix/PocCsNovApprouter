@@ -28,7 +28,7 @@
                     </fb:FilterGroupItem>
                     <fb:FilterGroupItem name="deliveryNumber" label="N. Consegna" groupName="GroupFilter" visibleInFilterBar="true">
                         <fb:control>
-                            <Input name="deliveryNumber" fieldGroupIds="filtri-input"/>
+                            <Input name="deliveryNumber" fieldGroupIds="filtri-input" maxLength="10"/>
                         </fb:control>
                     </fb:FilterGroupItem>
                     <fb:FilterGroupItem groupTitle="DateRangeSelection" name="dateUM" label="Data UM" groupName="GroupFilter"
@@ -39,7 +39,7 @@
                     </fb:FilterGroupItem>
                     <fb:FilterGroupItem name="numberODV" label="N. OdV" groupName="GroupFilter" visibleInFilterBar="true">
                         <fb:control>
-                            <Input name="numberODV" fieldGroupIds="filtri-input"/>
+                            <Input name="numberODV" fieldGroupIds="filtri-input" maxLength="10"/>
                         </fb:control>
                     </fb:FilterGroupItem>
                 </fb:filterGroupItems>
@@ -171,10 +171,10 @@
                     <t:Column id="azioni-rif" width="12rem" hAlign="Center">
                         <t:template>
                             <HBox justifyContent="SpaceBetween">
-                                <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
                                 <Button text="DDT" type="Default" press="apriPdf" tooltip="Visualizza documento DDT_{deliveryNumber}.pdf"/>
                                 <Button text="CMR" type="Default"/>
                                 <Button text="PKL" type="Default"/>
+                                <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
                             </HBox>
                         </t:template>
                     </t:Column>
