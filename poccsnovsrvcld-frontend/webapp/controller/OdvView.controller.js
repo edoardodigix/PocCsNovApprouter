@@ -44,6 +44,7 @@ function (Controller, JSONModel, Filter, FilterOperator,
             const oFilterTableRows = this.oFiltersTable.getBinding("rows");
             // FUNZIONE PER GESTIRE I FILTRI
             const aTableFilters = oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+				console.log("STOP");
 				if (oFilterGroupItem.getGroupName() === 'MultiComboBox') {
 				// GESTIONE DEI FILTRI MULTICOMBOBOX
 					const oControl = oFilterGroupItem.getControl(),
