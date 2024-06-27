@@ -9,12 +9,12 @@
             "DataUM": "2024-01-12T00:00:00.000Z",
             "NumeroColli": "0",
             "Trasportatore": "GUIDO BERNARDINI SRL",
-            "LuogoSpedizione": "SZ01 - GUIDO BERNARDINI SRL",
+            "LuogoSpedizione": "GUIDO BERNARDINI SRL - SZ01",
             "Materiale": "SFLLEF07D0 - EF07D0",
-            "Quantità": "26,640",
+            "Quantità": "26.640",
             "UM": "KG",
             "MaterialeCliente": "",
-            "peso-totale" : ""
+            "peso-totale" : "26.640"
         }, 
         {
             "NumeroConsegna": "1500089304",
@@ -24,12 +24,12 @@
             "DataUM": "2024-02-16T00:00:00.000Z",
             "NumeroColli": "0",
             "Trasportatore": "GUIDO BERNARDINI SRL",
-            "LuogoSpedizione": "SP04 - PATRICA",
+            "LuogoSpedizione": "PATRICA - SP04",
             "Materiale": "SFLL26F112 - MATER-BI EF05B",
-            "Quantità": "25,900",
+            "Quantità": "25.900",
             "UM": "KG",
             "MaterialeCliente": "",
-            "peso-totale" : ""
+            "peso-totale" : "25.900"
         },
         {
             "NumeroConsegna": "1500090029",
@@ -39,12 +39,12 @@
             "DataUM": "2024-03-18T00:00:00.000Z",
             "NumeroColli": "0",
             "Trasportatore": "CIANFROCCA TRASPORTI",
-            "LuogoSpedizione": "SZ15 - TECNOFER",
+            "LuogoSpedizione": "TECNOFER - SZ15",
             "Materiale": "SFLLEF07D0 - EF07D0",
-            "Quantità": "27,320",
+            "Quantità": "27.320",
             "UM": "KG",
             "MaterialeCliente": "",
-            "peso-totale" : ""
+            "peso-totale" : "27.320"
         },
         {
             "NumeroConsegna": "1500090528",
@@ -54,12 +54,12 @@
             "DataUM": "2024-04-08T00:00:00.000Z",
             "NumeroColli": "0",
             "Trasportatore": "GUIDO BERNARDINI SRL",
-            "LuogoSpedizione": "SP04 - PATRICA",
+            "LuogoSpedizione": "PATRICA - SP04",
             "Materiale": "SFLL26F112 - MATER-BI EF05B",
-            "Quantità": "25,600",
+            "Quantità": "25.600",
             "UM": "KG",
             "MaterialeCliente": "",
-            "peso-totale" : ""
+            "peso-totale" : "25.600"
         }
     ],
     "NumeriConsegna": [
@@ -106,16 +106,16 @@
     ],
     "LuoghiSpedizione": [
         {
-            "key": "SZ01 - GUIDO BERNARDINI SRL",
-            "name": "SZ01 - GUIDO BERNARDINI SRL"
+            "key": "GUIDO BERNARDINI SRL - SZ01",
+            "name": "GUIDO BERNARDINI SRL - SZ01"
         },
         {
-            "key": "SP04 - PATRICA",
-            "name": "SP04 - PATRICA"
+            "key": "PATRICA - SP04",
+            "name": "PATRICA - SP04"
         },
         {
-            "key": "SZ15 - TECNOFER",
-            "name": "SZ15 - TECNOFER"
+            "key": "TECNOFER - SZ15",
+            "name": "TECNOFER - SZ15"
         }
     ],
     "Materiali": [
