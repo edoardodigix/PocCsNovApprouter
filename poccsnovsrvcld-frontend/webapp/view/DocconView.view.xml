@@ -28,7 +28,7 @@
                     </fb:FilterGroupItem>
                     <fb:FilterGroupItem name="deliveryNumber" label="N. Consegna" groupName="GroupFilter" visibleInFilterBar="true">
                         <fb:control>
-                            <Input name="deliveryNumber" fieldGroupIds="filtri-input" maxLength="10"/>
+                            <Input name="deliveryNumber" fieldGroupIds="filtri-input" type="Text" maxLength="10" liveChange="onlyNumber"/>
                         </fb:control>
                     </fb:FilterGroupItem>
                     <fb:FilterGroupItem groupTitle="DateRangeSelection" name="dateUM" label="Data UM" groupName="GroupFilter"
@@ -39,7 +39,7 @@
                     </fb:FilterGroupItem>
                     <fb:FilterGroupItem name="numberODV" label="N. OdV" groupName="GroupFilter" visibleInFilterBar="true">
                         <fb:control>
-                            <Input name="numberODV" fieldGroupIds="filtri-input" maxLength="10"/>
+                            <Input name="numberODV" fieldGroupIds="filtri-input" type="Text" maxLength="10" liveChange="onlyNumber"/>
                         </fb:control>
                     </fb:FilterGroupItem>
                 </fb:filterGroupItems>

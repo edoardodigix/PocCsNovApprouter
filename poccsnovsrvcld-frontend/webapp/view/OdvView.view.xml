@@ -16,7 +16,7 @@
             <fb:filterGroupItems>
                 <fb:FilterGroupItem name="NumeroOdv" label="N. OdV" groupName="Input" visibleInFilterBar="true">
                     <fb:control>
-                        <Input name="NumeroOdv" fieldGroupIds="filtri-input" maxLength="10"/>
+                        <Input name="NumeroOdv" fieldGroupIds="filtri-input" type="Text" maxLength="10" liveChange="onlyNumber"/>
                     </fb:control>
                 </fb:FilterGroupItem>
                 <fb:FilterGroupItem name="NumeroOdaCliente" label="N. OdA Cliente" groupName="Input" visibleInFilterBar="true">

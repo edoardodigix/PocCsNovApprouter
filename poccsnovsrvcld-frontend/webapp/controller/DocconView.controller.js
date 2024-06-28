@@ -97,6 +97,13 @@ function (Controller, JSONModel, Filter, FilterOperator,
             }
         },
 
+		onlyNumber: function (value) {
+			if(value!=="" & value!==null && value!==undefined){
+				let realValue = value.getSource().getValue();
+				value.getSource().setValue(realValue.replace(/[^0-9]+/g, ""));
+			}
+		},
+
 		myFormatter: function (sName) {
 			var string = "";
 			if(sName!=="" && sName!==undefined && sName!==null){
