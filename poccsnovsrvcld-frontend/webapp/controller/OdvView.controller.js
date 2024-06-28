@@ -170,6 +170,13 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			}
 		},
 
+		onlyNumber: function (value) {
+			if(value!=="" & value!==null && value!==undefined){
+				let realValue = value.getSource().getValue();
+				value.getSource().setValue(realValue.replace(/[^0-9]+/g, ""));
+			}
+		},
+
 		apriPdf: function (oEvent) {
             const pdfViewer = new sap.m.PDFViewer();
             this.getView().addDependent(pdfViewer);

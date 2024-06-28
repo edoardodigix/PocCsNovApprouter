@@ -101,6 +101,13 @@ function (Controller, JSONModel, Filter, FilterOperator,
             }
         },
 
+		onlyNumber: function (value) {
+			if(value!=="" & value!==null && value!==undefined){
+				let realValue = value.getSource().getValue();
+				value.getSource().setValue(realValue.replace(/[^0-9]+/g, ""));
+			}
+		},
+
 		myFormatter: function (sName) {
 			var string = "";
 			if(sName!=="" && sName!==undefined && sName!==null){
@@ -180,9 +187,11 @@ function (Controller, JSONModel, Filter, FilterOperator,
             const pdfViewer = new sap.m.PDFViewer();
             this.getView().addDependent(pdfViewer);
             const oRow = oEvent.getSource().getParent().getParent();
-			const numeroOdv = this._getNumeroOdvFromRow(oRow);
-
-            const sSource = `./res/ODV_${numeroOdv}.pdf`
+			const rowDelNumb = this._getNumeroConsegnaFromRow(oRow);
+			const aCurrentRows = JSON.parse(JSON.stringify(this.getView().getModel().getProperty("/Riferimenti")));
+			const aSelectedOrder = aCurrentRows.filter(row => row.NumeroConsegna === rowDelNumb);
+			const NumeroConsegna = aSelectedOrder[0].NumeroConsegna;
+            const sSource = `./res/DDT_${NumeroConsegna}.pdf`
             pdfViewer.setSource(sSource);
             pdfViewer.setTitle("My Custom Title");
             pdfViewer.open();
