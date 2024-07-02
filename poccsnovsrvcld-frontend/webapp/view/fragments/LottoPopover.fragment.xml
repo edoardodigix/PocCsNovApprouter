@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns:rowmodes="sap.ui.table.rowmodes">
+	<Popover
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Auto"
+		initialFocus="email"
+		horizontalScrolling="false"
+		verticalScrolling="false"
+		contentWidth="32rem">
+		<content>
+			<t:Table rows="{lotto/table}" 
+                selectionMode="None">
+				<t:rowMode>
+                    <rowmodes:Fixed />
+                </t:rowMode>
+                <t:columns>
+                    <t:Column width="8rem">
+                        <Label text="Caratteristica" />
+						<t:template>
+							<Text text="{caratteristica}"/>
+						</t:template>
+                    </t:Column>
+					<t:Column width="10rem">
+                        <Label text="Valori Default" />
+						<t:template>
+							<Text text="{valoriDefault}"/>
+						</t:template>
+                    </t:Column>
+					<t:Column width="6rem">
+                        <Label text="Risultato" />
+						<t:template>
+							<Text text="{risultato}"/>
+						</t:template>
+                    </t:Column>
+					<t:Column width="5rem">
+                        <Label text="Valutazione" />
+						<t:template>
+							<core:Icon src="{path:'valutazione',formatter:'.iconFormatter'}"/>
+						</t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

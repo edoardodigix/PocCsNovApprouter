@@ -1,5 +1,6 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
+	'sap/ui/core/Fragment',
     "sap/ui/model/json/JSONModel",
     'sap/ui/model/Filter',
 	'sap/ui/model/FilterOperator',
@@ -12,7 +13,7 @@ sap.ui.define([
 	'sap/ui/core/library',
 	'sap/ui/model/Sorter',
 ],
-function (Controller, JSONModel, Filter, FilterOperator,
+function (Controller, Fragment, JSONModel, Filter, FilterOperator,
     Engine, MetadataHelper, SelectionController, SortController, GroupController, ColumnWidthController, CoreLibrary, Sorter) {
     "use strict";
 
@@ -167,6 +168,38 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			this._resetRiferimentiRowCount();
 			this.getView().byId("riferimenti-panel").setVisible(true);
 			this._setSelectTipologiaTo(false);
+		},
+
+		handlePopoverPress: function (oEvent) {
+			let oLink = oEvent.getSource(),
+				oView = this.getView();
+			let currentPath = oEvent.getSource().getParent().getRowBindingContext().getPath();
+			console.log("STOP");
+			// create popover
+			if (!this._pPopover) {
+				this._pPopover = Fragment.load({
+					name: "poccsnovsrvcldfrontend.view.fragments.LottoPopover",
+					controller: this
+				}).then(function(oPopover) {
+					oView.addDependent(oPopover);
+					oPopover.bindElement(currentPath);
+					console.log("STOP");
+					return oPopover;
+				});
+			}
+			this._pPopover.then(function(oPopover) {
+				oPopover.openBy(oLink);
+			});
+			this._pPopover = undefined;
+		},
+
+		iconFormatter : function (value) {
+			const string = "sap-icon://accept";
+			if(value === true) {
+				return string;
+			} else{
+				return null;
+			}
 		},
 
 		eliminaRiferimento: function (oEvent) {

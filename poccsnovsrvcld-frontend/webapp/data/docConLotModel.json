@@ -15,7 +15,119 @@
             "UM": "KG",
             "MaterialeCliente": "",
             "peso-totale" : "26.640",
-            "lotto": ""
+            "lotto": {
+                "id" : "",
+                "table" : [
+                    {
+                        "caratteristica": "MFR",
+                        "valoriDefault": "3,0 .. 7,0 g/10mi",
+                        "risultato": 4.47,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Acidity (COOH)",
+                        "valoriDefault": "<=  60 meq/Kg",
+                        "risultato": 38.3,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Water content",
+                        "valoriDefault": "0,00 .. 0,12%",
+                        "risultato": 0.0058,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Aromatic unit",
+                        "valoriDefault": "46,0 .. 48,0%",
+                        "risultato": 47.38,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Visual Aspect",
+                        "valoriDefault": "Aspetto",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Adipic Content",
+                        "valoriDefault": "97,0 .. 100,0%",
+                        "risultato": 100,
+                        "valutazione" : true
+                    },
+                    {
+                        "caratteristica": "Colour (L* value)",
+                        "valoriDefault": ">= 40,00",
+                        "risultato": 65.569,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (a* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 15.997,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (b* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 16.713,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "% FN Media",
+                        "valoriDefault": "0,00 .. 100,00%",
+                        "risultato": 5,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Azelaic Content",
+                        "valoriDefault": "00 .. 13,0%",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Granulometria",
+                        "valoriDefault": "20 .. 100 N/g",
+                        "risultato": 30.2,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat TNBT (Tieq)",
+                        "valoriDefault": "0,00 .. 200,00 ppm",
+                        "risultato": 155,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat Tyzor TE (Teq)",
+                        "valoriDefault": "0,00 .. 25,00 ppm",
+                        "risultato": 21,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Fines (<2,0 mm)",
+                        "valoriDefault": "0,00 .. 0,05%",
+                        "risultato": 0.05,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cont. THF Residuo",
+                        "valoriDefault": "<= 10,0 ppm",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Bio BDO Content",
+                        "valoriDefault": "50,00 .. 100,00%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Succinico Content",
+                        "valoriDefault": "98,0 .. 100,0%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    }
+                ]
+            }
         }, 
         {
             "NumeroConsegna": "1500089304",
@@ -32,7 +144,119 @@
             "UM": "KG",
             "MaterialeCliente": "",
             "peso-totale" : "25.900",
-            "lotto": "24B01252E1"
+            "lotto": {
+                "id" : "24B01252E1",
+                "table" : [
+                    {
+                        "caratteristica": "MFR",
+                        "valoriDefault": "3,0 .. 7,0 g/10mi",
+                        "risultato": 4.47,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Acidity (COOH)",
+                        "valoriDefault": "<=  60 meq/Kg",
+                        "risultato": 38.3,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Water content",
+                        "valoriDefault": "0,00 .. 0,12%",
+                        "risultato": 0.0058,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Aromatic unit",
+                        "valoriDefault": "46,0 .. 48,0%",
+                        "risultato": 47.38,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Visual Aspect",
+                        "valoriDefault": "Aspetto",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Adipic Content",
+                        "valoriDefault": "97,0 .. 100,0%",
+                        "risultato": 100,
+                        "valutazione" : true
+                    },
+                    {
+                        "caratteristica": "Colour (L* value)",
+                        "valoriDefault": ">= 40,00",
+                        "risultato": 65.569,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (a* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 15.997,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (b* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 16.713,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "% FN Media",
+                        "valoriDefault": "0,00 .. 100,00%",
+                        "risultato": 5,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Azelaic Content",
+                        "valoriDefault": "00 .. 13,0%",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Granulometria",
+                        "valoriDefault": "20 .. 100 N/g",
+                        "risultato": 30.2,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat TNBT (Tieq)",
+                        "valoriDefault": "0,00 .. 200,00 ppm",
+                        "risultato": 155,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat Tyzor TE (Teq)",
+                        "valoriDefault": "0,00 .. 25,00 ppm",
+                        "risultato": 21,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Fines (<2,0 mm)",
+                        "valoriDefault": "0,00 .. 0,05%",
+                        "risultato": 0.05,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cont. THF Residuo",
+                        "valoriDefault": "<= 10,0 ppm",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Bio BDO Content",
+                        "valoriDefault": "50,00 .. 100,00%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Succinico Content",
+                        "valoriDefault": "98,0 .. 100,0%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    }
+                ]
+            }
         },
         {
             "NumeroConsegna": "1500090029",
@@ -48,7 +272,119 @@
             "UM": "KG",
             "MaterialeCliente": "",
             "peso-totale" : "27.320",
-            "lotto": "24C02254E1"
+            "lotto": {
+                "id": "24C02254E1",
+                "table" : [
+                    {
+                        "caratteristica": "MFR",
+                        "valoriDefault": "3,0 .. 7,0 g/10mi",
+                        "risultato": 4.47,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Acidity (COOH)",
+                        "valoriDefault": "<=  60 meq/Kg",
+                        "risultato": 38.3,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Water content",
+                        "valoriDefault": "0,00 .. 0,12%",
+                        "risultato": 0.0058,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Aromatic unit",
+                        "valoriDefault": "46,0 .. 48,0%",
+                        "risultato": 47.38,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Visual Aspect",
+                        "valoriDefault": "Aspetto",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Adipic Content",
+                        "valoriDefault": "97,0 .. 100,0%",
+                        "risultato": 100,
+                        "valutazione" : true
+                    },
+                    {
+                        "caratteristica": "Colour (L* value)",
+                        "valoriDefault": ">= 40,00",
+                        "risultato": 65.569,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (a* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 15.997,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (b* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 16.713,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "% FN Media",
+                        "valoriDefault": "0,00 .. 100,00%",
+                        "risultato": 5,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Azelaic Content",
+                        "valoriDefault": "00 .. 13,0%",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Granulometria",
+                        "valoriDefault": "20 .. 100 N/g",
+                        "risultato": 30.2,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat TNBT (Tieq)",
+                        "valoriDefault": "0,00 .. 200,00 ppm",
+                        "risultato": 155,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat Tyzor TE (Teq)",
+                        "valoriDefault": "0,00 .. 25,00 ppm",
+                        "risultato": 21,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Fines (<2,0 mm)",
+                        "valoriDefault": "0,00 .. 0,05%",
+                        "risultato": 0.05,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cont. THF Residuo",
+                        "valoriDefault": "<= 10,0 ppm",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Bio BDO Content",
+                        "valoriDefault": "50,00 .. 100,00%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Succinico Content",
+                        "valoriDefault": "98,0 .. 100,0%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    }
+                ]
+            }
         },
         {
             "NumeroConsegna": "1500090528",
@@ -64,7 +400,119 @@
             "UM": "KG",
             "MaterialeCliente": "",
             "peso-totale" : "25.600",
-            "lotto": "24C12254E1"
+            "lotto": {
+                "id": "24C12254E1",
+                "table" : [
+                    {
+                        "caratteristica": "MFR",
+                        "valoriDefault": "3,0 .. 7,0 g/10mi",
+                        "risultato": 4.47,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Acidity (COOH)",
+                        "valoriDefault": "<=  60 meq/Kg",
+                        "risultato": 38.3,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Water content",
+                        "valoriDefault": "0,00 .. 0,12%",
+                        "risultato": 0.0058,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Aromatic unit",
+                        "valoriDefault": "46,0 .. 48,0%",
+                        "risultato": 47.38,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Visual Aspect",
+                        "valoriDefault": "Aspetto",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Adipic Content",
+                        "valoriDefault": "97,0 .. 100,0%",
+                        "risultato": 100,
+                        "valutazione" : true
+                    },
+                    {
+                        "caratteristica": "Colour (L* value)",
+                        "valoriDefault": ">= 40,00",
+                        "risultato": 65.569,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (a* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 15.997,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (b* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 16.713,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "% FN Media",
+                        "valoriDefault": "0,00 .. 100,00%",
+                        "risultato": 5,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Azelaic Content",
+                        "valoriDefault": "00 .. 13,0%",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Granulometria",
+                        "valoriDefault": "20 .. 100 N/g",
+                        "risultato": 30.2,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat TNBT (Tieq)",
+                        "valoriDefault": "0,00 .. 200,00 ppm",
+                        "risultato": 155,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat Tyzor TE (Teq)",
+                        "valoriDefault": "0,00 .. 25,00 ppm",
+                        "risultato": 21,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Fines (<2,0 mm)",
+                        "valoriDefault": "0,00 .. 0,05%",
+                        "risultato": 0.05,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cont. THF Residuo",
+                        "valoriDefault": "<= 10,0 ppm",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Bio BDO Content",
+                        "valoriDefault": "50,00 .. 100,00%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Succinico Content",
+                        "valoriDefault": "98,0 .. 100,0%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    }
+                ]
+            }
         }
     ],
     "NumeriConsegna": [
@@ -132,5 +580,10 @@
             "key": "SFLL26F112 - MATER-BI EF05B",
             "name": "SFLL26F112 - MATER-BI EF05B"
         }
+    ],
+    "caratteristiche": [
+      "MFR",
+      "Acidity (COOH)",
+      "Water Content"  
     ]
 }
