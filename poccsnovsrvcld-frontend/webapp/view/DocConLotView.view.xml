@@ -54,9 +54,9 @@
                         </Input>
                     </fb:control>
                 </fb:FilterGroupItem>
-                <fb:FilterGroupItem name="lotto" label="Lotto" groupName="GroupFilter" visibleInFilterBar="true">
+                <fb:FilterGroupItem name="lotto/id" label="Lotto" groupName="GroupFilter" visibleInFilterBar="true">
                     <fb:control>
-                        <Input name="lotto" fieldGroupIds="filtri-input" maxLength="10"/>
+                        <Input name="lotto/id" fieldGroupIds="filtri-input" maxLength="10"/>
                     </fb:control>
                 </fb:FilterGroupItem>
             </fb:filterGroupItems>
@@ -121,7 +121,7 @@
                     <t:Column id="lotto-col" width="7rem">
                         <Label text="Lotto" />
                         <t:template>
-                            <Text text="{lotto}" />
+                            <Text text="{lotto/id}" />
                         </t:template>
                     </t:Column>
                     <t:Column id="quantita-col" width="7rem">
@@ -215,7 +215,7 @@
                 <t:Column id="lotto-col-rif" width="7rem">
                         <Label text="Lotto" />
                         <t:template>
-                            <Link text="{lotto}"/>
+                            <Link text="{lotto/id}" press="handlePopoverPress"/>
                         </t:template>
                     </t:Column>
                 <t:Column id="quantita-col-rif" width="7rem">
