@@ -513,6 +513,188 @@
                     }
                 ]
             }
+        },
+        {
+            "NumeroConsegna": "1500079008",
+            "NumeroOdv": "",
+            "DestinatarioMerci": "NOVAMONT IBERIA S.L.U.",
+            "IndirizzoDestinatarioMerci": "Ctra de L'Hospitalet 147-149, Ed. Atenas 1° 4^ / 08940",
+            "DataUM": "2024-03-21T00:00:00.000Z",
+            "NumeroColli": "0",
+            "Trasportatore": "",
+            "LuogoSpedizione": "PATRICA - SP04",
+            "Materiale": "BBAP25F114 - ORIGO-BI ES01G",
+            "Quantità": "10",
+            "UM": "KG",
+            "MaterialeCliente": "BBAP25F114",
+            "peso-totale" : "11",
+            "lotto": {
+                "id": ""
+            }
+        },
+        {
+            "NumeroConsegna": "1500079005",
+            "NumeroOdv": "",
+            "DestinatarioMerci": "NOVAMONT SPA",
+            "IndirizzoDestinatarioMerci": "VIA FAUSER, 8 / I-28100 NOVARA NO",
+            "DataUM": "2024-05-31T00:00:00.000Z",
+            "NumeroColli": "1",
+            "Trasportatore": "",
+            "LuogoSpedizione": "PATRICA - SP04",
+            "Materiale": "SFLLTHFPUR - THF PURO",
+            "Quantità": "9.000",
+            "UM": "KG",
+            "MaterialeCliente": "",
+            "peso-totale" : "9.000",
+            "lotto": {
+                "id": ""
+            }
+        },
+        {
+            "NumeroConsegna": "1500090968",
+            "NumeroOdv": "",
+            "DestinatarioMerci": "POLYCART SPA",
+            "IndirizzoDestinatarioMerci": "VIA DELLE MACINE 6 / I-06081 PALAZZO DI ASSISI",
+            "DataUM": "2024-05-03T00:00:00.000Z",
+            "NumeroColli": "0",
+            "Trasportatore": "GUIDO BERNARDINI SRL",
+            "LuogoSpedizione": "PATRICA - SP04",
+            "Materiale": "SFLL26F112 - MATER-BI EF05B",
+            "Quantità": "27.320",
+            "UM": "KG",
+            "MaterialeCliente": "",
+            "peso-totale" : "27.320",
+            "lotto": {
+                "id": "24D10253E1",
+                "table" : [
+                    {
+                        "caratteristica": "MFR",
+                        "valoriDefault": "3,0 .. 7,0 g/10mi",
+                        "risultato": 4.47,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Acidity (COOH)",
+                        "valoriDefault": "<=  60 meq/Kg",
+                        "risultato": 38.3,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Water content",
+                        "valoriDefault": "0,00 .. 0,12%",
+                        "risultato": 0.0058,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Aromatic unit",
+                        "valoriDefault": "46,0 .. 48,0%",
+                        "risultato": 47.38,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Visual Aspect",
+                        "valoriDefault": "Aspetto",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Adipic Content",
+                        "valoriDefault": "97,0 .. 100,0%",
+                        "risultato": 100,
+                        "valutazione" : true
+                    },
+                    {
+                        "caratteristica": "Colour (L* value)",
+                        "valoriDefault": ">= 40,00",
+                        "risultato": 65.569,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (a* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 15.997,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Colour (b* value)",
+                        "valoriDefault": "<= 30,00",
+                        "risultato": 16.713,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "% FN Media",
+                        "valoriDefault": "0,00 .. 100,00%",
+                        "risultato": 5,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Azelaic Content",
+                        "valoriDefault": "00 .. 13,0%",
+                        "risultato": null,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Granulometria",
+                        "valoriDefault": "20 .. 100 N/g",
+                        "risultato": 30.2,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat TNBT (Tieq)",
+                        "valoriDefault": "0,00 .. 200,00 ppm",
+                        "risultato": 155,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cat Tyzor TE (Teq)",
+                        "valoriDefault": "0,00 .. 25,00 ppm",
+                        "risultato": 21,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Fines (<2,0 mm)",
+                        "valoriDefault": "0,00 .. 0,05%",
+                        "risultato": 0.05,
+                        "valutazione" : true 
+                    },
+                    {
+                        "caratteristica": "Cont. THF Residuo",
+                        "valoriDefault": "<= 10,0 ppm",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Bio BDO Content",
+                        "valoriDefault": "50,00 .. 100,00%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    },
+                    {
+                        "caratteristica": "Succinico Content",
+                        "valoriDefault": "98,0 .. 100,0%",
+                        "risultato": null,
+                        "valutazione" : false 
+                    }
+                ]
+            }
+        },
+        {
+            "NumeroConsegna": "1500090761",
+            "NumeroOdv": "",
+            "DestinatarioMerci": "LACTIPS",
+            "IndirizzoDestinatarioMerci": "350 rue de l'Industrie - ZI des Fraries / F-42740 Saint Paul en Jarez",
+            "DataUM": "2024-05-31T00:00:00.000Z",
+            "NumeroColli": "1",
+            "Trasportatore": "",
+            "LuogoSpedizione": "NOVAMONT TERNI - SP01",
+            "Materiale": "OCPP26F109 - MATER-BI EF04P",
+            "Quantità": "900",
+            "UM": "KG",
+            "MaterialeCliente": "OCPP26F109",
+            "peso-totale" : "935",
+            "lotto": {
+                "id": ""
+            }
         }
     ],
     "NumeriConsegna": [
@@ -531,6 +713,18 @@
         {
             "key": "1500090528",
             "name": "1500090528"
+        },
+        {
+            "key": "1500079008",
+            "name": "1500079008"
+        },
+        {
+            "key": "1500079005",
+            "name": "1500079005"
+        },
+        {
+            "key": "1500090968",
+            "name": "1500090968"
         }
     ],
     "NumeriOdv": [
@@ -569,6 +763,10 @@
         {
             "key": "TECNOFER - SZ15",
             "name": "TECNOFER - SZ15"
+        },
+        {
+            "key": "NOVAMONT TERNI - SP01",
+            "name": "NOVAMONT TERNI - SP01"
         }
     ],
     "Materiali": [
@@ -579,11 +777,42 @@
         {
             "key": "SFLL26F112 - MATER-BI EF05B",
             "name": "SFLL26F112 - MATER-BI EF05B"
+        },
+        {
+            "key": "NOVAMONT TERNI - SP01",
+            "name": "NOVAMONT TERNI - SP01"
         }
     ],
-    "caratteristiche": [
-      "MFR",
-      "Acidity (COOH)",
-      "Water Content"  
+    "PDFs": [
+        "./res/CMR_1500079005.pdf",
+        "./res/CMR_1500079008.pdf",
+        "./res/CMR_1500088332.pdf",
+        "./res/CMR_1500090279.pdf",
+        "./res/CMR_1500090761.pdf",
+        "./res/CMR_1500090801.pdf",
+        "./res/CMR_1500090968.pdf",
+        "./res/COA_1500089304.pdf",
+        "./res/COA_1500090528.pdf",
+        "./res/COA_1500090761.pdf",
+        "./res/COA_1500090801.pdf",
+        "./res/COA_1500090968.pdf",
+        "./res/DDT_1500079005.pdf",
+        "./res/DDT_1500079008.pdf",
+        "./res/DDT_1500088332.pdf",
+        "./res/DDT_1500088405.pdf",
+        "./res/DDT_1500089304.pdf",
+        "./res/DDT_1500090029.pdf",
+        "./res/DDT_1500090279.pdf",
+        "./res/DDT_1500090528.pdf",
+        "./res/DDT_1500090761.pdf",
+        "./res/DDT_1500090801.pdf",
+        "./res/DDT_1500090968.pdf",
+        "./res/PKL_1500079005.pdf",
+        "./res/PKL_1500079008.pdf",
+        "./res/PKL_1500088332.pdf",
+        "./res/PKL_1500090279.pdf",
+        "./res/PKL_1500090761.pdf",
+        "./res/PKL_1500090801.pdf",
+        "./res/PKL_1500090968.pdf"
     ]
 }

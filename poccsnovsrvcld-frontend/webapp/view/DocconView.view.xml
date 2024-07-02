@@ -172,8 +172,8 @@
                         <t:template>
                             <HBox justifyContent="SpaceBetween">
                                 <Button text="DDT" type="Default" press="apriPdf" tooltip="Visualizza documento DDT_{deliveryNumber}.pdf"/>
-                                <Button text="CMR" type="Default"/>
-                                <Button text="PKL" type="Default"/>
+                                <Button text="CMR" type="Default" press="apriCMR"/>
+                                <Button text="PKL" type="Default" press="apriPKL"/>
                                 <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
                             </HBox>
                         </t:template>
