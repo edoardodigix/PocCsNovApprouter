@@ -146,22 +146,22 @@ function (Controller, JSONModel, Filter, FilterOperator,
 
 				// DEFINIAMO L'ARRAY CHE CONTERRA' I NUMEROODV DI TUTTI GLI ELEMENTI GIA' PRESENTI NEL MODELLO JSON DEI RIFERIMENTI
 				// TIRIAMO FUORI IL NUMEROODV DELLA RIGA CHE STIAMO AGGIUNGENDO (QUELLA DEL FOREACH)
-				//const rowNumberOdv = this._getNumeroOdvFromRow(row);
+				//const rowDelNum = this._getNumeroOdvFromRow(row);
                 var path = row.getBindingContext().getPath(); // percorso puntuale all'indice selezionato per riga
                 var value = this.getView().getModel().getProperty(path);
-                var rowNumberOdv = value.numberODV;
+                var rowDelNum = value.deliveryNumber;
 				const aMockData = this.getView().getModel().getData().data;
-				const aElementToAdd = aMockData.filter(order => order.numberODV === rowNumberOdv); // prendo dal modello l'oggetto in cui il numberODV è uguale al
-				// al numberODV della row selezionata	
+				const aElementToAdd = aMockData.filter(order => order.deliveryNumber === rowDelNum); // prendo dal modello l'oggetto in cui il deliveryNumber è uguale al
+				// al deliveryNumber della row selezionata	
 				if(aElementToAdd.length>0){
-					const aCheck = aCurrentRows.filter(order => aElementToAdd[0].numberODV === order.numberODV);
+					const aCheck = aCurrentRows.filter(order => aElementToAdd[0].deliveryNumber === order.deliveryNumber);
 					if(aCheck.length===0){
 						aCurrentRows.push(aElementToAdd[0]);
 					}
 					this.getView().getModel().setProperty("/selectedData",aCurrentRows,true);
 				}
 																							   		
-				// if(!currentRows.includes(rowNumberOdv)) {
+				// if(!currentRows.includes(rowDelNum)) {
 				// 	this.getView().getModel().getData().selectedData.push(elementToAdd);
 				// }
 				// const aSelectedDataModel = this.getView().getModel().getProperty("/selectedData");
@@ -332,9 +332,51 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			console.log("STOP");
 			const deliveryNumber = aSelectedOrder[0].deliveryNumber;
             const sSource = `./res/DDT_${deliveryNumber}.pdf`
-            pdfViewer.setSource(sSource);
-            pdfViewer.setTitle("My Custom Title");
-            pdfViewer.open();
+            const aPDF = this.getView().getModel().getData().PDFs;
+
+			if(aPDF.includes(sSource)) {
+				pdfViewer.setSource(sSource);
+				pdfViewer.setTitle("My Custom Title");
+				pdfViewer.open();
+			}
+        },
+
+		apriCMR: function (oEvent) {
+            const pdfViewer = new sap.m.PDFViewer();
+            this.getView().addDependent(pdfViewer);
+            const oRow = oEvent.getSource().getParent().getParent();
+			const rowDelNumb = this._getNumeroConsegnaFromRow(oRow);
+			const aCurrentRows = JSON.parse(JSON.stringify(this.getView().getModel().getProperty("/selectedData")));
+			const aSelectedOrder = aCurrentRows.filter(row => row.deliveryNumber === rowDelNumb);
+			console.log("STOP");
+			const deliveryNumber = aSelectedOrder[0].deliveryNumber;
+            const sSource = `./res/CMR_${deliveryNumber}.pdf`
+            const aPDF = this.getView().getModel().getData().PDFs;
+
+			if(aPDF.includes(sSource)) {
+				pdfViewer.setSource(sSource);
+				pdfViewer.setTitle("My Custom Title");
+				pdfViewer.open();
+			}
+        },
+
+		apriPKL: function (oEvent) {
+            const pdfViewer = new sap.m.PDFViewer();
+            this.getView().addDependent(pdfViewer);
+            const oRow = oEvent.getSource().getParent().getParent();
+			const rowDelNumb = this._getNumeroConsegnaFromRow(oRow);
+			const aCurrentRows = JSON.parse(JSON.stringify(this.getView().getModel().getProperty("/selectedData")));
+			const aSelectedOrder = aCurrentRows.filter(row => row.deliveryNumber === rowDelNumb);
+			console.log("STOP");
+			const deliveryNumber = aSelectedOrder[0].deliveryNumber;
+            const sSource = `./res/PKL_${deliveryNumber}.pdf`
+            const aPDF = this.getView().getModel().getData().PDFs;
+
+			if(aPDF.includes(sSource)) {
+				pdfViewer.setSource(sSource);
+				pdfViewer.setTitle("My Custom Title");
+				pdfViewer.open();
+			}
         },
 
 		_getNumeroConsegnaFromRow: function (row) {

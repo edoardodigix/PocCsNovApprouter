@@ -192,10 +192,73 @@ function (Controller, JSONModel, Filter, FilterOperator,
 			const aSelectedOrder = aCurrentRows.filter(row => row.NumeroConsegna === rowDelNumb);
 			console.log("STOP");
 			const NumeroConsegna = aSelectedOrder[0].NumeroConsegna;
-            const sSource = `./res/DDT_${NumeroConsegna}.pdf`
-            pdfViewer.setSource(sSource);
-            pdfViewer.setTitle("My Custom Title");
-            pdfViewer.open();
+            const sSource = `./res/DDT_${NumeroConsegna}.pdf`;
+			const aPDF = this.getView().getModel().getData().PDFs;
+            if(aPDF.includes(sSource)) {
+				pdfViewer.setSource(sSource);
+				pdfViewer.setTitle("My Custom Title");
+				pdfViewer.open();
+			}
+        },
+
+		apriCOA: function (oEvent) {
+            const pdfViewer = new sap.m.PDFViewer();
+            this.getView().addDependent(pdfViewer);
+            const oRow = oEvent.getSource().getParent().getParent();
+			const rowDelNumb = this._getNumeroConsegnaFromRow(oRow);
+			const aCurrentRows = JSON.parse(JSON.stringify(this.getView().getModel().getProperty("/Riferimenti")));
+			const aSelectedOrder = aCurrentRows.filter(row => row.NumeroConsegna === rowDelNumb);
+			const NumeroConsegna = aSelectedOrder[0].NumeroConsegna;
+            const sSource = `./res/COA_${NumeroConsegna}.pdf`;
+			const aPDF = this.getView().getModel().getData().PDFs;
+
+			if(aPDF.includes(sSource)) {
+				pdfViewer.setSource(sSource);
+				pdfViewer.setTitle("My Custom Title");
+				pdfViewer.open();
+			}
+            /* 
+			try {
+			} catch (error) {
+				console.warn(error);
+			} */
+        },
+
+
+		apriCMR: function (oEvent) {
+            const pdfViewer = new sap.m.PDFViewer();
+            this.getView().addDependent(pdfViewer);
+            const oRow = oEvent.getSource().getParent().getParent();
+			const rowDelNumb = this._getNumeroConsegnaFromRow(oRow);
+			const aCurrentRows = JSON.parse(JSON.stringify(this.getView().getModel().getProperty("/Riferimenti")));
+			const aSelectedOrder = aCurrentRows.filter(row => row.NumeroConsegna === rowDelNumb);
+			const NumeroConsegna = aSelectedOrder[0].NumeroConsegna;
+            const sSource = `./res/CMR_${NumeroConsegna}.pdf`;
+			const aPDF = this.getView().getModel().getData().PDFs;
+
+			if(aPDF.includes(sSource)) {
+				pdfViewer.setSource(sSource);
+				pdfViewer.setTitle("My Custom Title");
+				pdfViewer.open();
+			}
+        },
+
+		apriPKL: function (oEvent) {
+            const pdfViewer = new sap.m.PDFViewer();
+            this.getView().addDependent(pdfViewer);
+            const oRow = oEvent.getSource().getParent().getParent();
+			const rowDelNumb = this._getNumeroConsegnaFromRow(oRow);
+			const aCurrentRows = JSON.parse(JSON.stringify(this.getView().getModel().getProperty("/Riferimenti")));
+			const aSelectedOrder = aCurrentRows.filter(row => row.NumeroConsegna === rowDelNumb);
+			const NumeroConsegna = aSelectedOrder[0].NumeroConsegna;
+            const sSource = `./res/PKL_${NumeroConsegna}.pdf`;
+			const aPDF = this.getView().getModel().getData().PDFs;
+
+			if(aPDF.includes(sSource)) {
+				pdfViewer.setSource(sSource);
+				pdfViewer.setTitle("My Custom Title");
+				pdfViewer.open();
+			}
         },
 
 		// UTILITY FUNTIONS PRIVATE

@@ -48,6 +48,54 @@
             "no_packages" : "0",
             "status": "C - Elaborato completamente",
             "peso-totale" : "25.600"
+        },
+        {
+            "deliveryNumber": "1500079008",
+            "numberODV": "",
+            "destinatarioMerci": "NOVAMONT IBERIA S.L.U.",
+            "indirizzoDest": "Ctra de L'Hospitalet 147-149, Ed. Atenas 1° 4^ / 08940",
+            "dateUM": "2024-03-21T00:00:00.000Z",
+            "no_packages": "0",
+            "trasportatore": "",
+            "luogoSped": "PATRICA - SP04",
+            "status": "C - Elaborato completamente",
+            "peso-totale" : "11"
+        },
+        {
+            "deliveryNumber": "1500079005",
+            "numberODV": "",
+            "destinatarioMerci": "NOVAMONT SPA",
+            "indirizzoDest": "VIA FAUSER, 8 / I-28100 NOVARA NO",
+            "dateUM": "2024-05-31T00:00:00.000Z",
+            "no_packages": "1",
+            "trasportatore": "",
+            "luogoSped": "PATRICA - SP04",
+            "status": "C - Elaborato completamente",
+            "peso-totale" : "9.000"
+        },
+        {
+            "deliveryNumber": "1500090968",
+            "numberODV": "",
+            "destinatarioMerci": "POLYCART SPA",
+            "indirizzoDest": "VIA DELLE MACINE 6 / I-06081 PALAZZO DI ASSISI",
+            "dateUM": "2024-05-03T00:00:00.000Z",
+            "no_packages": "0",
+            "trasportatore": "GUIDO BERNARDINI SRL",
+            "luogoSped": "PATRICA - SP04",
+            "status": "C - Elaborato completamente",
+            "peso-totale" : "27.320"
+        },
+        {
+            "deliveryNumber": "1500090761",
+            "numberODV": "",
+            "destinatarioMerci": "LACTIPS",
+            "indirizzoDest": "350 rue de l'Industrie - ZI des Fraries / F-42740 Saint Paul en Jarez",
+            "dateUM": "2024-05-31T00:00:00.000Z",
+            "no_packages": "1",
+            "trasportatore": "",
+            "luogoSped": "NOVAMONT TERNI - SP01",
+            "status": "C - Elaborato completamente",
+            "peso-totale" : "935"
         }
     ],
     "numbersODV": [
@@ -84,6 +132,18 @@
         {
             "key": "1500090528",
             "name": "1500090528"
+        },
+        {
+            "key": "1500079008",
+            "name": "1500079008"
+        },
+        {
+            "key": "1500079005",
+            "name": "1500079005"
+        },
+        {
+            "key": "1500090968",
+            "name": "1500090968"
         }
     ],
     "statuses": [
@@ -104,7 +164,46 @@
         {
             "key": "TECNOFER - SZ15",
             "name": "TECNOFER - SZ15"
+        },
+        
+        {
+            "key": "NOVAMONT TERNI - SP01",
+            "name": "NOVAMONT TERNI - SP01"
         }
     ],
-    "selectedData" : []
+
+    "selectedData" : [],
+    
+    "PDFs": [
+        "./res/CMR_1500079005.pdf",
+        "./res/CMR_1500079008.pdf",
+        "./res/CMR_1500088332.pdf",
+        "./res/CMR_1500090279.pdf",
+        "./res/CMR_1500090761.pdf",
+        "./res/CMR_1500090801.pdf",
+        "./res/CMR_1500090968.pdf",
+        "./res/COA_1500089304.pdf",
+        "./res/COA_1500090528.pdf",
+        "./res/COA_1500090761.pdf",
+        "./res/COA_1500090801.pdf",
+        "./res/COA_1500090968.pdf",
+        "./res/DDT_1500079005.pdf",
+        "./res/DDT_1500079008.pdf",
+        "./res/DDT_1500088332.pdf",
+        "./res/DDT_1500088405.pdf",
+        "./res/DDT_1500089304.pdf",
+        "./res/DDT_1500090029.pdf",
+        "./res/DDT_1500090279.pdf",
+        "./res/DDT_1500090528.pdf",
+        "./res/DDT_1500090761.pdf",
+        "./res/DDT_1500090801.pdf",
+        "./res/DDT_1500090968.pdf",
+        "./res/PKL_1500079005.pdf",
+        "./res/PKL_1500079008.pdf",
+        "./res/PKL_1500088332.pdf",
+        "./res/PKL_1500090279.pdf",
+        "./res/PKL_1500090761.pdf",
+        "./res/PKL_1500090801.pdf",
+        "./res/PKL_1500090968.pdf"
+    ]
 }

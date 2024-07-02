@@ -245,10 +245,10 @@
                 <t:Column id="azioni-rif" width="15rem" hAlign="Center">
                     <t:template>
                         <HBox justifyContent="SpaceBetween">
-                            <Button text="DDT" type="Default"/>
-                            <Button text="COA" type="Default"/>
-                            <Button text="CMR" type="Default"/>
-                            <Button text="PKL" type="Default"/>
+                            <Button text="DDT" type="Default" press="apriDDT"/>
+                            <Button text="COA" type="Default" press="apriCOA"/>
+                            <Button text="CMR" type="Default" press="apriCMR"/>
+                            <Button text="PKL" type="Default" press="apriPKL"/>
                             <Button icon="sap-icon://delete" press="eliminaRiferimento"/>
                         </HBox>
                     </t:template>
