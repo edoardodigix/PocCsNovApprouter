@@ -96,6 +96,42 @@
             "luogoSped": "NOVAMONT TERNI - SP01",
             "status": "C - Elaborato completamente",
             "peso-totale" : "935"
+        },
+        {
+            "deliveryNumber": "1500088332",
+            "numberODV": "",
+            "destinatarioMerci": "LOGISTICA & DISTRIBUZ. BRUNO BASSO srl",
+            "indirizzoDest": "VIA ROMA 248/250 / I-17038 VILLANOVA",
+            "dateUM": "2024-01-08T00:00:00.000Z",
+            "no_packages": "30",
+            "trasportatore": "CIANFROCCA TRASPORTI S.R.L.",
+            "luogoSped": "TECNOFER - SZ15",
+            "status": "C - Elaborato completamente",
+            "peso-totale" : "27.891"
+        },
+        {
+            "deliveryNumber": "1500090801",
+            "numberODV": "",
+            "destinatarioMerci": "AVANTPACK d.o.o.",
+            "indirizzoDest": "INDUSTRIJSKA CESTA 68 / SI-5000 NOVA GORICA",
+            "dateUM": "2024-04-17T00:00:00.000Z",
+            "no_packages": "24",
+            "trasportatore": "VIES LTD D.O.O.",
+            "luogoSped": "NOVAMONT TERNI - SP01",
+            "status": "C - Elaborato completamente",
+            "peso-totale" : "20.040"
+        },
+        {
+            "deliveryNumber": "1500090279",
+            "numberODV": "",
+            "destinatarioMerci": "LIRSA S.p.A.",
+            "indirizzoDest": "GENIO MILITARE 40 / I-80044 OTTAVIANO NA",
+            "dateUM": "2024-03-27T00:00:00.000Z",
+            "no_packages": "30",
+            "trasportatore": "CONTESSA TRASPORTI SRL",
+            "luogoSped": "NOVAMONT TERNI - SP01",
+            "status": "C - Elaborato completamente",
+            "peso-totale" : "28.100"
         }
     ],
     "numbersODV": [
@@ -144,6 +180,22 @@
         {
             "key": "1500090968",
             "name": "1500090968"
+        },
+        {
+            "key": "1500090761",
+            "name": "1500090761"
+        },
+        {
+            "key": "1500088332",
+            "name": "1500088332"
+        },
+        {
+            "key": "1500090801",
+            "name": "1500090801"
+        },
+        {
+            "key": "1500090279",
+            "name": "1500090279"
         }
     ],
     "statuses": [

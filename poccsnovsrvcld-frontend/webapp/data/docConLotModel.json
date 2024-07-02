@@ -695,6 +695,60 @@
             "lotto": {
                 "id": ""
             }
+        },
+        {
+            "NumeroConsegna": "1500088332",
+            "NumeroOdv": "",
+            "DestinatarioMerci": "LOGISTICA & DISTRIBUZ. BRUNO BASSO srl",
+            "IndirizzoDestinatarioMerci": "VIA ROMA 248/250 / I-17038 VILLANOVA",
+            "DataUM": "2024-01-08T00:00:00.000Z",
+            "NumeroColli": "30",
+            "Trasportatore": "CIANFROCCA TRASPORTI S.R.L.",
+            "LuogoSpedizione": "TECNOFER - SZ15",
+            "Materiale": "OCPP26F112 - MATER-BI EF05B",
+            "Quantità": "27.000",
+            "UM": "KG",
+            "MaterialeCliente": "OCPP26F109",
+            "peso-totale" : "27.891",
+            "lotto": {
+                "id": ""
+            }
+        },
+        {
+            "NumeroConsegna": "1500090801",
+            "NumeroOdv": "",
+            "DestinatarioMerci": "AVANTPACK d.o.o.",
+            "IndirizzoDestinatarioMerci": "INDUSTRIJSKA CESTA 68 / SI-5000 NOVA GORICA",
+            "DataUM": "2024-04-17T00:00:00.000Z",
+            "NumeroColli": "24",
+            "Trasportatore": "VIES LTD D.O.O.",
+            "LuogoSpedizione": "NOVAMONT TERNI - SP01",
+            "Materiale": "OCAPEF51L1 - MATER-BI EF51L1",
+            "Quantità": "15.200",
+            "UM": "KG",
+            "MaterialeCliente": "OCPP26F109",
+            "peso-totale" : "20.040",
+            "lotto": {
+                "id": ""
+            }
+        },
+        {
+            "NumeroConsegna": "1500090279",
+            "NumeroOdv": "",
+            "DestinatarioMerci": "LIRSA S.p.A.",
+            "IndirizzoDestinatarioMerci": "GENIO MILITARE 40 / I-80044 OTTAVIANO NA",
+            "DataUM": "2024-03-27T00:00:00.000Z",
+            "NumeroColli": "30",
+            "Trasportatore": "CONTESSA TRASPORTI SRL",
+            "LuogoSpedizione": "NOVAMONT TERNI - SP01",
+            "Materiale": "OCPP26F109 - MATER-BI EF04P",
+            "Quantità": "27.000",
+            "UM": "KG",
+            "MaterialeCliente": "OCPP26F109",
+            "peso-totale" : "28.100",
+            "lotto": {
+                "id": ""
+            }
         }
     ],
     "NumeriConsegna": [
@@ -725,6 +779,22 @@
         {
             "key": "1500090968",
             "name": "1500090968"
+        },
+        {
+            "key": "1500090761",
+            "name": "1500090761"
+        },
+        {
+            "key": "1500088332",
+            "name": "1500088332"
+        },
+        {
+            "key": "1500090801",
+            "name": "1500090801"
+        },
+        {
+            "key": "1500090279",
+            "name": "1500090279"
         }
     ],
     "NumeriOdv": [
@@ -779,8 +849,24 @@
             "name": "SFLL26F112 - MATER-BI EF05B"
         },
         {
-            "key": "NOVAMONT TERNI - SP01",
-            "name": "NOVAMONT TERNI - SP01"
+            "key": "BBAP25F114 - ORIGO-BI ES01G",
+            "name": "BBAP25F114 - ORIGO-BI ES01G"
+        },
+        {
+            "key": "SFLLTHFPUR - THF PURO",
+            "name": "SFLLTHFPUR - THF PURO"
+        },
+        {
+            "key": "OCPP26F109 - MATER-BI EF04P",
+            "name": "OCPP26F109 - MATER-BI EF04P"
+        },
+        {
+            "key": "OCPP26F112 - MATER-BI EF05B",
+            "name": "OCPP26F112 - MATER-BI EF05B"
+        },
+        {
+            "key": "OCAPEF51L1 - MATER-BI EF51L1",
+            "name": "OCAPEF51L1 - MATER-BI EF51L1"
         }
     ],
     "PDFs": [
