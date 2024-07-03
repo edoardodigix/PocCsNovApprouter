@@ -11,9 +11,10 @@ sap.ui.define([
 	'sap/m/table/ColumnWidthController',
 	'sap/ui/core/library',
 	'sap/ui/model/Sorter',
+	'sap/m/MessageToast'
 ],
 function (Controller, JSONModel, Filter, FilterOperator,
-    Engine, MetadataHelper, SelectionController, SortController, GroupController, ColumnWidthController, CoreLibrary, Sorter) {
+    Engine, MetadataHelper, SelectionController, SortController, GroupController, ColumnWidthController, CoreLibrary, Sorter, MessageToast) {
     "use strict";
 
     return Controller.extend("poccsnovsrvcldfrontend.controller.DocconsprodView", {
@@ -198,6 +199,9 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				pdfViewer.setSource(sSource);
 				pdfViewer.setTitle("My Custom Title");
 				pdfViewer.open();
+			} else {
+				const msg = "Documento non presente";
+				MessageToast.show(msg);
 			}
         },
 
@@ -216,6 +220,9 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				pdfViewer.setSource(sSource);
 				pdfViewer.setTitle("My Custom Title");
 				pdfViewer.open();
+			} else {
+				const msg = "Documento non presente";
+				MessageToast.show(msg);
 			}
             /* 
 			try {
@@ -240,6 +247,9 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				pdfViewer.setSource(sSource);
 				pdfViewer.setTitle("My Custom Title");
 				pdfViewer.open();
+			} else {
+				const msg = "Documento non presente";
+				MessageToast.show(msg);
 			}
         },
 
@@ -258,6 +268,9 @@ function (Controller, JSONModel, Filter, FilterOperator,
 				pdfViewer.setSource(sSource);
 				pdfViewer.setTitle("My Custom Title");
 				pdfViewer.open();
+			} else {
+				const msg = "Documento non presente";
+				MessageToast.show(msg);
 			}
         },
 
