@@ -245,7 +245,7 @@
                 <t:Column id="azioni-rif" width="15rem" hAlign="Center">
                     <t:template>
                         <HBox justifyContent="SpaceBetween">
-                            <Button text="DDT" type="Default" press="apriDDT"/>
+                            <Button text="DDT" type="Default" press="apriPdf"/>
                             <Button text="COA" type="Default" press="apriCOA"/>
                             <Button text="CMR" type="Default" press="apriCMR"/>
                             <Button text="PKL" type="Default" press="apriPKL"/>
